@@ -5,15 +5,16 @@ import React from "react";
 export function InputFlight(props) {
   return (
     <div>
-      <div className="input-field col s6"></div>
-      <i className="material-icons prefix">flight_land</i>
-      <input
-        {...props}
-        id="icon_prefix"
-        type="text"
-        className="validate"
-      ></input>
-      <label for="icon_prefix"></label>
+      <div className="input-field col s6">
+        <i className="material-icons prefix">flight_land</i>
+        <input
+          {...props}
+          id="icon_prefix"
+          type="text"
+          className="validate"
+        ></input>
+        <label for="icon_prefix"></label>
+      </div>
     </div>
   );
 }
@@ -21,15 +22,16 @@ export function InputFlight(props) {
 export function InputDrive(props) {
   return (
     <div>
-      <div className="input-field col s6"></div>
-      <i className="material-icons prefix">directions_car</i>
-      <input
-        {...props}
-        id="icon_prefix"
-        type="text"
-        className="validate"
-      ></input>
-      <label for="icon_prefix"></label>
+      <div className="input-field col s6">
+        <i className="material-icons prefix">directions_car</i>
+        <input
+          {...props}
+          id="icon_prefix"
+          type="text"
+          className="validate"
+        ></input>
+        <label for="icon_prefix"></label>
+      </div>
     </div>
   );
 }
@@ -37,7 +39,9 @@ export function InputDrive(props) {
 export function InputDate(props) {
   return (
     <div>
-      <input {...props} type="text" className="datepicker"></input>
+      <div className="input-field col s6">
+        <input {...props} type="text" className="datepicker"></input>
+      </div>
     </div>
   );
 }

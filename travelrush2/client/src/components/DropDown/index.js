@@ -40,8 +40,7 @@ class DropDown extends Component {
             </a>
           </li>
         </ul>
-        <SearchForm data-choice={this.state.travelChoice} />
-        {this.state.travelChoice === "1" ? <SearchForm></SearchForm> : null}
+        <SearchForm travelMode ={this.state.travelChoice} />
       </div>
     );
   }

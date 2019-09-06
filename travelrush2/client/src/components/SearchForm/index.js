@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { InputFlight, InputDrive, InputDate, FormBtn } from "./Form";
 //import ImageCard, { Button } from "./components/Button";
 //import NavBar, { DropDown } from "./components/DropDown";
 //import Form from "./components/Form";
@@ -15,11 +16,15 @@ class SearchForm extends Component {
   handleOnClick = event => {
     //prevent default behavior
     event.preventDefault();
+    //Now do the necessary API calls....
+    //Remember that the state has the necessary inputs/search parameters.
   };
 
   handleOnchange = event => {
-    const { value } = event.target;
-    this.setState({ travelChoice: value }).catch(err => console.log("error"));
+    const {
+      target: { name, value }
+    } = event;
+    this.setState({ [name]: value }).catch(err => console.log("error"));
   };
   /*
 
@@ -36,6 +41,32 @@ class SearchForm extends Component {
   };*/
   //How does button component know to submit my two forms?
   render() {
+    return (
+      <div>
+        <form className="col s12">
+          <div className="row">
+            {this.props.travelMode === "1" ? (
+              <InputFlight
+                onChange={handleOnchange}
+                name="airport"
+              ></InputFlight>
+            ) : (
+              <InputDrive onChange={handleOnchange} name="address"></InputDrive>
+            )}
+            <InputDate onChange={handleOnchange} name="date"></InputDate>
+          </div>
+          <div className="row">
+            <FormBtn onClick={handleOnClick}></FormBtn>
+          </div>
+        </form>
+      </div>
+    );
+  }
+}
+
+export default SearchForm;
+
+/* render() {
     return (
       <div>
         {this.props.data - choice === "1" ? (
@@ -105,7 +136,4 @@ class SearchForm extends Component {
         )}
       </div>
     );
-  }
-}
-
-export default SearchForm;
+  }*/
