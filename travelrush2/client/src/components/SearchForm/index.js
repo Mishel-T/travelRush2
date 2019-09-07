@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { InputFlight, InputDrive, InputDate, FormBtn } from "../Form";
 import DropDown from "../DropDown";
+
 //import ImageCard, { Button } from "./components/Button";
 //import NavBar, { DropDown } from "./components/DropDown";
 //import Form from "./components/Form";
@@ -52,7 +53,7 @@ class SearchForm extends Component {
                 name="airport"
               ></InputFlight>
             ) : (
-              <InputDrive
+       <InputDrive
                 onChange={this.handleOnchange}
                 name="address"
               ></InputDrive>

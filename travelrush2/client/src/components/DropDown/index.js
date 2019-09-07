@@ -1,8 +1,9 @@
+
 import React, { Component } from "react";
 import SearchForm from "../SearchForm";
 import M from "materialize-css";
 
-class DropDown extends Component {
+class DropDown extends React.Component {
   state = {
     travelChoice: ""
   };
@@ -31,13 +32,13 @@ class DropDown extends Component {
         <ul id="dropdown1" className="dropdown-content">
           <li>
             <a href="#!" data-value="1" onClick={this.handleDropClick}>
-              By airport
+       By airport
             </a>
           </li>
           <li className="divider" tabIndex="-1"></li>
           <li>
             <a href="#!" data-value="2" onClick={this.handleDropClick}>
-              By address
+      By address
             </a>
           </li>
         </ul>
