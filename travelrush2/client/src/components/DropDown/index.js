@@ -1,15 +1,23 @@
-import React from "react";
-import SearchForm from "SearchForm";
+import React, { Component } from "react";
+import SearchForm from "../SearchForm";
+import M from "materialize-css";
 
 class DropDown extends Component {
   state = {
     travelChoice: ""
   };
 
+  componentDidMount() {
+    document.addEventListener("DOMContentLoaded", function() {
+      var elems = document.querySelectorAll(".dropdown-trigger");
+      var instances = M.Dropdown.init(elems, options);
+    });
+  }
+
   handleDropClick = event => {
     //prevent default behavior
     event.preventDefault();
-    const travelMode = this.event.target.getAttribute("data-value");
+    const travelMode = event.target.getAttribute("data-value");
     this.setState({ travelChoice: travelMode });
   };
 
@@ -22,14 +30,14 @@ class DropDown extends Component {
         </a>
         <ul id="dropdown1" className="dropdown-content">
           <li>
-            <a href="#!" data-value="1" onClick={props.handleDropClick}>
-              Fly to your destination
+            <a href="#!" data-value="1" onClick={this.handleDropClick}>
+              By airport
             </a>
           </li>
-          <li className="divider" tabindex="-1"></li>
+          <li className="divider" tabIndex="-1"></li>
           <li>
-            <a href="#!" data-value="2" onClick={props.handleDropClick}>
-              Drive to your destination
+            <a href="#!" data-value="2" onClick={this.handleDropClick}>
+              By address
             </a>
           </li>
         </ul>
@@ -67,7 +75,6 @@ export function DropDown(props) {
     </div>
   );
 }*/
-
 
 /*<DropDown>onChange={this.handleDropChange}</DropDown>
         <Form

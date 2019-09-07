@@ -40,6 +40,7 @@ export function InputDate(props) {
   return (
     <div>
       <div className="input-field col s6">
+        <i className="material-icons prefix">date_range</i>
         <input {...props} type="text" className="datepicker"></input>
       </div>
     </div>
