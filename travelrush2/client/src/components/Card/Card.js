@@ -7,7 +7,7 @@ const Card = props => (
 
   <div class="card">
     <div class="card-image">
-      <img id="weather-img">
+      <img id="weather-img"></img>
       <span class="card-title" id="weather-name"></span>
       <a class="btn-floating halfway-fab waves-effect waves-light red" id="more-weather" value="weather"><i class="material-icons">brightness_5</i></a>
     </div>
@@ -18,7 +18,6 @@ const Card = props => (
       <a href="#"></a>
     </div>
   </div>
-</div>
 );
 
 export default Card;
