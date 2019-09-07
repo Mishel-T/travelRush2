@@ -1,29 +1,22 @@
 import React from "react";
-import SearchForm from "SearchForm"
-
-
+import SearchForm from "SearchForm";
 
 class DropDown extends Component {
   state = {
     travelChoice: ""
   };
 
-  /*handleDropChange = event => {
-    const { value } = event.target;
-    this.setState({ travelChoice: value }).catch(err => console.log("error"));
-  };*/
-
   handleDropClick = event => {
     //prevent default behavior
     event.preventDefault();
-    const travelMode = this.event.target.getAttribute("data-value") 
+    const travelMode = this.event.target.getAttribute("data-value");
     this.setState({ travelChoice: travelMode });
-  }
-   
+  };
+
   //How does button component know to submit my two forms?
   render() {
-      return (
-        <div>
+    return (
+      <div>
         <a className="dropdown-trigger btn" href="#" data-target="dropdown1">
           Drop Me!
         </a>
@@ -40,7 +33,7 @@ class DropDown extends Component {
             </a>
           </li>
         </ul>
-        <SearchForm travelMode ={this.state.travelChoice} />
+        <SearchForm travelMode={this.state.travelChoice} />
       </div>
     );
   }
@@ -48,7 +41,7 @@ class DropDown extends Component {
 
 export default DropDown;
 
- /*
+/*
     if (this.event.target.getAttribute("data-value") === "1") {
       //If user chose to fly, then hide `Form` for the destination address
       
@@ -75,7 +68,7 @@ export function DropDown(props) {
   );
 }*/
 
-<DropDown>onChange={this.handleDropChange}</DropDown>
+/*<DropDown>onChange={this.handleDropChange}</DropDown>
         <Form
           ref={flyForm => {
             this.optionsFly = flyForm;
@@ -89,4 +82,4 @@ export function DropDown(props) {
           onChange={this.handleOnChange}
         ></Form>
         <Form onChange={this.handleOnChange}></Form>
-        <Button onClick={this.handleOnChange}></Button>
+        <Button onClick={this.handleOnChange}></Button>*/
