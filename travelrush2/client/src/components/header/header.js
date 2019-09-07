@@ -1,20 +1,16 @@
 import React from "react";
+import Logo from "./teeny_logo.png"
+import "./header.css"
 
  function Header () {
         return (
             <div>
-                <ul id="dropdown1" className="dropdown-content">
-                    <li><a href="#!">one</a></li>
-                    <li><a href="#!">two</a></li>
-                    <li className="divider" />
-                    <li><a href="#!">three</a></li>
-                </ul>
                 <nav>
                     <div className="nav-wrapper">
-                        <a href="#" className="brand-logo"><img className="responsive-img" src="assets/images/travelRush-logo.png" style={{ maxWidth: '150px' }} /></a>
+                        <a href="#!" className="brand-logo"><img src={Logo} className="responsive-img"  alt="A tiny blue suitcase with a sock and heart boxers bursting out represents the logo of travelRush" style={{ maxWidth: '150px' }} /></a>
                         <a href="#!" className="brand-logo center">travelRush</a>
                         <ul className="right hide-on-med-and-down">
-                            <li><a href="#">LOGIN</a></li>
+                            <li><a href="#!">LOGIN</a></li>
                         </ul>
                     </div>
                 </nav>
