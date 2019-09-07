@@ -4,15 +4,17 @@ import Footer from "./components/footer"
 import ImageCard, { Button } from "./components/Button";
 import NavBar, { DropDown } from "./components/DropDown";
 import Form from "./components/Form";
+import Card from "./components/Card/Card";
+
 
 //import images from "./images.json";
-import "./App.css";
+//import "./App.css";
 
 class App extends Component {
   state = {};
 
   render() {
-  return [<div />, <Header />, <Footer />];
+  return [<div />, <Header />, <Footer />, <Card />];
   }
 }
 export default App;
