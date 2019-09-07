@@ -1,0 +1,18 @@
+nav {
+    background-color: rgb(125, 141, 191);
+  }
+
+nav .brand-logo {
+    font-family: 'Anton', sans-serif;
+    font-style: italic;
+    font-size: 3rem;
+    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-width: 2.00px; 
+}
+
+img.responsive-img, video.responsive-video {
+    justify-content: left;
+    max-width: 40%;
+    margin-left: 10px;
+    padding-left: 20px;
+}
