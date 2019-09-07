@@ -5,7 +5,7 @@ import SearchForm from "./components/SearchForm";
 import { InputFlight, InputDrive, InputDate } from "./components/Form";
 import Form from "./components/Form";
 
-import Card from "./components/Card/Card";
+import Card from "./components/Card/Weather";
 
 
 //import images from "./images.json";
