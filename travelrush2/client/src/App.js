@@ -1,14 +1,18 @@
 import React, { Component } from "react";
-import Header from "./components/header/header";
-import Footer from "./components/footer"
-import ImageCard, { Button } from "./components/Button";
-import NavBar, { DropDown } from "./components/DropDown";
+import SearchContainer from "./components/SearchContainer";
+import DropDown from "./components/DropDown";
+import SearchForm from "./components/SearchForm";
+import { InputFlight, InputDrive, InputDate } from "./components/Form";
 import Form from "./components/Form";
+
 import Card from "./components/Card/Card";
 
 
 //import images from "./images.json";
 //import "./App.css";
+
+import Header from "./components/header/header";
+import Footer from "./components/footer";
 
 class App extends Component {
   state = {};
@@ -16,5 +20,6 @@ class App extends Component {
   render() {
   return [<div />, <Header />, <Footer />, <Card />];
   }
+
 }
 export default App;
