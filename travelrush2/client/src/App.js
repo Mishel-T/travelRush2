@@ -18,7 +18,7 @@ class App extends Component {
   state = {};
 
   render() {
-  return [<div />, <Header />, <Footer />, <Card />];
+  return [<div />, <Header />, <Footer />, <SearchContainer />, <Card />];
   }
 
 }
