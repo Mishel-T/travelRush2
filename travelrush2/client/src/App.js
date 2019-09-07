@@ -12,7 +12,7 @@ class App extends Component {
   state = {};
 
   render() {
-    return [<div />, <Header />, <Footer />;
+  return [<div />, <Header />, <Footer />];
   }
 }
 export default App;
