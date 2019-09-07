@@ -1,13 +1,4 @@
 //adding API queries for app here
-// import axios from "axios";
-// const BASEURL = "https://www.omdbapi.com/?t=";
-// const APIKEY = "&apikey=trilogy";
-
-// export default {
-//     search: function (query) {
-//         return axios.get(BASEURL + query + APIKEY);
-//     }
-// };
 import axios from "axios";
 
 
@@ -17,17 +8,42 @@ const googleKEY = "AIzaSyCqOAF-sXj7Q5MxZzQTBIDyjHYSfVD_WT0";
 
 //google api query export
 export const googleSearch = (queryCity, queryState) => {
-        return axios.get(googleURL + queryCity + queryState + "&key=" + googleKEY)
-    };
+    return axios.get(googleURL + queryCity + queryState + "&key=" + googleKEY)
+};
 
 //URL and API key for airportFinder API
 const airportFinderURL = "https://cometari-airportsfinder-v1.p.rapidapi.com/api/airports/by-radius?radius=50&lng=";
-const airportFinderKey = "f60e32620bmsh0545e1c4b416f30p1425cdjsn99e5174ad055";
+const config = {
+    headers: {
+        "X-RapidAPI-Host": "cometari-airportsfinder-v1.p.rapidapi.com",
+        "X-RapidAPI-Key": "f60e32620bmsh0545e1c4b416f30p1425cdjsn99e5174ad055"
+    }
+};
+
 //airportFinder api query export
+//note to Dupe - had to change the placeholders for longitude and latitude from coordLoc.long and coordLoc.lat to just long and lat, so coordLoc.long and coordLoc.lat will have to have to be saved in long and lat vars
 export const airportFinderSearch = (long, lat) => {
-    //need to structure differently then google as airportFinder call has header which includes api key
-    return axios.get(airportFinderURL + long + "&lat=" + lat)
+    return axios.get(airportFinderURL + long + "&lat=" + lat, config)
 
-}
+};
 
+//URL and API key for yelp API
+const yelpURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&latitude=`;
+const yelpAPIKey = "NNn_iZkgwcsoXyb1LwNcwgRAiCL8c3RkazAkRcQueV0e5b0lZNV-SGGIeosL3AiABzN0_PsQasfbyA8BkbNTjHr-RiTH3sKFAPyB8SCmQInth1SBzlW1uhiuBsr5XHYx";
+const configYelp = {
+    headers: {
+        'Authorization': 'Bearer ' + yelpAPIKey,
+    },
+};
 
+export const yelpSearch = (long, lat) => {
+    return axios.get(yelpURL + lat + "&longitude=" + long + "&limit=10", configYelp)
+};
+
+//URL and API key for openweathermap API
+const weatherURL = "https://api.openweathermap.org/data/2.5/forecast?lat=";
+const weatherAPIKey = "61fb0fbf5b4af7a73cbae239fe1b3fbf";
+
+export const weatherSearch = (long, lat) => {
+    return axios.get(weatherURL + lat + "&lon=" + long + "&units=imperial&mode=json&appid=" + weatherAPIKey)
+};
