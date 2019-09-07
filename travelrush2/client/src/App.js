@@ -1,6 +1,25 @@
 import React from "react";
 import Header from "./components/header";
-function App() {
-  return <Header />;
+import Card from "./components/Card";
+
+class App extends Component {
+
+state = {
+  Cards,
+};
+
+}
+
+
+render(); {
+  return (
+  <Header />,
+  {this.state.cards.map(card => (
+  <Card
+    id={Card.id}
+    key={Card.id}
+    />
+  ))
+};
 }
 export default App;
