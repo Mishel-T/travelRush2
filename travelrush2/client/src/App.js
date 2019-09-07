@@ -7,7 +7,6 @@ import Form from "./components/Form";
 
 import Card from "./components/Card/Weather";
 
-
 //import images from "./images.json";
 //import "./App.css";
 
@@ -18,8 +17,7 @@ class App extends Component {
   state = {};
 
   render() {
-  return [<div />, <Header />, <Footer />, <SearchContainer />, <Card />];
+    return [<div />, <Header />, <Footer />, <SearchContainer />, <Card />];
   }
-
 }
 export default App;
