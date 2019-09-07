@@ -1,7 +1,7 @@
 import React from "react";
-import SearchForm from "SearchForm";
+import SearchForm from "../SearchForm/index";
 
-class DropDown extends Component {
+class DropDown extends React.Component {
   state = {
     travelChoice: ""
   };
@@ -9,7 +9,7 @@ class DropDown extends Component {
   handleDropClick = event => {
     //prevent default behavior
     event.preventDefault();
-    const travelMode = this.event.target.getAttribute("data-value");
+    const travelMode = event.target.getAttribute("data-value");
     this.setState({ travelChoice: travelMode });
   };
 
@@ -22,13 +22,13 @@ class DropDown extends Component {
         </a>
         <ul id="dropdown1" className="dropdown-content">
           <li>
-            <a href="#!" data-value="1" onClick={props.handleDropClick}>
+            <a href="#!" data-value="1" onClick={this.handleDropClick}>
               Fly to your destination
             </a>
           </li>
           <li className="divider" tabindex="-1"></li>
           <li>
-            <a href="#!" data-value="2" onClick={props.handleDropClick}>
+            <a href="#!" data-value="2" onClick={this.handleDropClick}>
               Drive to your destination
             </a>
           </li>

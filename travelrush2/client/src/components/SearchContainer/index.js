@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import SearchForm from "./SearchForm";
-import DropDown from "./DropDown";
+import SearchForm from "../SearchForm";
+import DropDown from "../DropDown";
 
 class SearchContainer extends Component {
   state = {
