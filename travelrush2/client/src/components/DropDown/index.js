@@ -1,18 +1,19 @@
-
 import React, { Component } from "react";
 import SearchForm from "../SearchForm";
 import M from "materialize-css";
+//import "materialize-css/dist/css/materialize.min.css";
 
 class DropDown extends React.Component {
   state = {
-    travelChoice: ""
+    travelChoice: "0"
   };
 
   componentDidMount() {
-    document.addEventListener("DOMContentLoaded", function() {
+    /*document.addEventListener("DOMContentLoaded", function() {
       var elems = document.querySelectorAll(".dropdown-trigger");
       var instances = M.Dropdown.init(elems, options);
-    });
+    });*/
+    M.AutoInit();
   }
 
   handleDropClick = event => {
@@ -26,22 +27,32 @@ class DropDown extends React.Component {
   render() {
     return (
       <div>
-        <a className="dropdown-trigger btn" href="#" data-target="dropdown1">
-          Drop Me!
-        </a>
-        <ul id="dropdown1" className="dropdown-content">
-          <li>
-            <a href="#!" data-value="1" onClick={this.handleDropClick}>
-       By airport
-            </a>
-          </li>
-          <li className="divider" tabIndex="-1"></li>
-          <li>
-            <a href="#!" data-value="2" onClick={this.handleDropClick}>
-      By address
-            </a>
-          </li>
-        </ul>
+        <div className="row center">
+          {this.state.travelChoice === "0" ? (
+            <span>
+              <h5 className="center-align">Search By:</h5>
+            </span>
+          ) : (
+            ""
+          )}
+          <a className="dropdown-trigger btn" href="#" data-target="dropdown1">
+            Drop Me!
+          </a>
+          <ul id="dropdown1" className="dropdown-content">
+            <li>
+              <a href="#!" data-value="1" onClick={this.handleDropClick}>
+                By airport
+              </a>
+            </li>
+            <li className="divider" tabIndex="-1"></li>
+            <li>
+              <a href="#!" data-value="2" onClick={this.handleDropClick}>
+                By address
+              </a>
+            </li>
+          </ul>
+        </div>
+
         <SearchForm travelMode={this.state.travelChoice} />
       </div>
     );
