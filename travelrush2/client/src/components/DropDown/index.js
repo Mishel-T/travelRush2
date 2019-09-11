@@ -9,18 +9,30 @@ class DropDown extends React.Component {
   };
 
   componentDidMount() {
-    /*document.addEventListener("DOMContentLoaded", function() {
-      var elems = document.querySelectorAll(".dropdown-trigger");
-      var instances = M.Dropdown.init(elems, options);
-    });*/
-    M.AutoInit();
+    // document.addEventListener("DOMContentLoaded", function() {
+    const elems = document.querySelectorAll(".dropdown-trigger");
+    const instances = M.Dropdown.init(elems);
+    // });
+    //M.AutoInit();
   }
 
   handleDropClick = event => {
     //prevent default behavior
+
     event.preventDefault();
+
     const travelMode = event.target.getAttribute("data-value");
-    this.setState({ travelChoice: travelMode });
+    //M.AutoInit();
+    this.setState({ travelChoice: travelMode }, () => {
+      //M.AutoInit();
+      // document.addEventListener("DOMContentLoaded", function() {
+      const onSelect = selectedDate => {
+        console.log(selectedDate);
+      };
+      const elems = document.querySelectorAll(".datepicker");
+      const instances = M.Datepicker.init(elems, onSelect);
+      // });
+    });
   };
 
   //How does button component know to submit my two forms?
@@ -35,9 +47,11 @@ class DropDown extends React.Component {
           ) : (
             ""
           )}
+
           <a className="dropdown-trigger btn" href="#" data-target="dropdown1">
-            Drop Me!
+            Airport/Address
           </a>
+
           <ul id="dropdown1" className="dropdown-content">
             <li>
               <a href="#!" data-value="1" onClick={this.handleDropClick}>
@@ -52,8 +66,11 @@ class DropDown extends React.Component {
             </li>
           </ul>
         </div>
-
-        <SearchForm travelMode={this.state.travelChoice} />
+        {this.state.travelChoice === "0" ? (
+          ""
+        ) : (
+          <SearchForm travelMode={this.state.travelChoice} />
+        )}
       </div>
     );
   }
