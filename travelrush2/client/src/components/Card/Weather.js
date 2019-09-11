@@ -1,7 +1,7 @@
 import React from "react";
 import "./Card.css";
 //creating jsx to display the card image and name
-const Card = props => (
+const WeatherCard = props => (
     <div class="card">
         <div class="card-image">
             <img id="weather-img"></img>
@@ -16,5 +16,5 @@ const Card = props => (
         </div>
     </div>
 );
-export default Card;
+export default WeatherCard;
 
