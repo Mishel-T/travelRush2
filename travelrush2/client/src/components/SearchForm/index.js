@@ -22,12 +22,38 @@ class SearchForm extends Component {
     //Remember that the state has the necessary inputs/search parameters.
   };
 
-  handleOnchange = event => {
+  handleOnChange = event => {
     const {
       target: { name, value }
     } = event;
-    this.setState({ [name]: value }).catch(err => console.log("error"));
+    console.log("I am inside change event");
+    console.log(name);
+    console.log(value);
+
+    this.setState({ [name]: value });
+    //.catch(err => console.log("error"));
   };
+
+  handleOnSelect = event => {
+    /*const {
+      target: { name, value }
+    } = event;*/
+    //console.log(name);
+
+    console.log("I am inside the select event");
+    console.log(event.target);
+    //console.log(name);
+    //console.log(value);
+    //this.setState({ [name]: value });
+    //console.log(event.target.textContent);
+    //.catch(err => console.log("error"));
+  };
+
+  handleDateChange = event => {
+    console.log("I am inside the date event");
+    //console.log(event.target.value);
+  };
+
   /*
 
   handleDropClick = event => {
@@ -49,16 +75,23 @@ class SearchForm extends Component {
           <div className="row">
             {this.props.travelMode === "1" ? (
               <InputFlight
-                onChange={this.handleOnchange}
+                airport={this.state.airport}
+                onChange={this.handleOnChange}
                 name="airport"
               ></InputFlight>
             ) : (
-       <InputDrive
-                onChange={this.handleOnchange}
+              <InputDrive
+                address={this.state.address}
+                onChange={this.handleOnChange}
                 name="address"
               ></InputDrive>
             )}
-            <InputDate onChange={this.handleOnchange} name="date"></InputDate>
+            <InputDate
+              date={this.state.date}
+              value={this.state.date}
+              onChange={this.handleDateChange}
+              name="date"
+            ></InputDate>
           </div>
           <div className="row">
             <FormBtn onClick={this.handleOnClick}></FormBtn>

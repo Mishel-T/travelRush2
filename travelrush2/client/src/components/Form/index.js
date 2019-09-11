@@ -1,4 +1,13 @@
 import React from "react";
+import M from "materialize-css";
+// import "date-fns";
+// import Grid from "@material-ui/core/Grid";
+// import DateFnsUtils from "@date-io/date-fns";
+// import {
+//   MuiPickersUtilsProvider,
+//   KeyboardTimePicker,
+//   KeyboardDatePicker
+// } from "@material-ui/pickers";
 
 // This file exports the various inputs and FormBtn components
 
@@ -13,7 +22,7 @@ export function InputFlight(props) {
           type="text"
           className="validate"
         ></input>
-        <label for="icon_prefix"></label>
+        <label htmlFor="icon_prefix"></label>
       </div>
     </div>
   );
@@ -30,22 +39,68 @@ export function InputDrive(props) {
           type="text"
           className="validate"
         ></input>
-        <label for="icon_prefix"></label>
+        <label htmlFor="icon_prefix"></label>
       </div>
     </div>
   );
 }
+
+// const handleDateChange = e => {
+//   const onSelect = selectedDate => {
+//     console.log(selectedDate);
+//   };
+//   const elems = document.querySelectorAll(".datepicker");
+//   const instances = M.Datepicker.init(elems, onSelect);
+//   console.log("I am here....");
+//   //console.log("DATE", e.target.value);
+// };
 
 export function InputDate(props) {
   return (
     <div>
       <div className="input-field col s6">
         <i className="material-icons prefix">date_range</i>
+
+        {/* <DatePicker
+          label="Basic example"
+          value={Date()}
+
+          animateYearScrolling
+        /> */}
         <input {...props} type="text" className="datepicker"></input>
       </div>
     </div>
   );
 }
+
+// export default function MaterialUIPickers() {
+//   // The first commit of Material-UI
+//   const [selectedDate, setSelectedDate] = React.useState(new Date());
+
+//   function handleDateChange(date) {
+//     setSelectedDate(date);
+//   }
+
+//   return (
+//     <MuiPickersUtilsProvider utils={DateFnsUtils}>
+//       <Grid container justify="space-around">
+//         <KeyboardDatePicker
+//           disableToolbar
+//           variant="inline"
+//           format="MM/dd/yyyy"
+//           margin="normal"
+//           id="date-picker-inline"
+//           label="Date picker inline"
+//           value={selectedDate}
+//           onChange={handleDateChange}
+//           KeyboardButtonProps={{
+//             "aria-label": "change date"
+//           }}
+//         />
+//       </Grid>
+//     </MuiPickersUtilsProvider>
+//   );
+// }
 
 export function FormBtn(props) {
   return (
