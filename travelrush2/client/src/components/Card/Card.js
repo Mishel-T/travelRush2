@@ -3,19 +3,19 @@ import React from "react";
 import "./Card.css";
 
 const Card = props => (
-    <div class="card">
-        <div class="card-image">
+    <div className="card">
+        <div className="card-image">
             <img id={props.img}></img>
-            <span class="card-title" id={props.cardTitle}></span>
-            <a class="btn-floating halfway-fab waves-effect waves-light red" value={props.value}><i class="material-icons">{props.btnName}</i></a>
+            <span className="card-title" id={props.cardTitle}></span>
+            <a className="btn-floating halfway-fab waves-effect waves-light red" value={props.value}><i className="material-icons">{props.btnName}</i></a>
         </div>
-        <div class="card-content" id={props.contentID}>
+        <div className="card-content" id={props.contentID}>
             <p id={props.title}>{props.name}</p>
             <p id={props.rating}></p>
             <p id={props.price}></p>
         </div>
-        <div class="card-action">
-            <a href="#" id={props.url}>See More</a>
+        <div className="card-action">
+            <a href="#" id={props.url}>Learn More</a>
         </div>
     </div>
 );
