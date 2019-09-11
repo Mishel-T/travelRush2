@@ -27,7 +27,6 @@ class SearchContainer extends Component {
     return (
       <div>
         <DropDown></DropDown>
-        <SearchForm></SearchForm>
       </div>
     );
   }
