@@ -10,7 +10,6 @@ import Form from "./components/Form";
 import WeatherCard from "./components/Card/Weather";
 import Card from "./components/Card/Card"
 
-
 //import images from "./images.json";
 //import "./App.css";
 
@@ -24,8 +23,6 @@ class App extends Component {
     <Card name='Restaurants' img="restaurant-img" cardTitle="restaurant-name" value="restaurants" btnName="restaurant" contentID="restaurant-info" title="restaurant-title" rating="restaurant-rating" price="restaurant-price" url="restaurant-url"></Card>,
     <Card name='Coffee' img="coffee-img" cardTitle="coffee-name" value="coffee" btnName="free_breakfast" contentID="coffee-info" title="coffee-title" rating="coffee-rating" price="coffee-price" url="coffee-url"></Card>,
     <Card name='Hotels' img="hotel-img" cardTitle="hotel-name" value="hotels" btnName="hotel" contentID="hotel-info" title="hotel-title" rating="hotel-rating" price="hotel-price" url="hotel-url"></Card>];
-
   }
-
 }
 export default App;
