@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import MaterialUIPickers, { InputFlight, InputDrive, FormBtn } from "../Form";
+import { InputFlight, InputDrive, InputDate, FormBtn } from "../Form";
 import DropDown from "../DropDown";
 
 //import ImageCard, { Button } from "./components/Button";
@@ -12,7 +12,7 @@ class SearchForm extends Component {
   state = {
     airport: "",
     address: "",
-    date: new Date()
+    date: ""
   };
 
   handleOnClick = event => {
@@ -86,12 +86,12 @@ class SearchForm extends Component {
                 name="address"
               ></InputDrive>
             )}
-            <MaterialUIPickers
+            <InputDate
               date={this.state.date}
               value={this.state.date}
-              onSelect={this.handleDateChange}
+              onChange={this.handleDateChange}
               name="date"
-            ></MaterialUIPickers>
+            ></InputDate>
           </div>
           <div className="row">
             <FormBtn onClick={this.handleOnClick}></FormBtn>
