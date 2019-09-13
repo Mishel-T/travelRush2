@@ -13,7 +13,7 @@ function Footer() {
     left: "0",
     bottom: "0",
     height: "60px",
-    width: "100%",}}> copyright @ DOJ 2019
+    width: "100%",}}> Copyright &#169; DOJ 2019
                 
             </div>
         </div>
