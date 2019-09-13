@@ -1,23 +1,60 @@
-import React from "react";
+import React from 'react';
 // import Logo from "./teeny_logo.png"
+import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
 
-function Modal () {
-    return (
-        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+const useStyles = makeStyles(theme => ({
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
 
-        // <!-- Modal Structure -->
-        <div id="modal1" class="modal modal-fixed-footer">
-          <div class="modal-content">
-            <h4>User Login</h4>
-            <p>
-              This is where the modal text and elements will go.
-            </p>
+export default function TransitionsModal() {
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <div>
+      <button type="button" onClick={handleOpen}>
+        react-transition-group
+      </button>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={open}>
+          <div className={classes.paper}>
+            <h2 id="transition-modal-title">Transition modal</h2>
+            <p id="transition-modal-description">react-transiton-group animates me.</p>
           </div>
-          <div class="modal-footer">
-            <a href="/members" class="modal-close waves-effect waves-green btn-flat">I Understand</a>
-          </div>
-        </div>
-    );
+        </Fade>
+      </Modal>
+    </div>
+  );
 }
-
-export default Modal;
