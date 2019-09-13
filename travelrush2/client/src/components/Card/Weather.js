@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./Card.css";
+import WeatherCard from "./WeatherCard";
 import { weatherSearch } from "../../utils/API";
-class WeatherCard extends Component {
+class WeatherCardContainer extends Component {
     state = {
         result: {},
         submit: ""
@@ -24,19 +25,9 @@ class WeatherCard extends Component {
         })
     }
     render() {
-        return <div class="card">
-            <div class="card-image">
-                <img id="weather-img"></img>
-                <span class="card-title" id="weather-name"></span>
-                <a class="btn-floating halfway-fab waves-effect waves-light red" id="more-weather" value="weather"><i class="material-icons">brightness_5</i></a>
-            </div>
-            <div class="card-content" id="weather-results">
-                <p>Weather</p>
-            </div>
-            <div class="card-action">
-                <a href="#"></a>
-            </div>
-        </div>
+        return <WeatherCardContainer>
+
+        </WeatherCardContainer>
     }
 }
 export default WeatherCard;
