@@ -28,7 +28,7 @@ export const airportFinderSearch = (long, lat) => {
 };
 
 //URL and API key for yelp API
-const yelpURL = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurant&latitude=`;
+const yelpURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=";
 const yelpAPIKey = "NNn_iZkgwcsoXyb1LwNcwgRAiCL8c3RkazAkRcQueV0e5b0lZNV-SGGIeosL3AiABzN0_PsQasfbyA8BkbNTjHr-RiTH3sKFAPyB8SCmQInth1SBzlW1uhiuBsr5XHYx";
 const configYelp = {
     headers: {
@@ -36,8 +36,8 @@ const configYelp = {
     },
 };
 
-export const yelpSearch = (long, lat) => {
-    return axios.get(yelpURL + lat + "&longitude=" + long + "&limit=10", configYelp)
+export const yelpSearch = (term, long, lat) => {
+    return axios.get(yelpURL + term + "&latitude=" + lat + "&longitude=" + long + "&limit=10", configYelp)
 };
 
 //URL and API key for openweathermap API
