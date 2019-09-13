@@ -15,11 +15,22 @@ class SearchForm extends Component {
     date: ""
   };
 
+  componentDidMount() {
+    const datePicker = document.getElementById("date");
+    console.log(datePicker);
+    //handle change for the date
+    datePicker.addEventListener("change", () => {
+      this.setState({ date: datePicker.value });
+      console.log(this.state.date);
+    });
+  }
+
   handleOnClick = event => {
     //prevent default behavior
     event.preventDefault();
     //Now do the necessary API calls....
     //Remember that the state has the necessary inputs/search parameters.
+    console.log(this.state);
   };
 
   handleOnChange = event => {
@@ -34,24 +45,24 @@ class SearchForm extends Component {
     //.catch(err => console.log("error"));
   };
 
-  handleOnSelect = event => {
-    /*const {
-      target: { name, value }
-    } = event;*/
-    //console.log(name);
+  // handleOnSelect = event => {
+  //   const {
+  //     target: { name, value }
+  //   } = event;
+  //console.log(name);
 
-    console.log("I am inside the select event");
-    console.log(event.target);
-    //console.log(name);
-    //console.log(value);
-    //this.setState({ [name]: value });
-    //console.log(event.target.textContent);
-    //.catch(err => console.log("error"));
-  };
+  // console.log("I am inside the select event");
+  // console.log(event.target);
+  //console.log(name);
+  //console.log(value);
+  //this.setState({ [name]: value });
+  //console.log(event.target.textContent);
+  //.catch(err => console.log("error"));
+  // };
 
   handleDateChange = event => {
-    console.log("I am inside the date event");
-    //console.log(event.target.value);
+    //console.log("I am inside the date event");
+    console.log(event.target.value);
   };
 
   /*

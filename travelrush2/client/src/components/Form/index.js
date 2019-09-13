@@ -56,6 +56,7 @@ export function InputDrive(props) {
 // };
 
 export function InputDate(props) {
+  //console.log(props);
   return (
     <div>
       <div className="input-field col s6">
@@ -67,7 +68,7 @@ export function InputDate(props) {
 
           animateYearScrolling
         /> */}
-        <input {...props} type="text" className="datepicker"></input>
+        <input id="date" {...props} type="text" className="datepicker"></input>
       </div>
     </div>
   );
