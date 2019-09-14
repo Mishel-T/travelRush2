@@ -10,6 +10,7 @@ import Form from "./components/Form";
 import WeatherCard from "./components/Card/Weather";
 import Card from "./components/Card/Card"
 import CardContainer from "./components/Card/cardContainer"
+import CollectionContainer from "./components/Card/collectionContainer";
 //import images from "./images.json";
 //import "./App.css";
 
