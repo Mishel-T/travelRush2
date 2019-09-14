@@ -18,11 +18,11 @@ export function InputFlight(props) {
         <i className="material-icons prefix">flight_land</i>
         <input
           {...props}
-          id="icon_prefix"
+          id="airport"
           type="text"
-          className="validate"
+          className="autocomplete validate"
         ></input>
-        <label htmlFor="icon_prefix"></label>
+        <label htmlFor="autocomplete-airport"></label>
       </div>
     </div>
   );
@@ -33,13 +33,8 @@ export function InputDrive(props) {
     <div>
       <div className="input-field col s6">
         <i className="material-icons prefix">directions_car</i>
-        <input
-          {...props}
-          id="icon_prefix"
-          type="text"
-          className="validate"
-        ></input>
-        <label htmlFor="icon_prefix"></label>
+        <input {...props} id="address" type="text" className="validate"></input>
+        <label htmlFor="address"></label>
       </div>
     </div>
   );

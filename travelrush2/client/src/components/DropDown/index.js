@@ -26,11 +26,16 @@ class DropDown extends React.Component {
     this.setState({ travelChoice: travelMode }, () => {
       //M.AutoInit();
       // document.addEventListener("DOMContentLoaded", function() {
-      const onSelect = selectedDate => {
+      /*const onSelect = selectedDate => {
         console.log(selectedDate);
-      };
+      };*/
+      //Initialize datepicker
       const elems = document.querySelectorAll(".datepicker");
-      const instances = M.Datepicker.init(elems, onSelect);
+      const instances = M.Datepicker.init(elems);
+      //Initialize autocomplete
+      const elements = document.querySelectorAll(".autocomplete");
+      const insts = M.Autocomplete.init(elements);
+
       // });
     });
   };
