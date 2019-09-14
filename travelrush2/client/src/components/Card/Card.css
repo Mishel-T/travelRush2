@@ -1,0 +1,18 @@
+.card {
+    width:295px;
+    display: block;
+    /* margin: 60px auto; */
+    float: left;
+    box-shadow: 10px 5px 40px 20px 
+    darken(#341cac, 5%);
+    transition: .25s;
+    margin-left: 50px;
+}
+
+.card-content {
+    text-align: center;
+}
+
+.card-action {
+    text-align: center;
+}
