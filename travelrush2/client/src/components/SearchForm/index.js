@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { InputFlight, InputDrive, InputDate, FormBtn } from "../Form";
 import DropDown from "../DropDown";
+import { airportFinderSearch, googleSearch } from "../../utils/API.js";
+import InputAutoFlight from "../InputAutoFlight";
 
 //import ImageCard, { Button } from "./components/Button";
 //import NavBar, { DropDown } from "./components/DropDown";
@@ -12,50 +14,110 @@ class SearchForm extends Component {
   state = {
     airport: "",
     address: "",
-    date: ""
+    date: "",
+    coordLoc: { long: 0, lat: 0 },
+    airportList: []
   };
+
+  componentDidMount() {
+    const datePicker = document.getElementById("date");
+    console.log(datePicker);
+    //handle change for the date
+    datePicker.addEventListener("change", () => {
+      this.setState({ date: datePicker.value });
+      console.log(this.state.date);
+    });
+    // const autocompleteFly = document.getElementById("airport");
+    // console.log(autoCompleteFly);
+    //handle change for the flight
+  }
 
   handleOnClick = event => {
     //prevent default behavior
     event.preventDefault();
+    //**MAKE SURE THAT THE SUBMIT BUTTON DOESN'T EXECUTE UNLESS THE USER HAS SUPPLIED THE REQUIRED INPUTS! **/
     //Now do the necessary API calls....
     //Remember that the state has the necessary inputs/search parameters.
+    console.log(this.state);
+    //API calls
+    return this.state;
+    // if (this.props.travelMode === "1") {
+    //   //airport
+    // } else if (this.props.travelMode === "2") {
+    //   //address
+    //   this.getAddress();
+    // }
   };
 
-  handleOnChange = event => {
+  handleOnBlur = event => {
     const {
       target: { name, value }
     } = event;
-    console.log("I am inside change event");
+    console.log("I am inside blur event");
     console.log(name);
     console.log(value);
-
-    this.setState({ [name]: value });
+    this.setState({ [name]: value }, () => {
+      this.getAddress();
+    });
     //.catch(err => console.log("error"));
   };
 
-  handleOnSelect = event => {
-    /*const {
-      target: { name, value }
-    } = event;*/
-    //console.log(name);
+  // handleOnSelect = event => {
+  //   const {
+  //     target: { name, value }
+  //   } = event;
+  //console.log(name);
 
-    console.log("I am inside the select event");
-    console.log(event.target);
-    //console.log(name);
-    //console.log(value);
-    //this.setState({ [name]: value });
-    //console.log(event.target.textContent);
-    //.catch(err => console.log("error"));
+  // console.log("I am inside the select event");
+  // console.log(event.target);
+  //console.log(name);
+  //console.log(value);
+  //this.setState({ [name]: value });
+  //console.log(event.target.textContent);
+  //.catch(err => console.log("error"));
+  // };
+  handleOnChange = event => {
+    console.log("I am inside change event");
+    console.log(event.target.name);
+    console.log(event.target.value);
   };
 
   handleDateChange = event => {
-    console.log("I am inside the date event");
-    //console.log(event.target.value);
+    //console.log("I am inside the date event");
+    console.log(event.target.value);
+  };
+
+  getAirport = () => {
+    //Use Airport finder API to get list of airports
+    airportFinderSearch(this.state.coordLoc.long, this.state.coordLoc.lat)
+      .then()
+      .catch(err => console.log(err));
+  };
+
+  getAddress = () => {
+    //Use geocoding API to get address
+    // let indexOfComma = this.state.address.indexOf(",");
+    // let queryCity = this.state.address.substring(0, indexOfComma);
+    // queryCity = queryCity.replace(" ", "+");
+    // let queryState = this.state.address.substring(indexOfComma + 2);
+    // queryState = queryState.replace(" ", "+");
+    let formattedAddress = this.state.address.replace(" ", "+");
+    googleSearch(formattedAddress)
+      .then(response => {
+        console.log(response);
+        let coordLat = response.data.results[0].geometry.location.lat;
+        let coordLong = response.data.results[0].geometry.location.lng;
+        //console.log(response.data.results);
+        this.setState({ coordLoc: { long: coordLong, lat: coordLat } }, () => {
+          console.log(this.state.coordLoc);
+        });
+      })
+      .catch(err => console.log(err));
+
+    //1043 Santo Antonio drive, Colton, CA 92324
   };
 
   /*
-
   handleDropClick = event => {
     //prevent default behavior
     event.preventDefault();
@@ -74,15 +136,11 @@ class SearchForm extends Component {
         <form className="col s12">
           <div className="row">
             {this.props.travelMode === "1" ? (
-              <InputFlight
-                airport={this.state.airport}
-                onChange={this.handleOnChange}
-                name="airport"
-              ></InputFlight>
+              <InputAutoFlight></InputAutoFlight>
             ) : (
               <InputDrive
                 address={this.state.address}
-                onChange={this.handleOnChange}
+                onBlur={this.handleOnBlur}
                 name="address"
               ></InputDrive>
             )}

@@ -1,6 +1,7 @@
 import React from "react";
-import Logo from "./teeny_logo.png"
-import "./header.css"
+import Logo from "./teeny_logo.png";
+import Modal from "../Modal/modal";
+import "./header.css";
 
  function Header () {
         return (
