@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Header from "./components/header/header";
-import Footer from "./components/footer";
+import Footer from "./components/footer/footer";
 import SearchContainer from "./components/SearchContainer";
 import DropDown from "./components/DropDown";
 import SearchForm from "./components/SearchForm";

@@ -1,4 +1,6 @@
 body {
-    background-image: url("opaque_bg.jpg");
-    background-size: cover;
-  }
+    background-image: url("bg_image.jpg");
+    height: 100%;
+    margin: 0;
+}
+ 

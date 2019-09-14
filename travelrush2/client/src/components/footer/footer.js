@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./Footer.css";
 
 function Footer() {
     return (
@@ -12,6 +12,7 @@ function Footer() {
     position: "fixed",
     left: "0",
     bottom: "0",
+    backgroundColor: " rgb(125, 141, 191)",
     height: "60px",
     width: "100%",}}> Copyright &#169; DOJ 2019
                 
