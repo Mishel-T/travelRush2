@@ -1,4 +1,4 @@
-//container to render the Card component once the api call is made
+//container to render the first Card component once the api call is made to display the 0 index card
 //container needs to be loaded on searchForm click event - need to pull latitude and longitude from searchForm
 import React, { Component } from "react";
 import Card from "./Card";
@@ -22,10 +22,7 @@ class CardContainer extends Component {
         var call3 = yelpSearch('coffee', "-87.904724", "41.978611");
         //how to run all at the same time in instead of having to run one at a time - this way only runs the last one
         (call3).then(response3 => {
-
-            // yelpSearch("restaurant", "-87.904724", "41.978611").then(response => {
-
-            console.log(response3.data);
+            //console.log(response3.data);
 
             var coffeeInfo = {
                 name: response3.data.businesses[0].name,
@@ -35,12 +32,12 @@ class CardContainer extends Component {
                 rating: response3.data.businesses[0].rating,
                 title: response3.data.businesses[0].categories[0].title,
             }
-            console.log(coffeeInfo)
+            //console.log(coffeeInfo)
             this.setState({ response3: coffeeInfo })
         });
 
         call1.then(response1 => {
-            console.log(response1.data);
+            //console.log(response1.data);
 
             var hotelsInfo = {
                 name: response1.data.businesses[0].name,
@@ -50,7 +47,7 @@ class CardContainer extends Component {
                 rating: response1.data.businesses[0].rating,
                 title: response1.data.businesses[0].categories[0].title,
             }
-            console.log(hotelsInfo)
+            //console.log(hotelsInfo)
             this.setState({ response1: hotelsInfo })
         })
 
@@ -67,6 +64,7 @@ class CardContainer extends Component {
             }
             console.log(restaurantsInfo)
             this.setState({ response2: restaurantsInfo })
+
         })
 
 
@@ -86,57 +84,59 @@ class CardContainer extends Component {
     // }
 
 
-
     render() {
-        return [<Card
-            name={this.state.response2.title}
-            img="restaurant-img" imgsrc={this.state.response2.image}
-            cardTitle="restaurant-name"
-            nameEntry={this.state.response2.name}
-            value="restaurants"
-            btnName="restaurant"
-            contentID="restaurant-info"
-            title="restaurant-title"
-            rating="restaurant-rating"
-            ratingEntry={this.state.response2.rating}
-            price="restaurant-price"
-            priceEntry={this.state.response2.price}
-            url="restaurant-url"
-            urlEntry={this.state.response2.url}>
-        </Card>,
+        return [
+            
 
-        <Card name={this.state.response3.title}
-            img="coffee-img" imgsrc={this.state.response3.image}
-            cardTitle="coffee-name"
-            nameEntry={this.state.response3.name}
-            value="coffee"
-            btnName="free_breakfast"
-            contentID="coffee-info"
-            title="coffee-title"
-            rating="coffee-rating"
-            ratingEntry={this.state.response3.rating}
-            price="coffee-price"
-            priceEntry={this.state.response3.price}
-            url="coffee-url"
-            urlEntry={this.state.response3.url}>
+            <Card
+                name={this.state.response2.title}
+                img="restaurant-img" imgsrc={this.state.response2.image}
+                cardTitle="restaurant-name"
+                nameEntry={this.state.response2.name}
+                value="restaurants"
+                btnName="restaurant"
+                contentID="restaurant-info"
+                title="restaurant-title"
+                rating="restaurant-rating"
+                ratingEntry={this.state.response2.rating}
+                price="restaurant-price"
+                priceEntry={this.state.response2.price}
+                url="restaurant-url"
+                urlEntry={this.state.response2.url}>
+            </Card>,
 
-        </Card>,
+            <Card name={this.state.response3.title}
+                img="coffee-img" imgsrc={this.state.response3.image}
+                cardTitle="coffee-name"
+                nameEntry={this.state.response3.name}
+                value="coffee"
+                btnName="free_breakfast"
+                contentID="coffee-info"
+                title="coffee-title"
+                rating="coffee-rating"
+                ratingEntry={this.state.response3.rating}
+                price="coffee-price"
+                priceEntry={this.state.response3.price}
+                url="coffee-url"
+                urlEntry={this.state.response3.url}>
 
-        <Card name={this.state.response1.title}
-            img="hotel-img" imgsrc={this.state.response1.image}
-            cardTitle="hotel-name"
-            nameEntry={this.state.response1.name}
-            value="hotels"
-            btnName="hotel"
-            contentID="hotel-info"
-            title="hotel-title"
-            rating="hotel-rating"
-            ratingEntry={this.state.response1.rating}
-            price="hotel-price"
-            priceEntry={this.state.response1.price}
-            url="hotel-url"
-            urlEntry={this.state.response1.url}>
-            >
+            </Card>,
+
+            <Card name={this.state.response1.title}
+                img="hotel-img" imgsrc={this.state.response1.image}
+                cardTitle="hotel-name"
+                nameEntry={this.state.response1.name}
+                value="hotels"
+                btnName="hotel"
+                contentID="hotel-info"
+                title="hotel-title"
+                rating="hotel-rating"
+                ratingEntry={this.state.response1.rating}
+                price="hotel-price"
+                priceEntry={this.state.response1.price}
+                url="hotel-url"
+                urlEntry={this.state.response1.url}>
+                >
         </Card>];
     }
 
