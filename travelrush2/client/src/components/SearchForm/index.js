@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { InputFlight, InputDrive, InputDate, FormBtn } from "../Form";
 import DropDown from "../DropDown";
 import { airportFinderSearch, googleSearch } from "../../utils/API.js";
+import InputAutoFlight from "../InputAutoFlight";
 
 //import ImageCard, { Button } from "./components/Button";
 //import NavBar, { DropDown } from "./components/DropDown";
@@ -26,23 +27,26 @@ class SearchForm extends Component {
       this.setState({ date: datePicker.value });
       console.log(this.state.date);
     });
+    // const autocompleteFly = document.getElementById("airport");
+    // console.log(autoCompleteFly);
+    //handle change for the flight
   }
 
   handleOnClick = event => {
     //prevent default behavior
     event.preventDefault();
-    let coordLat = 0;
-    let coordLong = 0;
+    //**MAKE SURE THAT THE SUBMIT BUTTON DOESN'T EXECUTE UNLESS THE USER HAS SUPPLIED THE REQUIRED INPUTS! **/
     //Now do the necessary API calls....
     //Remember that the state has the necessary inputs/search parameters.
     console.log(this.state);
     //API calls
-    if (this.props.travelMode === "1") {
-      //airport
-    } else if (this.props.travelMode === "2") {
-      //address
-      this.getAddress();
-    }
+    return this.state;
+    // if (this.props.travelMode === "1") {
+    //   //airport
+    // } else if (this.props.travelMode === "2") {
+    //   //address
+    //   this.getAddress();
+    // }
   };
 
   handleOnBlur = event => {
@@ -72,6 +76,11 @@ class SearchForm extends Component {
   //console.log(event.target.textContent);
   //.catch(err => console.log("error"));
   // };
+  handleOnChange = event => {
+    console.log("I am inside change event");
+    console.log(event.target.name);
+    console.log(event.target.value);
+  };
 
   handleDateChange = event => {
     //console.log("I am inside the date event");
@@ -127,11 +136,7 @@ class SearchForm extends Component {
         <form className="col s12">
           <div className="row">
             {this.props.travelMode === "1" ? (
-              <InputFlight
-                airport={this.state.airport}
-                onChange={this.handleOnChange}
-                name="airport"
-              ></InputFlight>
+              <InputAutoFlight></InputAutoFlight>
             ) : (
               <InputDrive
                 address={this.state.address}
