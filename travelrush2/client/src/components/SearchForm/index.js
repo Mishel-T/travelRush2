@@ -3,6 +3,7 @@ import { InputFlight, InputDrive, InputDate, FormBtn } from "../Form";
 import DropDown from "../DropDown";
 import { airportFinderSearch, googleSearch } from "../../utils/API.js";
 import InputAutoFlight from "../InputAutoFlight";
+import AutocompleteFlight from "../AutocompleteFlight";
 
 //import ImageCard, { Button } from "./components/Button";
 //import NavBar, { DropDown } from "./components/DropDown";
@@ -136,7 +137,9 @@ class SearchForm extends Component {
         <form className="col s12">
           <div className="row">
             {this.props.travelMode === "1" ? (
-              <InputAutoFlight></InputAutoFlight>
+              <div className="col s6">
+                <AutocompleteFlight></AutocompleteFlight>
+              </div>
             ) : (
               <InputDrive
                 address={this.state.address}
