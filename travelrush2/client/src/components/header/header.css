@@ -2,6 +2,15 @@ nav {
     background-color: rgb(125, 141, 191);
   }
 
+nav ul a {
+    font-family: 'Anton', sans-serif;
+    font-style: italic;
+    margin-right: 45px;
+    font-size: 2.5rem;
+    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-width: 1.50px; 
+}
+
 nav .brand-logo {
     font-family: 'Anton', sans-serif;
     font-style: italic;
