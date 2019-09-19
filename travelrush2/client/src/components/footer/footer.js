@@ -12,6 +12,7 @@ function Footer() {
     position: "fixed",
     left: "0",
     bottom: "0",
+    color: "white",
     backgroundColor: " rgb(125, 141, 191)",
     height: "60px",
     width: "100%",}}> Copyright &#169; DOJ 2019
@@ -20,4 +21,4 @@ function Footer() {
         </div>
     )
 }
-export default Footer
+export default Footer;
