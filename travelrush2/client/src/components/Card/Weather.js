@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./Card.css";
 import WeatherCard from "./WeatherCard";
 import { weatherSearch } from "../../utils/API";
-import MaterialTable from "material-table";
+
 class WeatherCardContainer extends Component {
     state = {
         result: [],
@@ -42,29 +42,22 @@ class WeatherCardContainer extends Component {
       } else {
         console.log(this.state.result[1].weather[0].description);
 
-        return <p>"testing"</p>
+        return (
+        <div>
+       
+        <WeatherCard
+                  day={this.state.result[1].dt_txt}
+                  description={this.state.result[1].weather[0].description}
+                  icon={this.state.result[1].weather[0].icon}
+                  temperature={this.state.result[1].main.temp}
+                  wind={this.state.result[1].wind.speed}
+                  humidity={this.state.result[1].main.humidity}
+                  >
+                  </WeatherCard>
+                  </div>)
       }
 
-
-
-
-
-      // if (this.state.loaded = false,
-      //   console.log("Loading")
-      // );
-      // else 
-      
-      //   return  <WeatherCard
-      //  //   day = {monthDay + " " + time  }
-      //     description={this.state.result.weather.description}
-      //     temperature={this.state.result.main.temp}
-      //     wind={this.state.result.wind.speed}
-      //     humidity={this.state.result.main.humidity}
-      //     img={this.state.result}
-      //     >
-
-      //   </WeatherCard>;
-
+    
         
       };
     }
