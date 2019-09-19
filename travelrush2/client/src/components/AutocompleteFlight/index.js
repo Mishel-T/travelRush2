@@ -244,7 +244,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function IntegrationAutosuggest() {
+export default function IntegrationAutosuggest(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [state, setState] = React.useState({
@@ -263,6 +263,8 @@ export default function IntegrationAutosuggest() {
   };
 
   const handleChange = name => (event, { newValue }) => {
+    console.log(newValue); //USER INPUT IS RIGHT HERE!!!! SEND THIS AS A PROP TO THE SEARCHFORM CONTAINER****
+    props.searchFormcb(newValue);
     setState({
       ...state,
       [name]: newValue

@@ -49,7 +49,7 @@ class SearchForm extends Component {
     //   this.getAddress();
     // }
   };
-
+  //handles address input by extracting and updating its coordinates
   handleOnBlur = event => {
     const {
       target: { name, value }
@@ -58,7 +58,7 @@ class SearchForm extends Component {
     console.log(name);
     console.log(value);
     this.setState({ [name]: value }, () => {
-      this.getAddress();
+      this.getCoordinates("address");
     });
     //.catch(err => console.log("error"));
   };
@@ -83,26 +83,39 @@ class SearchForm extends Component {
     console.log(event.target.value);
   };
 
+  //Handles the date input
   handleDateChange = event => {
     //console.log("I am inside the date event");
-    console.log(event.target.value);
+    const {
+      target: { name, value }
+    } = event;
+    this.setState({ [name]: value }, () => {
+      console.log(event.target.value);
+    });
   };
 
-  getAirport = () => {
-    //Use Airport finder API to get list of airports
-    airportFinderSearch(this.state.coordLoc.long, this.state.coordLoc.lat)
-      .then()
-      .catch(err => console.log(err));
-  };
+  // getAirport = airport => {
+  //   //Use Airport finder API to get list of airports
+  //   airportFinderSearch(this.state.coordLoc.long, this.state.coordLoc.lat)
+  //     .then()
+  //     .catch(err => console.log(err));
+  // };
 
-  getAddress = () => {
+  //Helper function to get the coordinates for an address or airport.
+  getCoordinates = transportMode => {
     //Use geocoding API to get address
     // let indexOfComma = this.state.address.indexOf(",");
     // let queryCity = this.state.address.substring(0, indexOfComma);
     // queryCity = queryCity.replace(" ", "+");
     // let queryState = this.state.address.substring(indexOfComma + 2);
     // queryState = queryState.replace(" ", "+");
-    let formattedAddress = this.state.address.replace(" ", "+");
+    let formattedAddress;
+    if (transportMode === "airport") {
+      formattedAddress = this.state.airport.replace(" ", "+");
+    } else {
+      formattedAddress = this.state.address.replace(" ", "+");
+    }
+
     googleSearch(formattedAddress)
       .then(response => {
         console.log(response);
@@ -116,6 +129,13 @@ class SearchForm extends Component {
       .catch(err => console.log(err));
 
     //1043 Santo Antonio drive, Colton, CA 92324
+  };
+
+  //Call back function passes airport input from the Autocomplete component(child to parent data flow).
+  callbackFunction = airportInputAutocomplete => {
+    this.setState({ airport: airportInputAutocomplete }, () => {
+      this.getCoordinates("airport");
+    });
   };
 
   /*
@@ -138,7 +158,9 @@ class SearchForm extends Component {
           <div className="row">
             {this.props.travelMode === "1" ? (
               <div className="col s6">
-                <AutocompleteFlight></AutocompleteFlight>
+                <AutocompleteFlight
+                  searchFormcb={this.callbackFunction}
+                ></AutocompleteFlight>
               </div>
             ) : (
               <InputDrive
