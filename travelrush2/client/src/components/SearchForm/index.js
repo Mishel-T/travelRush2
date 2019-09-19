@@ -155,7 +155,9 @@ class SearchForm extends Component {
             ></InputDate>
           </div>
           <div className="row">
-            <FormBtn onClick={this.handleOnClick}></FormBtn>
+            <div className="col offset-s6">
+              <FormBtn onClick={this.handleOnClick}></FormBtn>
+            </div>
           </div>
         </form>
       </div>

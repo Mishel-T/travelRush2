@@ -8,43 +8,138 @@ import Paper from "@material-ui/core/Paper";
 import MenuItem from "@material-ui/core/MenuItem";
 import Popper from "@material-ui/core/Popper";
 import { makeStyles } from "@material-ui/core/styles";
+import Icon from "@material-ui/core/Icon";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import FlightLand from "@material-ui/icons/FlightLand";
+import {
+  airportsList,
+  airportFinderSearch,
+  googleSearch
+} from "../../utils/API.js";
+//flight_land
+
+//use API to set suggestions to airport names
+// const suggestions = [];
+
+// console.log("I am in Autosuggest!!!");
+// airportsList()
+//   .then(res => {
+//     console.log(res);
+//     for (let i = 0; i < airportsList().length; i++) {
+//       suggestions.push({
+//         label:
+//           airportsList.city +
+//           ", " +
+//           airportsList.stateCode +
+//           "(" +
+//           airportsList.code +
+//           " - " +
+//           airportsList.name +
+//           ")"
+//       });
+//     }
+//   })
+//   .catch(err => console.log(JSON.parse(JSON.stringify(err))));
+
+//console.log(suggestions);
+// const suggestions = [
+//   { label: "Afghanistan" },
+//   { label: "Aland Islands" },
+//   { label: "Albania" },
+//   { label: "Algeria" },
+//   { label: "American Samoa" },
+//   { label: "Andorra" },
+//   { label: "Angola" },
+//   { label: "Anguilla" },
+//   { label: "Antarctica" },
+//   { label: "Antigua and Barbuda" },
+//   { label: "Argentina" },
+//   { label: "Armenia" },
+//   { label: "Aruba" },
+//   { label: "Australia" },
+//   { label: "Austria" },
+//   { label: "Azerbaijan" },
+//   { label: "Bahamas" },
+//   { label: "Bahrain" },
+//   { label: "Bangladesh" },
+//   { label: "Barbados" },
+//   { label: "Belarus" },
+//   { label: "Belgium" },
+//   { label: "Belize" },
+//   { label: "Benin" },
+//   { label: "Bermuda" },
+//   { label: "Bhutan" },
+//   { label: "Bolivia, Plurinational State of" },
+//   { label: "Bonaire, Sint Eustatius and Saba" },
+//   { label: "Bosnia and Herzegovina" },
+//   { label: "Botswana" },
+//   { label: "Bouvet Island" },
+//   { label: "Brazil" },
+//   { label: "British Indian Ocean Territory" },
+//   { label: "Brunei Darussalam" }
+// ];
+
+// const suggestions = [
+//   { label: "Los Angeles, CA, (LAX - Los Angeles Intl)" },
+//   { label: "Houston, TX, (IAH - George Bush Intercontinental/Houston)" },
+//   { label: "Ontario, CA, (ONT - Ontario Intl)" },
+//   { label: "Houston, TX, (HOU - William P Hobby)" },
+//   { label: "Santa Ana, CA, (SNA - John Wayne Airport- Orange County)" },
+//   { label: "Phoenix, AZ, (PHX- Phoenix Sky Harbor Intl)" },
+//   { label: "Miami, FL, (MIA - Miami Intl)" },
+//   { label: "Atlanta, GA, (ATL - Hartsfield-Jackson Atlanta Intl)" },
+//   { label: "Chicago, IL, (ORD - Chicago O'Hare Intl)" },
+//   { label: "New York, NY, (JFK - John F Kennedy Intl)" },
+//   { label: "New York, NY, (LGA - Laguardia Intl)" },
+//   { label: "Philadelphia, PA, (PHL - Philadelphia Intl)" },
+//   { label: "Salt Lake City, UT, (SLC - Salt Lake City Intl)" },
+//   { label: "Seattle, WA, (SEA - Seattle-Tacoma Intl)" },
+//   { label: "Newark, NJ, (EWR - Newark Liberty Intl)" },
+//   { label: "Dallas-Fort Worth, TX, (DFW - Dallas-Fort Worth Intl)" },
+//   { label: "Denver, CO, (DEN - Denver Intl)" },
+//   { label: "San Francisco, CA, (SFO - San Francisco Intl)" },
+//   { label: "Las Vegas, NV, (LAS - McCarran Intl)" },
+//   { label: "Orlando, FL, (MCO - Orlando Intl)" },
+//   { label: "Belarus" },
+//   { label: "Belgium" },
+//   { label: "Belize" },
+//   { label: "Benin" },
+//   { label: "Bermuda" },
+//   { label: "Bhutan" },
+//   { label: "Bolivia, Plurinational State of" },
+//   { label: "Bonaire, Sint Eustatius and Saba" },
+//   { label: "Bosnia and Herzegovina" },
+//   { label: "Botswana" },
+//   { label: "Bouvet Island" },
+//   { label: "Brazil" },
+//   { label: "British Indian Ocean Territory" },
+//   { label: "Brunei Darussalam" }
+// ];
 
 const suggestions = [
-  { label: "Afghanistan" },
-  { label: "Aland Islands" },
-  { label: "Albania" },
-  { label: "Algeria" },
-  { label: "American Samoa" },
-  { label: "Andorra" },
-  { label: "Angola" },
-  { label: "Anguilla" },
-  { label: "Antarctica" },
-  { label: "Antigua and Barbuda" },
-  { label: "Argentina" },
-  { label: "Armenia" },
-  { label: "Aruba" },
-  { label: "Australia" },
-  { label: "Austria" },
-  { label: "Azerbaijan" },
-  { label: "Bahamas" },
-  { label: "Bahrain" },
-  { label: "Bangladesh" },
-  { label: "Barbados" },
-  { label: "Belarus" },
-  { label: "Belgium" },
-  { label: "Belize" },
-  { label: "Benin" },
-  { label: "Bermuda" },
-  { label: "Bhutan" },
-  { label: "Bolivia, Plurinational State of" },
-  { label: "Bonaire, Sint Eustatius and Saba" },
-  { label: "Bosnia and Herzegovina" },
-  { label: "Botswana" },
-  { label: "Bouvet Island" },
-  { label: "Brazil" },
-  { label: "British Indian Ocean Territory" },
-  { label: "Brunei Darussalam" }
+  { label: "LAX" },
+  { label: "IAH" },
+  { label: "ONT" },
+  { label: "HOU" },
+  { label: "SNA" },
+  { label: "PHX" },
+  { label: "MIA" },
+  { label: "ATL" },
+  { label: "ORD" },
+  { label: "JFK" },
+  { label: "LGA" },
+  { label: "PHL" },
+  { label: "SLC" },
+  { label: "SEA" },
+  { label: "EWR" },
+  { label: "DFW" },
+  { label: "DEN" },
+  { label: "SFO" },
+  { label: "LAS" },
+  { label: "MCO" }
 ];
+
+console.log(typeof suggestions);
 
 function renderInputComponent(inputProps) {
   const { classes, inputRef = () => {}, ref, ...other } = inputProps;
@@ -54,6 +149,11 @@ function renderInputComponent(inputProps) {
       fullWidth
       InputProps={{
         disableUnderline: true,
+        startAdornment: (
+          <InputAdornment position="start">
+            <FlightLand />
+          </InputAdornment>
+        ),
         inputRef: node => {
           ref(node);
           inputRef(node);
@@ -69,6 +169,9 @@ function renderInputComponent(inputProps) {
 // InputProps={{
 //   disableUnderline: true,
 //  }}
+/* DISPLAYS A SUGGESTION THAT MATCHES THE USER INPUT(QUERY), 
+WITH THE MATCHED PORTION OF THE SUGGESTION HIGHLIGHTED. */
+
 function renderSuggestion(suggestion, { query, isHighlighted }) {
   const matches = match(suggestion.label, query);
   const parts = parse(suggestion.label, matches);
@@ -88,7 +191,7 @@ function renderSuggestion(suggestion, { query, isHighlighted }) {
     </MenuItem>
   );
 }
-
+//GETS THE ARRAY OF SUGGESTIONS BASED ON USER INPUT(VALUE)
 function getSuggestions(value) {
   const inputValue = deburr(value.trim()).toLowerCase();
   const inputLength = inputValue.length;
@@ -115,7 +218,7 @@ function getSuggestionValue(suggestion) {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: 250,
+    // height: 250,
     flexGrow: 1
   },
   container: {
