@@ -5,9 +5,11 @@ import AutocompleteFlight from "../AutocompleteFlight";
 
 class SearchContainer extends Component {
   state = {
+    travelChoice: "0",
     airport: "",
     address: "",
-    date: ""
+    date: "",
+    coordLoc: { long: 0, lat: 0 }
   };
 
   handleOnClick = event => {
@@ -23,11 +25,20 @@ class SearchContainer extends Component {
     } = event;
     this.setState({ [name]: value }).catch(err => console.log("error"));
   };
+  //call back is used to get user inputs from drop down
+  // callbackFunction = dropInputs => {
+  //   this.setState({ dropInputs }, () => {
+  //     console.log(this.state);
+  //     //send user input to call back in app.js
+  //     this.props.appcb(this.state);
+  //   });
+  // };
+
   //how do I get the state variables from the SearchForm???
   render() {
     return (
       <div>
-        <DropDown></DropDown>
+        <DropDown searchContaincb={this.props.appcb}></DropDown>
       </div>
     );
   }

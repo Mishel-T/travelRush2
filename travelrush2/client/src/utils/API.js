@@ -59,7 +59,7 @@ export const weatherSearch = (long, lat) => {
   );
 };
 
-// Gets all airports list that will be used for the autocomplete.
+// Gets all airports list that will be used for the autocomplete. NOT WORKING YET!!!
 export const airportsList = () => {
   return axios.get("/api/airport");
 };

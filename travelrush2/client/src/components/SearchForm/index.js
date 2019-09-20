@@ -39,15 +39,28 @@ class SearchForm extends Component {
     //**MAKE SURE THAT THE SUBMIT BUTTON DOESN'T EXECUTE UNLESS THE USER HAS SUPPLIED THE REQUIRED INPUTS! **/
     //Now do the necessary API calls....
     //Remember that the state has the necessary inputs/search parameters.
-    console.log(this.state);
+    //console.log(this.state);
     //API calls
-    return this.state;
-    // if (this.props.travelMode === "1") {
-    //   //airport
-    // } else if (this.props.travelMode === "2") {
-    //   //address
-    //   this.getAddress();
-    // }
+    //return this.state;
+    console.log("Travel mode is " + this.props.travelMode);
+    if (this.props.travelMode === "1") {
+      //airport
+      this.getCoordinates("airport", () => {
+        //call back function not executing!!!
+        console.log("React has updated the coordinates!");
+        console.log(this.state); //this.state isn't logging on the console???
+        //send user input to call back in drop down
+        this.props.dropcb(this.state);
+      });
+    } else if (this.props.travelMode === "2") {
+      //address
+      this.getCoordinates("address", () => {
+        //call back function not executing!!!
+        console.log("React has updated the coordinates!");
+        console.log(this.state); //this.state isn't logging on the console???
+        this.props.dropcb(this.state);
+      });
+    }
   };
   //handles address input by extracting and updating its coordinates
   handleOnBlur = event => {
@@ -57,9 +70,7 @@ class SearchForm extends Component {
     console.log("I am inside blur event");
     console.log(name);
     console.log(value);
-    this.setState({ [name]: value }, () => {
-      this.getCoordinates("address");
-    });
+    this.setState({ [name]: value });
     //.catch(err => console.log("error"));
   };
 
@@ -102,7 +113,7 @@ class SearchForm extends Component {
   // };
 
   //Helper function to get the coordinates for an address or airport.
-  getCoordinates = transportMode => {
+  getCoordinates = (transportMode, cb) => {
     //Use geocoding API to get address
     // let indexOfComma = this.state.address.indexOf(",");
     // let queryCity = this.state.address.substring(0, indexOfComma);
@@ -124,6 +135,7 @@ class SearchForm extends Component {
         //console.log(response.data.results);
         this.setState({ coordLoc: { long: coordLong, lat: coordLat } }, () => {
           console.log(this.state.coordLoc);
+          this.props.dropcb(this.state);
         });
       })
       .catch(err => console.log(err));
@@ -132,10 +144,8 @@ class SearchForm extends Component {
   };
 
   //Call back function passes airport input from the Autocomplete component(child to parent data flow).
-  callbackFunction = airportInputAutocomplete => {
-    this.setState({ airport: airportInputAutocomplete }, () => {
-      this.getCoordinates("airport");
-    });
+  callbackFunction = autocompleteInput => {
+    this.setState({ airport: autocompleteInput });
   };
 
   /*

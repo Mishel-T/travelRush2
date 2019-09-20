@@ -117,26 +117,35 @@ import {
 // ];
 
 const suggestions = [
-  { label: "LAX" },
-  { label: "IAH" },
-  { label: "ONT" },
-  { label: "HOU" },
-  { label: "SNA" },
-  { label: "PHX" },
-  { label: "MIA" },
-  { label: "ATL" },
-  { label: "ORD" },
-  { label: "JFK" },
-  { label: "LGA" },
-  { label: "PHL" },
-  { label: "SLC" },
-  { label: "SEA" },
-  { label: "EWR" },
-  { label: "DFW" },
-  { label: "DEN" },
-  { label: "SFO" },
-  { label: "LAS" },
-  { label: "MCO" }
+  { label: "Los Angeles, CA, (LAX Los Angeles Intl)", keyInd: "1" },
+  {
+    label: "Houston, TX, (IAH George Bush Intercontinental/Houston)",
+    keyInd: "2"
+  },
+  { label: "Ontario, CA, (ONT Ontario Intl)", keyInd: "3" },
+  { label: "Houston, TX, (HOU William P Hobby)", keyInd: "4" },
+  {
+    label: "Santa Ana, CA, (SNA John Wayne Airport Orange County)",
+    keyInd: "5"
+  },
+  { label: "Phoenix, AZ, (PH Phoenix Sky Harbor Intl)", keyInd: "6" },
+  { label: "Miami, FL, (MIA Miami Intl)", keyInd: "7" },
+  { label: "Atlanta, GA, (ATL Hartsfield Jackson Atlanta Intl)", keyInd: "8" },
+  { label: "Chicago, IL, (ORD Chicago O'Hare Intl)", keyInd: "9" },
+  { label: "New York, NY, (JFK John F Kennedy Intl)", keyInd: "10" },
+  { label: "New York, NY, (LGA Laguardia Intl)", keyInd: "11" },
+  { label: "Philadelphia, PA, (PHL Philadelphia Intl)", keyInd: "12" },
+  { label: "Salt Lake City, UT, (SLC Salt Lake City Intl)", keyInd: "13" },
+  { label: "Seattle, WA, (SEA Seattle Tacoma Intl)", keyInd: "14" },
+  { label: "Newark, NJ, (EWR Newark Liberty Intl)", keyInd: "15" },
+  {
+    label: "Dallas Fort Worth, TX, (DFW Dallas Fort Worth Intl)",
+    keyInd: "16"
+  },
+  { label: "Denver, CO, (DEN Denver Intl)", keyInd: "17" },
+  { label: "San Francisco, CA, (SFO San Francisco Intl)", keyInd: "18" },
+  { label: "Las Vegas, NV, (LAS McCarran Intl)", keyInd: "19" },
+  { label: "Orlando, FL, (MCO Orlando Intl)", keyInd: "20" }
 ];
 
 console.log(typeof suggestions);
@@ -179,11 +188,8 @@ function renderSuggestion(suggestion, { query, isHighlighted }) {
   return (
     <MenuItem selected={isHighlighted} component="div">
       <div>
-        {parts.map(part => (
-          <span
-            key={part.text}
-            style={{ fontWeight: part.highlight ? 500 : 400 }}
-          >
+        {parts.map((part, index) => (
+          <span key={index} style={{ fontWeight: part.highlight ? 500 : 400 }}>
             {part.text}
           </span>
         ))}
