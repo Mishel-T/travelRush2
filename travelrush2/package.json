@@ -29,7 +29,6 @@
     "install": "^0.13.0",
     "materialize-css": "^1.0.0-rc.2",
     "mongoose": "^5.3.16",
-
     "mz": "^2.7.0"
   }
 }

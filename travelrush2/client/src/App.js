@@ -2,15 +2,14 @@ import React, { Component } from "react";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import SearchContainer from "./components/SearchContainer";
+import WeatherCard from "./components/Card/WeatherCard";
 // import DropDown from "./components/DropDown";
 // import SearchForm from "./components/SearchForm";
 // import { InputFlight, InputDrive, InputDate } from "./components/Form";
 // import Form from "./components/Form";
 
-
-
 import WeatherCardContainer from "./components/Card/Weather";
-import Card from "./components/Card/Card"
+import Card from "./components/Card/Card";
 // import CardContainer from "./components/Card/cardContainer"
 // import CollectionContainer from "./components/Card/collectionContainer"
 //import images from "./images.json";
@@ -69,8 +68,6 @@ class App extends Component {
         url="hotel-url"
       ></Card>
     ];
-
-  
   }
 }
 export default App;
