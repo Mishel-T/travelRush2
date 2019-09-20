@@ -9,7 +9,7 @@ import "./Card.css";
 const WeatherCard = props => (
     <div className="card">
     <div className="card-image">
-        <img id="weather-img" src={props.img}></img>
+        <img id="weather-img" src={props.img} alt=""></img>
         <span className="card-title" id="weather-name"></span>
         <a className="btn-floating halfway-fab waves-effect waves-light red" id="more-weather" value="weather"><i className="material-icons">brightness_5</i></a>
     </div>
