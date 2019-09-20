@@ -32,6 +32,8 @@ class WeatherCardContainer extends Component {
         
       }
 
+      
+
   
     render() {
       const {error, isLoaded, result} = this.state;
@@ -41,6 +43,7 @@ class WeatherCardContainer extends Component {
         return <div>Loading...</div>;
       } else {
         console.log(this.state.result[1].weather[0].description);
+
 
         return (
         <div>
@@ -53,15 +56,21 @@ class WeatherCardContainer extends Component {
                   wind={this.state.result[1].wind.speed}
                   humidity={this.state.result[1].main.humidity}
                   >
+
                   </WeatherCard>
                   </div>)
+
+
+
+
       }
+    }
 
     
         
       };
-    }
-;
     
+;
 
-export default WeatherCardContainer;
+
+export default WeatherCardContainer; 
