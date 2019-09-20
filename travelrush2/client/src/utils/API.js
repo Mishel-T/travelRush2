@@ -58,3 +58,10 @@ export const weatherSearch = (long, lat) => {
       weatherAPIKey
   );
 };
+
+// Gets all airports list that will be used for the autocomplete. NOT WORKING YET!!!
+export const airportsList = () => {
+  return axios.get("/api/airport");
+};
+
+//SERVER IS ON 3001 BUT REACT APP IS IN 3000????
