@@ -3,6 +3,7 @@ import { InputFlight, InputDrive, InputDate, FormBtn } from "../Form";
 import DropDown from "../DropDown";
 import { airportFinderSearch, googleSearch } from "../../utils/API.js";
 import InputAutoFlight from "../InputAutoFlight";
+import AutocompleteFlight from "../AutocompleteFlight";
 
 //import ImageCard, { Button } from "./components/Button";
 //import NavBar, { DropDown } from "./components/DropDown";
@@ -38,17 +39,30 @@ class SearchForm extends Component {
     //**MAKE SURE THAT THE SUBMIT BUTTON DOESN'T EXECUTE UNLESS THE USER HAS SUPPLIED THE REQUIRED INPUTS! **/
     //Now do the necessary API calls....
     //Remember that the state has the necessary inputs/search parameters.
-    console.log(this.state);
+    //console.log(this.state);
     //API calls
-    return this.state;
-    // if (this.props.travelMode === "1") {
-    //   //airport
-    // } else if (this.props.travelMode === "2") {
-    //   //address
-    //   this.getAddress();
-    // }
+    //return this.state;
+    console.log("Travel mode is " + this.props.travelMode);
+    if (this.props.travelMode === "1") {
+      //airport
+      this.getCoordinates("airport", () => {
+        //call back function not executing!!!
+        console.log("React has updated the coordinates!");
+        console.log(this.state); //this.state isn't logging on the console???
+        //send user input to call back in drop down
+        this.props.dropcb(this.state);
+      });
+    } else if (this.props.travelMode === "2") {
+      //address
+      this.getCoordinates("address", () => {
+        //call back function not executing!!!
+        console.log("React has updated the coordinates!");
+        console.log(this.state); //this.state isn't logging on the console???
+        this.props.dropcb(this.state);
+      });
+    }
   };
-
+  //handles address input by extracting and updating its coordinates
   handleOnBlur = event => {
     const {
       target: { name, value }
@@ -56,9 +70,7 @@ class SearchForm extends Component {
     console.log("I am inside blur event");
     console.log(name);
     console.log(value);
-    this.setState({ [name]: value }, () => {
-      this.getAddress();
-    });
+    this.setState({ [name]: value });
     //.catch(err => console.log("error"));
   };
 
@@ -82,26 +94,39 @@ class SearchForm extends Component {
     console.log(event.target.value);
   };
 
+  //Handles the date input
   handleDateChange = event => {
     //console.log("I am inside the date event");
-    console.log(event.target.value);
+    const {
+      target: { name, value }
+    } = event;
+    this.setState({ [name]: value }, () => {
+      console.log(event.target.value);
+    });
   };
 
-  getAirport = () => {
-    //Use Airport finder API to get list of airports
-    airportFinderSearch(this.state.coordLoc.long, this.state.coordLoc.lat)
-      .then()
-      .catch(err => console.log(err));
-  };
+  // getAirport = airport => {
+  //   //Use Airport finder API to get list of airports
+  //   airportFinderSearch(this.state.coordLoc.long, this.state.coordLoc.lat)
+  //     .then()
+  //     .catch(err => console.log(err));
+  // };
 
-  getAddress = () => {
+  //Helper function to get the coordinates for an address or airport.
+  getCoordinates = (transportMode, cb) => {
     //Use geocoding API to get address
     // let indexOfComma = this.state.address.indexOf(",");
     // let queryCity = this.state.address.substring(0, indexOfComma);
     // queryCity = queryCity.replace(" ", "+");
     // let queryState = this.state.address.substring(indexOfComma + 2);
     // queryState = queryState.replace(" ", "+");
-    let formattedAddress = this.state.address.replace(" ", "+");
+    let formattedAddress;
+    if (transportMode === "airport") {
+      formattedAddress = this.state.airport.replace(" ", "+");
+    } else {
+      formattedAddress = this.state.address.replace(" ", "+");
+    }
+
     googleSearch(formattedAddress)
       .then(response => {
         console.log(response);
@@ -110,11 +135,17 @@ class SearchForm extends Component {
         //console.log(response.data.results);
         this.setState({ coordLoc: { long: coordLong, lat: coordLat } }, () => {
           console.log(this.state.coordLoc);
+          this.props.dropcb(this.state);
         });
       })
       .catch(err => console.log(err));
 
     //1043 Santo Antonio drive, Colton, CA 92324
+  };
+
+  //Call back function passes airport input from the Autocomplete component(child to parent data flow).
+  callbackFunction = autocompleteInput => {
+    this.setState({ airport: autocompleteInput });
   };
 
   /*
@@ -136,7 +167,11 @@ class SearchForm extends Component {
         <form className="col s12">
           <div className="row">
             {this.props.travelMode === "1" ? (
-              <InputAutoFlight></InputAutoFlight>
+              <div className="col s6">
+                <AutocompleteFlight
+                  searchFormcb={this.callbackFunction}
+                ></AutocompleteFlight>
+              </div>
             ) : (
               <InputDrive
                 address={this.state.address}
@@ -152,7 +187,9 @@ class SearchForm extends Component {
             ></InputDate>
           </div>
           <div className="row">
-            <FormBtn onClick={this.handleOnClick}></FormBtn>
+            <div className="col offset-s6">
+              <FormBtn onClick={this.handleOnClick}></FormBtn>
+            </div>
           </div>
         </form>
       </div>

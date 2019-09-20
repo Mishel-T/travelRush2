@@ -3,14 +3,17 @@ import React from "react";
 import "./Card.css";
 
 
+
+// import MaterialTable from "material-table";
+
 const WeatherCard = props => (
-    <div class="card">
-    <div class="card-image">
+    <div className="card">
+    <div className="card-image">
         <img id="weather-img" src={props.img}></img>
-        <span class="card-title" id="weather-name"></span>
-        <a class="btn-floating halfway-fab waves-effect waves-light red" id="more-weather" value="weather"><i class="material-icons">brightness_5</i></a>
+        <span className="card-title" id="weather-name"></span>
+        <a className="btn-floating halfway-fab waves-effect waves-light red" id="more-weather" value="weather"><i className="material-icons">brightness_5</i></a>
     </div>
-    <div class="card-content" id="weather-results">
+    <div className="card-content" id="weather-results">
         <p>Weather</p>
 
         <table class="striped">
@@ -48,7 +51,7 @@ const WeatherCard = props => (
 
 
     </div>
-    <div class="card-action">
+    <div className="card-action">
         <a href="#"></a>
     </div>
 </div>

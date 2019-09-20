@@ -6,6 +6,10 @@ import M from "materialize-css";
 class DropDown extends React.Component {
   state = {
     travelChoice: "0"
+    // airport: "",
+    // address: "",
+    // date: "",
+    // coordLoc: { long: 0, lat: 0 }
   };
 
   componentDidMount() {
@@ -14,6 +18,9 @@ class DropDown extends React.Component {
     const instances = M.Dropdown.init(elems);
     // });
     //M.AutoInit();
+
+    //send user input to call back in search container
+    this.props.searchContaincb(this.state);
   }
 
   handleDropClick = event => {
@@ -39,6 +46,10 @@ class DropDown extends React.Component {
       // });
     });
   };
+
+  // callbackFunction = searchFormInputs => {
+  //   this.setState({ searchFormInputs });
+  // };
 
   //How does button component know to submit my two forms?
   render() {
@@ -74,7 +85,10 @@ class DropDown extends React.Component {
         {this.state.travelChoice === "0" ? (
           ""
         ) : (
-          <SearchForm travelMode={this.state.travelChoice} />
+          <SearchForm
+            travelMode={this.state.travelChoice}
+            dropcb={this.props.searchContaincb}
+          />
         )}
       </div>
     );

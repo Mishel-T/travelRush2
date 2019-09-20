@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import M from "materialize-css";
+// import M from "materialize-css";
 
 class InputAutoFlight extends Component {
   state = {
@@ -7,6 +7,26 @@ class InputAutoFlight extends Component {
     address: "",
     date: ""
   };
+
+  componentDidMount() {
+    let tesData = {
+      Apples: null,
+      Oranges: null,
+      Grapes: null,
+      Strawberries: null
+    };
+    //console.log(JSON.stringify(tesData));
+    tesData = JSON.stringify(tesData);
+    console.log(tesData);
+    // document.addEventListener("DOMContentLoaded", function() {
+    const elems = document.querySelectorAll(".autocomplete");
+    console.log(elems[0]);
+    const instances = M.Autocomplete.init(elems, {
+      data: tesData
+    });
+    console.log(instances);
+    // });
+  }
 
   handleOnClick = event => {
     //prevent default behavior
@@ -35,7 +55,7 @@ class InputAutoFlight extends Component {
                 type="text"
                 id="autocomplete-input"
                 className="autocomplete"
-              ></input>
+              />
               <label htmlFor="autocomplete-input">Autocomplete</label>
             </div>
           </div>
