@@ -11,6 +11,8 @@
     "autosuggest-highlight": "^3.1.1",
     "axios": "^0.18.0",
     "date-fns": "^2.0.0-beta.5",
+    "material": "^0.4.1",
+    "material-table": "^1.50.0",
     "materialize": "^1.0.0",
     "materialize-css": "^1.0.0-rc.2",
     "react": "^16.6.3",

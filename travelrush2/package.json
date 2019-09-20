@@ -1,7 +1,7 @@
 {
   "name": "travelrush2",
   "version": "1.0.0",
-  "description": "",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -16,6 +16,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.2.0",
+    "@typescript-eslint/parser": "^2.2.0",
     "concurrently": "^4.1.0",
     "nodemon": "^1.18.7"
   },
@@ -27,6 +29,7 @@
     "install": "^0.13.0",
     "materialize-css": "^1.0.0-rc.2",
     "mongoose": "^5.3.16",
+
     "mz": "^2.7.0"
   }
 }

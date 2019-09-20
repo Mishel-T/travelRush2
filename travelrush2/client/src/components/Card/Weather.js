@@ -1,43 +1,67 @@
 import React, { Component } from "react";
 import "./Card.css";
+import WeatherCard from "./WeatherCard";
 import { weatherSearch } from "../../utils/API";
-class WeatherCard extends Component {
+
+class WeatherCardContainer extends Component {
     state = {
-        result: {},
-        submit: ""
+        result: [],
+        submit: "",
+        isLoaded: false,
+        error: null
     };
+  
+
+  
     componentDidMount() {
         weatherSearch("-87.904724", "41.978611").then(response => {
             console.log(response.data);
-        });
-    }
-    weatherSearchSubmit = query => {
-        weatherSearch(query)
-            .then(res => this.setState({ result: res.data }))
-            .catch(err => console.log(err));
-    };
-    handleInputChange = event => {
-        const value = event.target.value;
-        const name = event.target.name;
-        this.setState({
-            [name]: value
-        })
-    }
-    render() {
-        return <div class="card">
-            <div class="card-image">
-                <img id="weather-img"></img>
-                <span class="card-title" id="weather-name"></span>
-                <a class="btn-floating halfway-fab waves-effect waves-light red" id="more-weather" value="weather"><i class="material-icons">brightness_5</i></a>
-            </div>
-            <div class="card-content" id="weather-results">
-                <p>Weather</p>
-            </div>
-            <div class="card-action">
-                <a href="#"></a>
-            </div>
-        </div>
-    }
-}
-export default WeatherCard;
+            this.setState({ isLoaded: true, 
+                            result: response.data.list});
+        },
+        
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+            
+          });
 
+        }
+      )
+        
+      }
+
+  
+    render() {
+      const {error, isLoaded, result} = this.state;
+      if (error) {
+        return <div>Error: {error.message}</div>;
+      } else if (!isLoaded) {
+        return <div>Loading...</div>;
+      } else {
+        console.log(this.state.result[1].weather[0].description);
+
+        return (
+        <div>
+       
+        <WeatherCard
+                  day={this.state.result[1].dt_txt}
+                  description={this.state.result[1].weather[0].description}
+                  icon={this.state.result[1].weather[0].icon}
+                  temperature={this.state.result[1].main.temp}
+                  wind={this.state.result[1].wind.speed}
+                  humidity={this.state.result[1].main.humidity}
+                  >
+                  </WeatherCard>
+                  </div>)
+      }
+
+    
+        
+      };
+    }
+;
+    
+
+export default WeatherCardContainer;
