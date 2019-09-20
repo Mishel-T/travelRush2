@@ -5,9 +5,9 @@ import "./Card.css";
 const Card = props => (
     <div className="card">
         <div className="card-image">
-            <img id={props.img} src={props.imgsrc}></img>
+            <img id={props.img} src={props.imgsrc} alt=""></img>
             <span className="card-title" id={props.cardTitle}>{props.nameEntry}</span>
-            <a className="btn-floating halfway-fab waves-effect waves-light red" value={props.value}><i className="material-icons">{props.btnName}</i></a>
+            <button className="btn-floating halfway-fab waves-effect waves-light red" value={props.value}><i className="material-icons">{props.btnName}</i></button>
         </div>
         <div className="card-content" id={props.contentID}>
             <p id={props.title}>{props.name}</p>
