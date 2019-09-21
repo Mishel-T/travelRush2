@@ -17,7 +17,8 @@ class CardContainer extends Component {
     // When this component mounts, search the Yelp API for the corresponding card
     //replace current long/lat with long/lat from Dupe's SearchForm component
     componentDidMount() {
-        var call1 = yelpSearch('hotels', "-87.904724", "41.978611");
+        //console.log("%s", "%o", "poop",  this.props.parent)
+        var call1 = yelpSearch('hotels', this.props.parent.long, this.props.parent.lat);
         var call2 = yelpSearch('restaurants', "-87.904724", "41.978611");
         var call3 = yelpSearch('coffee', "-87.904724", "41.978611");
         //how to run all at the same time in instead of having to run one at a time - this way only runs the last one
@@ -86,8 +87,6 @@ class CardContainer extends Component {
 
     render() {
         return [
-            
-
             <Card
                 name={this.state.response2.title}
                 img="restaurant-img" imgsrc={this.state.response2.image}
