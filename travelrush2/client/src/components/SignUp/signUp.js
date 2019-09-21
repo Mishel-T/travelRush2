@@ -2,7 +2,9 @@
 // User is redirected to sign-in page
 // if login modal is scrapped, we will likely have another state change for the login page too
 import React from "react";
-import SignIn from "./signIn.js"
+import Logo from "./teeny_logo.png"
+
+//import SignIn from "./signIn.js"
 
 
 function SignIn() {

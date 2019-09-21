@@ -12,6 +12,7 @@ import WeatherCard from "./components/Card/WeatherCard";
 import WeatherCardContainer from "./components/Card/Weather";
 import Card from "./components/Card/YelpCard/Card";
 import CardContainer from "./components/Card/YelpCard/cardContainer"
+import SignIn from "./components/SignUp/signUp"
 // import CardContainer from "./components/Card/cardContainer"
 // import CollectionContainer from "./components/Card/collectionContainer"
 //import images from "./images.json";
@@ -47,7 +48,7 @@ class App extends Component {
       <SearchContainer appcb={this.callbackFunction} />,
 
       <WeatherCardContainer />,
-      <CardContainer parentState={this.state.searchLocation} />
+      <CardContainer parentState={this.state.searchLocation} />,
 
       // <Card
       //   name="Restaurants"

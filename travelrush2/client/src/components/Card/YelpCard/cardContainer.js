@@ -75,17 +75,22 @@ class CardContainer extends Component {
     componentDidUpdate() {
         if (this.props.parentState && !this.state.search) {
             const { searchContainInput } = this.props.parentState;
-            this.setState({search: this.props.parentState
-            });
-           this.searchYelp();
+            this.setState(
+                {search: this.props.parentState}, () => { this.searchYelp() }
+
+            );
+           
+            
+
+
         }
     }
     searchYelp = search => {
         console.log("checking state in yelp search function", this.state)
-        //cards are rendering with dummy data, but updated search state is never making it in here
-        var call1 = yelpSearch("hotels", "-87.904724", "41.978611");
-        var call2 = yelpSearch("restaurants", "-87.904724", "41.978611");
-        var call3 = yelpSearch("coffee", "-87.904724", "41.978611");
+        //cards are rendering with dummy data, but updated search state is never making it in
+        var call1 = yelpSearch("hotels", this.state.search.coordLoc.long, this.state.search.coordLoc.lat);
+        var call2 = yelpSearch("restaurants", this.state.search.coordLoc.long, this.state.search.coordLoc.lat);
+        var call3 = yelpSearch("coffee", this.state.search.coordLoc.long, this.state.search.coordLoc.lat);
         call3.then(response3 => {
             //console.log(response3.data);
 
