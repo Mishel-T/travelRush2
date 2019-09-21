@@ -3,6 +3,10 @@
 // if login modal is scrapped, we will likely have another state change for the login page too
 import React from "react";
 import SignIn from "./signIn.js"
+import Logo from "./header/teeny_logo"
+
+
+
 
 
 function SignIn() {
@@ -44,7 +48,6 @@ function SignIn() {
                   Already have an account? <a href="/login" className="ml-2">Login here!</a>
                 </div>
                 <div className="d-flex justify-content-center links">
-						<a href="#">Forgot your password?</a>
 					</div>
       </p>
     </div>
