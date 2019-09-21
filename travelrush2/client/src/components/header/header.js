@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from "./teeny_logo.png";
-// import Modal from "../Modal/modal";
+import Modal from "../Modal/modal";
+  // unsure how to join modal and header components together
 import "./header.css";
 
  function Header () {
@@ -11,7 +12,8 @@ import "./header.css";
                         <a href="#!" className="brand-logo"><img src={Logo} className="responsive-img"  alt="A tiny blue suitcase with a sock and heart boxers bursting out represents the logo of travelRush" style={{ maxWidth: '150px' }} /></a>
                         <a href="#!" className="brand-logo center">travelRush</a>
                         <ul className="right hide-on-med-and-down">
-                            <li><a href="#!">LOGIN</a></li>
+                        <li><Modal /></li>
+                            {/* <li><a href="#!">LOGIN</a></li> */}
                         </ul>
                     </div>
                 </nav>

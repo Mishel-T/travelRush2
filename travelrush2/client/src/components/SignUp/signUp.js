@@ -1,23 +1,25 @@
+// The state of the app is changed when the user clicks prompt
+// User is redirected to sign-in page
+// if login modal is scrapped, we will likely have another state change for the login page too
 import React from "react";
+import SignIn from "./signIn.js"
 
-function Login () {
-    return(
-        <div>
-        {/* Hello world */}
-        <div className="awesome" style={{border: '1px solid red'}}>
-          <label htmlFor="name">Enter your name: </label>
-          <input type="text" id="name" />
-        </div>
-        <div classname="container h-100">
-          <div classname="d-flex justify-content-center h-100">
-            <div classname="user_card">
-              <div classname="d-flex justify-content-center">
-                <div classname="brand_logo_container">
-                  <img src="assests/images/Profile-512.png" className="brand_logo" alt="Logo" />
-                </div>
-              </div>
-              <div className="d-flex justify-content-center form_container">
-                <form>
+
+function SignIn() {
+  return (
+    <div>
+      <h1>This is a Sign In Page Test</h1>
+      <p>
+      <img src={ Logo } className="responsive-img" alt="Logo" />
+            <h2 id="transition-modal-title">Create User Account</h2>
+            <p id="transition-modal-description">
+              Please create account credentials below.
+            </p>
+            <div>
+              <label htmlFor="name">Enter your name: </label>
+              <input type="text" id="name" />
+            </div>
+            <form>
                   <div className="input-group mb-3">
                     <div className="input-group-append">
                       <span className="input-group-text"><i className="fas fa-user" /></span>
@@ -37,23 +39,16 @@ function Login () {
                     </div>
                   </div>
                 </form>
-              </div>
-              <div className="d-flex justify-content-center mt-3 login_container">
                 <button type="button" name="button" id="loginButton" className="btn login_btn">Login</button>
-              </div>
-              <div className="mt-4">
                 <div className="d-flex justify-content-center links">
-                  Don't have an account? <a href="/signup" className="ml-2">Sign Up</a>
+                  Already have an account? <a href="/login" className="ml-2">Login here!</a>
                 </div>
                 <div className="d-flex justify-content-center links">
 						<a href="#">Forgot your password?</a>
 					</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+      </p>
+    </div>
+  );
 }
 
-export default Login;
+export default SignIn;

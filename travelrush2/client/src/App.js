@@ -3,9 +3,7 @@ import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import SearchContainer from "./components/SearchContainer";
 import WeatherCard from "./components/Card/WeatherCard";
-import CardContainer from "./components/Card/YelpCard/cardContainer";
-import Login from "./components/Login/login";
-// import SignIn from "./components/SignIn/signIn";
+// import SignUp from "./components/SignUp/signUp";
 // import DropDown from "./components/DropDown";
 // import SearchForm from "./components/SearchForm";
 // import { InputFlight, InputDrive, InputDate } from "./components/Form";
@@ -13,12 +11,14 @@ import Login from "./components/Login/login";
 
 import WeatherCardContainer from "./components/Card/Weather";
 import Card from "./components/Card/YelpCard/Card";
+import CardContainer from "./components/Card/YelpCard/cardContainer"
 // import CardContainer from "./components/Card/cardContainer"
 // import CollectionContainer from "./components/Card/collectionContainer"
 //import images from "./images.json";
 //import "./App.css";
 
 class App extends Component {
+
   //state = { coordLat: "", coordLong: "" };
   state = {
     airportInfo: ""
@@ -28,6 +28,7 @@ class App extends Component {
   //     searchLocation: { searchContainInput }
   //   });
   // }
+
 
   callbackFunction = searchContainInput => {
     console.log(searchContainInput.coordLoc.lat + "= Lat");
@@ -42,11 +43,11 @@ class App extends Component {
     return [
       <div />,
       <Header />,
-      // <Login />,
       <Footer />,
       <SearchContainer appcb={this.callbackFunction} />,
       <WeatherCard />,
       <CardContainer parentState={this.state.searchLocation} />
+
       // <Card
       //   name="Restaurants"
       //   img="restaurant-img"

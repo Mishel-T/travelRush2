@@ -5,6 +5,7 @@ import Card from "./Card";
 import { yelpSearch } from "../../../utils/API";
 
 class CardContainer extends Component {
+
   state = {
     response1: {},
     response2: {},
@@ -150,5 +151,6 @@ class CardContainer extends Component {
       </Card>
     ];
   }
+
 }
 export default CardContainer;
