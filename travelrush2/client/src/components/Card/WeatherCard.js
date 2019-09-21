@@ -16,7 +16,7 @@ const WeatherCard = props => (
     <div className="card-content" id="weather-results">
         <p>Weather</p>
 
-        <table class="striped">
+        <table className="striped">
         <thead>
           <tr>
               <th>Date</th>
