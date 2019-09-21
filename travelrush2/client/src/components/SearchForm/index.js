@@ -45,21 +45,10 @@ class SearchForm extends Component {
     console.log("Travel mode is " + this.props.travelMode);
     if (this.props.travelMode === "1") {
       //airport
-      this.getCoordinates("airport", () => {
-        //call back function not executing!!!
-        console.log("React has updated the coordinates!");
-        console.log(this.state); //this.state isn't logging on the console???
-        //send user input to call back in drop down
-        this.props.dropcb(this.state);
-      });
+      this.getCoordinates("airport");
     } else if (this.props.travelMode === "2") {
       //address
-      this.getCoordinates("address", () => {
-        //call back function not executing!!!
-        console.log("React has updated the coordinates!");
-        console.log(this.state); //this.state isn't logging on the console???
-        this.props.dropcb(this.state);
-      });
+      this.getCoordinates("address");
     }
   };
   //handles address input by extracting and updating its coordinates
@@ -136,6 +125,7 @@ class SearchForm extends Component {
         this.setState({ coordLoc: { long: coordLong, lat: coordLat } }, () => {
           console.log(this.state.coordLoc);
           this.props.dropcb(this.state);
+          console.log("Checking state", this.state);
         });
       })
       .catch(err => console.log(err));

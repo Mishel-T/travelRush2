@@ -18,13 +18,25 @@ import CardContainer from "./components/Card/YelpCard/cardContainer"
 //import "./App.css";
 
 class App extends Component {
-  state = {
-  };
 
-  componentDidMount() { }
+  //state = { coordLat: "", coordLong: "" };
+  state = {
+    airportInfo: ""
+  };
+  // componentDidMount(searchContainInput) {
+  //   this.setState({
+  //     searchLocation: { searchContainInput }
+  //   });
+  // }
+
 
   callbackFunction = searchContainInput => {
-    this.setState({ searchContainInput });
+    console.log(searchContainInput.coordLoc.lat + "= Lat");
+    console.log(searchContainInput.coordLoc.long + "= Long");
+    //this.componentDidMount(searchContainInput);
+    this.setState({
+      searchLocation: searchContainInput
+    });
   };
 
   render() {
@@ -34,7 +46,8 @@ class App extends Component {
       <Footer />,
       <SearchContainer appcb={this.callbackFunction} />,
       <WeatherCard />,
-      <CardContainer parent={this.state}/>,
+      <CardContainer parentState={this.state.searchLocation} />
+
       // <Card
       //   name="Restaurants"
       //   img="restaurant-img"
