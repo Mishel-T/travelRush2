@@ -2,10 +2,14 @@
 // User is redirected to sign-in page
 // if login modal is scrapped, we will likely have another state change for the login page too
 import React from "react";
-import SignIn from "./signIn.js"
+import SignUp from "./signUp.js"
+import Logo from "./header/teeny_logo"
 
 
-function SignIn() {
+
+
+
+function SignUp() {
   return (
     <div>
       <h1>This is a Sign In Page Test</h1>
@@ -44,11 +48,10 @@ function SignIn() {
                   Already have an account? <a href="/login" className="ml-2">Login here!</a>
                 </div>
                 <div className="d-flex justify-content-center links">
-						<a href="#">Forgot your password?</a>
 					</div>
       </p>
     </div>
   );
 }
 
-export default SignIn;
+export default SignUp;
