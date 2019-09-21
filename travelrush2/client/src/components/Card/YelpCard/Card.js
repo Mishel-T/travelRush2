@@ -1,6 +1,6 @@
 //Component to hold yelp cards for restaurant, coffee, and weather
 import React from "react";
-import "./Card.css";
+import "../Card.css";
 
 const Card = props => (
     <div className="card">

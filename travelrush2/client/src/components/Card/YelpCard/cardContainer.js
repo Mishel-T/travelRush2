@@ -2,7 +2,7 @@
 //container needs to be loaded on searchForm click event - need to pull latitude and longitude from searchForm
 import React, { Component } from "react";
 import Card from "./Card";
-import { yelpSearch } from "../../utils/API";
+import { yelpSearch } from "../../../utils/API";
 
 
 class CardContainer extends Component {

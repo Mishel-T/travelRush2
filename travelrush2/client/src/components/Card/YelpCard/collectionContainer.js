@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import CollectionCard from "./collectionCard"
-import { yelpSearch } from "../../utils/API";
+import { yelpSearch } from "../../../utils/API";
 
 class CollectionContainer extends Component {
     state = {
