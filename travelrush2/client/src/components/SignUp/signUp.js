@@ -2,14 +2,14 @@
 // User is redirected to sign-in page
 // if login modal is scrapped, we will likely have another state change for the login page too
 import React from "react";
-import SignIn from "./signIn.js"
+import SignUp from "./signUp.js"
 import Logo from "./header/teeny_logo"
 
 
 
 
 
-function SignIn() {
+function SignUp() {
   return (
     <div>
       <h1>This is a Sign In Page Test</h1>
@@ -54,4 +54,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default SignUp;
