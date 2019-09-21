@@ -20,7 +20,7 @@ class DropDown extends React.Component {
     //M.AutoInit();
 
     //send user input to call back in search container
-    this.props.searchContaincb(this.state);
+    //this.props.searchContaincb(this.state);
   }
 
   handleDropClick = event => {

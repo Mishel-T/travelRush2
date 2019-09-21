@@ -9,7 +9,7 @@ import WeatherCard from "./components/Card/WeatherCard";
 // import Form from "./components/Form";
 
 import WeatherCardContainer from "./components/Card/Weather";
-import Card from "./components/Card/Card";
+import Card from "./components/Card/YelpCard/Card";
 // import CardContainer from "./components/Card/cardContainer"
 // import CollectionContainer from "./components/Card/collectionContainer"
 //import images from "./images.json";
@@ -44,6 +44,7 @@ class App extends Component {
         url="restaurant-url"
       ></Card>,
       <Card
+
         name="Coffee"
         img="coffee-img"
         cardTitle="coffee-name"
