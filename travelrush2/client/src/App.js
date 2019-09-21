@@ -30,7 +30,7 @@ class App extends Component {
       <Header />,
       <Footer />,
       <SearchContainer appcb={this.callbackFunction} />,
-      <WeatherCard />,
+      <WeatherCardContainer />,
       <Card
         name="Restaurants"
         img="restaurant-img"
