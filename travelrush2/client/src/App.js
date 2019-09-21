@@ -45,7 +45,8 @@ class App extends Component {
       <Header />,
       <Footer />,
       <SearchContainer appcb={this.callbackFunction} />,
-      <WeatherCard />,
+
+      <WeatherCardContainer />,
       <CardContainer parentState={this.state.searchLocation} />
 
       // <Card
@@ -85,6 +86,7 @@ class App extends Component {
       //   price="hotel-price"
       //   url="hotel-url"
       // ></Card>
+
     ];
   }
 }

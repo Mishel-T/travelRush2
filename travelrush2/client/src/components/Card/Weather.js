@@ -3,12 +3,14 @@ import "./Card.css";
 import WeatherCard from "./WeatherCard";
 import { weatherSearch } from "../../utils/API";
 
+
 class WeatherCardContainer extends Component {
     state = {
         result: [],
         submit: "",
         isLoaded: false,
-        error: null
+        error: null,
+   
     };
   
 
@@ -31,9 +33,6 @@ class WeatherCardContainer extends Component {
       )
         
       }
-
-      
-
   
     render() {
       const {error, isLoaded, result} = this.state;
@@ -42,7 +41,9 @@ class WeatherCardContainer extends Component {
       } else if (!isLoaded) {
         return <div>Loading...</div>;
       } else {
-        console.log(this.state.result[1].weather[0].description);
+        if (this.state.result.length > 0)
+
+
 
 
         return (
@@ -74,3 +75,7 @@ class WeatherCardContainer extends Component {
 
 
 export default WeatherCardContainer; 
+
+
+//        if (this.state.result.length > 0)
+//console.log(this.state.result[1].weather[0].description);
