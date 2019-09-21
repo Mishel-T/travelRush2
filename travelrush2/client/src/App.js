@@ -3,8 +3,7 @@ import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import SearchContainer from "./components/SearchContainer";
 import WeatherCard from "./components/Card/WeatherCard";
-import Modal from "./components/Modal/modal";
-// import SignIn from "./components/SignIn/signIn";
+// import SignUp from "./components/SignUp/signUp";
 // import DropDown from "./components/DropDown";
 // import SearchForm from "./components/SearchForm";
 // import { InputFlight, InputDrive, InputDate } from "./components/Form";
@@ -29,7 +28,6 @@ class App extends Component {
   render() {
     return [
       <div />,
-      <Modal />,
       <Header />,
       <Footer />,
       <SearchContainer appcb={this.callbackFunction} />,
