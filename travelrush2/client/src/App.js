@@ -3,7 +3,7 @@ import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import SearchContainer from "./components/SearchContainer";
 import WeatherCard from "./components/Card/WeatherCard";
-import Login from "./components/Login/login";
+import Modal from "./components/Modal/modal";
 // import SignIn from "./components/SignIn/signIn";
 // import DropDown from "./components/DropDown";
 // import SearchForm from "./components/SearchForm";
@@ -29,8 +29,8 @@ class App extends Component {
   render() {
     return [
       <div />,
+      <Modal />,
       <Header />,
-      // <Login />,
       <Footer />,
       <SearchContainer appcb={this.callbackFunction} />,
       <WeatherCard />,
