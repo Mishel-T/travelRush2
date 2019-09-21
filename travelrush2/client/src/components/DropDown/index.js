@@ -40,8 +40,8 @@ class DropDown extends React.Component {
       const elems = document.querySelectorAll(".datepicker");
       const instances = M.Datepicker.init(elems);
       //Initialize autocomplete
-      const elements = document.querySelectorAll(".autocomplete");
-      const insts = M.Autocomplete.init(elements);
+      /*const elements = document.querySelectorAll(".autocomplete");
+      const insts = M.Autocomplete.init(elements);*/
 
       // });
     });
