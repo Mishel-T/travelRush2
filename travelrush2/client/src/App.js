@@ -3,6 +3,8 @@ import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import SearchContainer from "./components/SearchContainer";
 import WeatherCard from "./components/Card/WeatherCard";
+import Login from "./components/Login/login";
+// import SignIn from "./components/SignIn/signIn";
 // import DropDown from "./components/DropDown";
 // import SearchForm from "./components/SearchForm";
 // import { InputFlight, InputDrive, InputDate } from "./components/Form";
@@ -28,6 +30,7 @@ class App extends Component {
     return [
       <div />,
       <Header />,
+      // <Login />,
       <Footer />,
       <SearchContainer appcb={this.callbackFunction} />,
       <WeatherCard />,
