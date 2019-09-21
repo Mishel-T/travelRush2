@@ -55,27 +55,24 @@ export default function TransitionsModal() {
             <p id="transition-modal-description">
               Please log in below.
             </p>
-            <div>
-              <label htmlFor="name">Enter your name: </label>
-              <input type="text" id="name" />
-            </div>
             <form>
                   <div className="input-group mb-3">
                     <div className="input-group-append">
                       <span className="input-group-text"><i className="fas fa-user" /></span>
                     </div>
-                    <input type="text" name className="form-control input_user" id="emailInput" placeholder="username" />
+                    <input type="text" name className="form-control input_user" id="emailInput" placeholder="Username" />
                   </div>
                   <div className="input-group mb-2">
                     <div className="input-group-append">
                       <span className="input-group-text"><i className="fas fa-key" /></span>
                     </div>
-                    <input type="password" name className="form-control input_pass" id="passwordInput" placeholder="password" />
+                    <input type="password" name className="form-control input_pass" id="passwordInput" placeholder="Password" />
                   </div>
                   <div className="form-group">
                     <div className="custom-control custom-checkbox">
+                      <label className="container">Remember me </label>
                       <input type="checkbox" className="custom-control-input" id="customControlInline" />
-                      <label className="custom-control-label" htmlFor="customControlInline">Remember me</label>
+                      <span className="checkmark" />
                     </div>
                   </div>
                 </form>
