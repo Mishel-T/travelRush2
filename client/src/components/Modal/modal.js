@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "./teeny_logo.png"
+import Logo from "../assets/images/teeny_logo.png";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
