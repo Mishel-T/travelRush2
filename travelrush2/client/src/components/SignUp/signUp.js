@@ -2,12 +2,7 @@
 // User is redirected to sign-in page
 // if login modal is scrapped, we will likely have another state change for the login page too
 import React from "react";
-import SignUp from "./signUp.js"
-import Logo from "./header/teeny_logo"
-
-
-
-
+import Logo from "./teeny_logo.png"
 
 function SignUp() {
   return (
@@ -21,20 +16,33 @@ function SignUp() {
             </p>
             <div>
               <label htmlFor="name">Enter your name: </label>
-              <input type="text" id="name" />
+              <input type="text" id="name" placeholder="Ex Joe D" />
+              {/* implement something to ensure it only accepts alphabetical character */}
             </div>
             <form>
                   <div className="input-group mb-3">
                     <div className="input-group-append">
                       <span className="input-group-text"><i className="fas fa-user" /></span>
                     </div>
-                    <input type="text" name className="form-control input_user" id="emailInput" placeholder="username" />
+                    <input type="text" name className="form-control input_user" id="emailInput" placeholder="Username" />
                   </div>
                   <div className="input-group mb-2">
                     <div className="input-group-append">
                       <span className="input-group-text"><i className="fas fa-key" /></span>
                     </div>
-                    <input type="password" name className="form-control input_pass" id="passwordInput" placeholder="password" />
+                    <input type="text" name className="form-control input_pass" id="emailInput" placeholder="Email address" />
+                  </div>
+                  <div className="input-group mb-2">
+                    <div className="input-group-append">
+                      <span className="input-group-text"><i className="fas fa-key" /></span>
+                    </div>
+                    <input type="password" name className="form-control input_pass" id="passwordInput" placeholder="Password" />
+                  </div>
+                  <div className="input-group mb-2">
+                    <div className="input-group-append">
+                      <span className="input-group-text"><i className="fas fa-key" /></span>
+                    </div>
+                    <input type="password" name className="form-control input_pass" id="confirmPasswordInput" placeholder="Confirm Password" />
                   </div>
                   <div className="form-group">
                     <div className="custom-control custom-checkbox">

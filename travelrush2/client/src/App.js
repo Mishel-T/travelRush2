@@ -3,7 +3,7 @@ import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import SearchContainer from "./components/SearchContainer";
 import WeatherCard from "./components/Card/WeatherCard";
-// import SignUp from "./components/SignUp/signUp";
+import SignUp from "./components/SignUp/signUp";
 // import DropDown from "./components/DropDown";
 // import SearchForm from "./components/SearchForm";
 // import { InputFlight, InputDrive, InputDate } from "./components/Form";
@@ -12,7 +12,6 @@ import WeatherCard from "./components/Card/WeatherCard";
 import WeatherCardContainer from "./components/Card/Weather";
 import Card from "./components/Card/YelpCard/Card";
 import CardContainer from "./components/Card/YelpCard/cardContainer"
-import SignIn from "./components/SignUp/signUp"
 // import CardContainer from "./components/Card/cardContainer"
 // import CollectionContainer from "./components/Card/collectionContainer"
 //import images from "./images.json";
@@ -43,8 +42,10 @@ class App extends Component {
   render() {
     return [
       <div />,
+
       <Header />,
       <Footer />,
+      <SignUp />,
       <SearchContainer appcb={this.callbackFunction} />,
 
       <WeatherCardContainer />,
