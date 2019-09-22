@@ -11,10 +11,20 @@ class CollectionContainer extends Component {
     };
 
 
-    componentDidMount() {
-        var call1 = yelpSearch('hotels', "-87.904724", "41.978611");
-        var call2 = yelpSearch('restaurants', "-87.904724", "41.978611");
-        var call3 = yelpSearch('coffee', "-87.904724", "41.978611");
+    componentDidUpdate() {
+        if (this.props.parentState && !this.state.search) {
+            const { searchContainInput } = this.props.parentState;
+            this.setState(
+                { search: this.props.parentState }, () => { this.updateCollection() }
+
+            );
+
+        }
+    }
+    updateCollection = search => {
+        var call1 = yelpSearch('hotels', this.state.search.coordLoc.long, this.state.search.coordLoc.lat);
+        var call2 = yelpSearch('restaurants', this.state.search.coordLoc.long, this.state.search.coordLoc.lat);
+        var call3 = yelpSearch('coffee', this.state.search.coordLoc.long, this.state.search.coordLoc.lat);
 
         (call3).then(response3 => {
             //console.log(response3.data);
@@ -23,7 +33,6 @@ class CollectionContainer extends Component {
 
         });
 
-        var call2 = yelpSearch('restaurants', "-87.904724", "41.978611");
         (call2).then(response2 => {
             //console.log(response2.data);
 
@@ -31,7 +40,6 @@ class CollectionContainer extends Component {
 
         });
 
-        var call1 = yelpSearch('hotels', "-87.904724", "41.978611");
         (call1).then(response1 => {
             console.log(response1.data);
 
@@ -39,6 +47,7 @@ class CollectionContainer extends Component {
 
         });
     }
+
 
     render() {
         console.log(this.state.responsedetail3)
@@ -88,7 +97,7 @@ class CollectionContainer extends Component {
 
                 </div>
             </div>
-       
+
         ]
     }
 }
