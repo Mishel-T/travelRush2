@@ -19,8 +19,4 @@ Contributors
 Michelle (Team Leader) Emma Modupe Geo Jesus
 
 Find travelRush here
-<<<<<<< HEAD
 https://afternoon-sierra-80459.herokuapp.com/
-=======
-https://afternoon-sierra-80459.herokuapp.com/
->>>>>>> a806549f9324c15784760c52e26afda469a50c76
