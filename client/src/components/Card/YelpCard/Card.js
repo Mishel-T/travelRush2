@@ -15,7 +15,7 @@ const Card = props => (
             <p id={props.price}>{props.priceEntry}</p>
         </div>
         <div className="card-action">
-            <a href={props.urlEntry} id={props.url}>Learn More</a>
+            <a href={props.urlEntry} id={props.url} target="_blank">Learn More</a>
         </div>
     </div>
 );
