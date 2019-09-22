@@ -2,6 +2,7 @@
 //container needs to be loaded on searchForm click event - need to pull latitude and longitude from searchForm
 import React, { Component } from "react";
 import Card from "./Card";
+import CollectionContainer from "./collectionContainer"
 import { yelpSearch } from "../../../utils/API";
 
 class CardContainer extends Component {
@@ -76,12 +77,9 @@ class CardContainer extends Component {
         if (this.props.parentState && !this.state.search) {
             const { searchContainInput } = this.props.parentState;
             this.setState(
-                {search: this.props.parentState}, () => { this.searchYelp() }
+                { search: this.props.parentState }, () => { this.searchYelp() }
 
             );
-           
-            
-
 
         }
     }
@@ -192,9 +190,7 @@ class CardContainer extends Component {
                 priceEntry={this.state.response1.price}
                 url="hotel-url"
                 urlEntry={this.state.response1.url}
-            >
-                >
-      </Card>
+            ></Card>, 
         ];
     }
 
