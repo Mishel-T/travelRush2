@@ -1,3 +1,4 @@
 module.exports = {
-  Airport: require("./airport")
+  Airport: require("./airport"),
+  User: require("./user")
 };
