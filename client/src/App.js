@@ -40,6 +40,7 @@ class App extends Component {
   render() {
     return [
       <div />,
+
       <Header />,
       <Footer />,
       <SearchContainer appcb={this.callbackFunction} />,
