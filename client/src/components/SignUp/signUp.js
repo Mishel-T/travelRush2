@@ -11,8 +11,6 @@ import Logo from "../assets/images/teeny_logo.png";
 function SignUp() {
   return (
     <div>
-      <h1>This is a Sign In Page Test</h1>
-      <p>
         <img src={Logo} className="responsive-img" alt="Logo" />
         <h2 id="transition-modal-title">Create User Account</h2>
         <p id="transition-modal-description">
@@ -96,7 +94,6 @@ function SignUp() {
           </a>
         </div>
         <div className="d-flex justify-content-center links"></div>
-      </p>
     </div>
   );
 }
