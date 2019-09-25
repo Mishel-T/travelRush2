@@ -4,14 +4,15 @@ import { BrowserRouter } from "react-router-dom";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import SearchContainer from "./components/SearchContainer";
-import WeatherCard from "./components/Card/WeatherCard";
 import SignUp from "./components/SignUp/signUp";
+import WeatherCard from "./components/Card/WeatherCard/WeatherCard";
+// import SignUp from "./components/SignUp/signUp";
 // import DropDown from "./components/DropDown";
 // import SearchForm from "./components/SearchForm";
 // import { InputFlight, InputDrive, InputDate } from "./components/Form";
 // import Form from "./components/Form";
 
-import WeatherCardContainer from "./components/Card/Weather";
+import WeatherCardContainer from "./components/Card/WeatherCard/Weather";
 import Card from "./components/Card/YelpCard/Card";
 import CardContainer from "./components/Card/YelpCard/cardContainer"
 //import CollectionContainer from "./components/Card/YelpCard/collectionContainer";
