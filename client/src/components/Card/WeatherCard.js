@@ -4,19 +4,17 @@ import React from "react";
 import "./Card.css";
 
 
-
-
 //import MaterialTable from "material-table";
 
 
 const WeatherCard = props => (
-    <div className="card">
+    <div className="card" >
     <div className="card-image">
         <img id="weather-img" src={props.img} alt=""></img>
         <span className="card-title" id="weather-name"></span>
         <a className="btn-floating halfway-fab waves-effect waves-light red" id="more-weather" value="weather"><i className="material-icons">brightness_5</i></a>
     </div>
-    <div className="card-content" id="weather-results">
+    <div className="card-content" id="weather-results" >
         <p>Weather</p>
 
         <table className="striped">
