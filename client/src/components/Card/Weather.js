@@ -6,7 +6,7 @@ import { weatherSearch } from "../../utils/API";
 
 class WeatherCardContainer extends Component {
     state = {
-        result: [],
+        response: [],
         submit: "",
         isLoaded: false,
         error: null,
@@ -15,65 +15,64 @@ class WeatherCardContainer extends Component {
   
 
   
-    componentDidMount() {
-        weatherSearch("-87.904724", "41.978611").then(response => {
-            console.log(response.data);
-            this.setState({ isLoaded: true, 
-                            result: response.data.list});
-        },
-        
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-            
-          });
+    componentDidUpdate() {
+      if (this.props.parentState && !this.state.search) {
+        const { searchContainInput } = this.props.parentState;
+        this.setState(
+          {search: this.props.parentState}, () =>  { this.searchWeather() }
+        );
 
-        }
-      )
-        
       }
+
+    }
+
+
+    searchWeather = search => {
+      var call1 = weatherSearch(this.state.search.coordLoc.long, this.state.search.coordLoc.lat);
+      call1.then(response => {
+
+        var weatherInfo = {
+          dt_txt: response.data.list[1].dt_txt,
+          description: response.data.list[1].weather[0].description,
+          icon: response.data.list[1].weather[0].icon,
+          temp: response.data.list[1].main.temp,
+          speed: response.data.list[1].wind.speed,
+          humidity: response.data.list[1].main.humidity
+        };
+        console.log(response)
+       this.setState({ response: weatherInfo })
+      });
+    }
   
-    render() {
-      const {error, isLoaded, result} = this.state;
-      if (error) {
-        return <div>Error: {error.message}</div>;
-      } else if (!isLoaded) {
-        return <div>Loading...</div>;
-      } else {
-        if (this.state.result.length > 0)
+    render () {
+      
+ 
+      
+      return [
 
-
-
-
-        return (
         <div>
        
         <WeatherCard
-                  day={this.state.result[1].dt_txt}
-                  description={this.state.result[1].weather[0].description}
-                  icon={this.state.result[1].weather[0].icon}
-                  temperature={this.state.result[1].main.temp}
-                  wind={this.state.result[1].wind.speed}
-                  humidity={this.state.result[1].main.humidity}
+        
+                  day={this.state.response.dt_txt}
+                  description={this.state.response.description}
+                  icon={this.state.response.icon}
+                  temperature={this.state.response.temp}
+                  wind={this.state.response.speed}
+                  humidity={this.state.response.humidity}
                   >
 
                   </WeatherCard>
-                  </div>)
+                  </div>
 
+      ];
 
+    };
 
-
-      }
-    }
-
+    };
     
         
-      };
     
-;
-
-
 export default WeatherCardContainer; 
 
 

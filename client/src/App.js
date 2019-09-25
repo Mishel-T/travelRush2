@@ -45,7 +45,7 @@ class App extends Component {
       <Footer />,
       <SearchContainer appcb={this.callbackFunction} />,
 
-      <WeatherCardContainer />,
+      <WeatherCardContainer parentState={this.state.searchLocation} />,
       <CardContainer parentState={this.state.searchLocation} />,
      // <CollectionContainer parentState={this.state.searchLocation} />
 
