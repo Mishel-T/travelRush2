@@ -1,7 +1,7 @@
 //Card component to hold weather 
 
 import React from "react";
-import "./Card.css";
+import "./../Card.css";
 
 
 //import MaterialTable from "material-table";
