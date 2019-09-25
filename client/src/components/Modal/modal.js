@@ -1,9 +1,11 @@
 import React from "react";
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import Logo from "../assets/images/teeny_logo.png";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
+import SignUp from "../SignUp/signUp";
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -32,6 +34,7 @@ export default function TransitionsModal() {
   };
 
   return (
+    <Router>
     <div>
       <button type="button" onClick={handleOpen}>
         Login
@@ -77,15 +80,20 @@ export default function TransitionsModal() {
                   </div>
                 </form>
                 <button type="button" name="button" id="loginButton" className="btn login_btn">Login</button>
-                <div className="d-flex justify-content-center links">
-                  Don't have an account? <a href="/signup" className="ml-2">Sign Up!</a>
+                <div className="d-flex justify-content-center links"> 
+                  Don't have an account? <Link to="/signup">Sign up!</Link>
                 </div>
                 <div className="d-flex justify-content-center links">
-						<a href="#">Forgot your password?</a>
+						{/* <a href="#">Forgot your password?</a> */}
+            
 					</div>
           </div>
+
+
+
         </Fade>
       </Modal>
     </div>
+    </Router>
   );
 }
