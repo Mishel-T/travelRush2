@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import Logo from "../assets/images/teeny_logo.png";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
