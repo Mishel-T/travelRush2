@@ -1,15 +1,63 @@
 const db = require("../models");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const keys = require("../config/keys");
 // Defining methods for the booksController
 module.exports = {
+  testAll: function(req, res) {
+    // if (err) {
+    //   res.status(422).json(err);
+    // }
+    res.json({ msg: "The user controller works." });
+  },
   findAll: function(req, res) {
     db.User.find(req.query)
       .then(dbUser => res.json(dbUser))
       .catch(err => res.status(422).json(err));
   },
 
-  findByEmail: function(req, res) {
-    db.User.findByOne({ email: req.params.email })
-      .then(dbUser => res.json(dbUser))
+  findUser: function(req, res) {
+    const { email, password } = req.body;
+    if (!email) {
+      res.json({
+        success: false,
+        message: "Email cannot be blank. Please enter an email"
+      });
+    }
+    if (!password) {
+      res.json({
+        success: false,
+        message: "Password cannot be blank. Please enter a password"
+      });
+    }
+    db.User.findOne({ email })
+      .then(dbUser => {
+        if (!dbUser) {
+          return res.status(404).json({ email: "User not found" });
+        }
+        //Check Password.
+        bcrypt.compare(password, dbUser.password).then(isMatch => {
+          if (isMatch) {
+            //User Matched
+            const payload = {
+              id: dbUser._id,
+              name: dbUser.name,
+              email: dbUser.email
+            };
+            jwt.sign(
+              payload,
+              keys.secretOrKey,
+              { expiresIn: "1h" },
+              (err, token) => {
+                res.json({ success: true, token: "Bearer " + token });
+              }
+            );
+            //res.json({ msg: "Success" });
+          } else {
+            return res.status(400).json({ msg: "Password is incorrect" });
+          }
+        });
+      })
       .catch(err => res.status(422).json(err));
   },
 
@@ -34,7 +82,7 @@ module.exports = {
   },
 
   createUser: function(req, res) {
-    const { name, email, address, password } = req.body;
+    const { name, email, password, address } = req.body;
     //send custom message if any of the input variables are missing
     if (!name) {
       res.json({
@@ -60,35 +108,57 @@ module.exports = {
         message: "Password cannot be blank. Please enter a password"
       });
     }
-    if (!isValidEmail(email)) {
-      res.json({
-        success: false,
-        message: "Email is not valid. Please enter a valid email"
-      });
-    }
+    // if (!isValidEmail(email)) {
+    //   res.json({
+    //     success: false,
+    //     message: "Email is not valid. Please enter a valid email"
+    //   });
+    console.log(req.body);
+
     //check whether email is in the database.
-    db.User.find({ email: email })
+    db.User.findOne({ email: email })
       .then(dbUser => {
-        if (dbUser.length > 0) {
+        if (dbUser) {
           //email already exist in the database, so send appropriate message.
-          res.json({ success: false, message: "Account already exist." });
+          //res.json({ success: false, message: "Account already exist." });
+          return res.status(400).json({ email: "Email already exists" });
         }
 
         //save the new user
-        const newUser = new User();
-        newUser.name = name;
-        newUser.email = email;
-        newUser.password = newUser.generateHash(password);
-        newUser.address = address;
-        newUser.isDelete = false;
-        newUser.save((err, user) => {
-          if (err) {
-            res.json({ success: false, message: "Server error" });
-          }
-          res.json({ success: true, message: "Signed up!" });
+        const newUser = new db.User({
+          name: name,
+          email: email,
+          password: password,
+          address: address
         });
+        // console.log("TEST");
+
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) console.log(err);
+            newUser.password = hash;
+            newUser
+              .save()
+              .then(user => res.json(user))
+              .catch(err => console.log(err));
+          });
+        });
+        // newUser.name = name;
+        // newUser.email = email;
+        // newUser.password = password;
+        // //newUser.password = newUser.generateHash(password);
+        // newUser.address = address;
+
+        // newUser.save((err, user) => {
+        //   if (err) {
+        //     res.json({ success: false, message: "Server error" });
+        //   }
+        //   res.json({ success: true, message: "Signed up!" });
+        // });
       })
-      .catch(err => res.status(422).json(err));
+      .catch(err =>
+        res.status(422).send("mongoose error: Error in findOne() block")
+      );
   },
   updateUser: function(req, res) {
     db.User.findOneAndUpdate({ _id: req.params.id }, req.body)
