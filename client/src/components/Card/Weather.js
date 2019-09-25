@@ -46,7 +46,25 @@ class WeatherCardContainer extends Component {
   
     render () {
       
- 
+ if (this.state.response.length == 0) { return <div>
+<div className="card" >
+    <div className="card-image">
+        <img id="weather-img"  alt=""></img>
+        <span className="card-title" id="weather-name"></span>
+        <a className="btn-floating halfway-fab waves-effect waves-light red" id="more-weather" value="weather"><i className="material-icons">brightness_5</i></a>
+    </div>
+    <div className="card-content" id="weather-results" >
+        <p>Weather</p></div>
+
+</div>
+
+</div>
+
+
+
+
+
+}
       
       return [
 
