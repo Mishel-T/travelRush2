@@ -2,7 +2,8 @@
 //container needs to be loaded on searchForm click event - need to pull latitude and longitude from searchForm
 import React, { Component } from "react";
 import Card from "./Card";
-import CollectionContainer from "./collectionContainer"
+//import CollectionContainer from "./collectionContainer"
+import CollectionCard from "./collectionCard"
 import { yelpSearch } from "../../../utils/API";
 
 class CardContainer extends Component {
@@ -11,10 +12,13 @@ class CardContainer extends Component {
         response1: {},
         response2: {},
         response3: {},
+        responsedetail1: [],
+        responsedetail2: [],
+        responsedetail3: [],
         collectionClicked: false,
     };
 
-   
+
     componentDidUpdate() {
         if (this.props.parentState && !this.state.search) {
             const { searchContainInput } = this.props.parentState;
@@ -23,16 +27,14 @@ class CardContainer extends Component {
 
             );
 
-        }
+        } 
     }
     searchYelp = search => {
-        console.log("checking state in yelp search function", this.state)
-        //cards are rendering with dummy data, but updated search state is never making it in
         var call1 = yelpSearch("hotels", this.state.search.coordLoc.long, this.state.search.coordLoc.lat);
         var call2 = yelpSearch("restaurants", this.state.search.coordLoc.long, this.state.search.coordLoc.lat);
         var call3 = yelpSearch("coffee", this.state.search.coordLoc.long, this.state.search.coordLoc.lat);
+
         call3.then(response3 => {
-            //console.log(response3.data);
 
             var coffeeInfo = {
                 name: response3.data.businesses[0].name,
@@ -42,12 +44,10 @@ class CardContainer extends Component {
                 rating: response3.data.businesses[0].rating,
                 title: response3.data.businesses[0].categories[0].title
             };
-            //console.log(coffeeInfo)
-            this.setState({ response3: coffeeInfo });
+            this.setState({ response3: coffeeInfo, responsedetail3: response3.data.businesses });
         });
 
         call1.then(response1 => {
-            //console.log(response1.data);
 
             var hotelsInfo = {
                 name: response1.data.businesses[0].name,
@@ -58,7 +58,7 @@ class CardContainer extends Component {
                 title: response1.data.businesses[0].categories[0].title
             };
             //console.log(hotelsInfo)
-            this.setState({ response1: hotelsInfo });
+            this.setState({ response1: hotelsInfo, responsedetail1: response1.data.businesses });
         });
 
         call2.then(response2 => {
@@ -73,16 +73,20 @@ class CardContainer extends Component {
                 title: response2.data.businesses[0].categories[0].title
             };
             console.log(restaurantsInfo);
-            this.setState({ response2: restaurantsInfo });
+            this.setState({ response2: restaurantsInfo, responsedetail2: response2.data.businesses });
         });
     };
 
     handleCollection = event => {
         event.preventDefault();
-        console.log ("in collection even handler")
-        this.setState({collectionClicked: true})
+        console.log("in collection event handler")
+        this.setState({ collectionClicked: true })
     }
 
+    // updateCollection = () => {
+            
+        
+    // }
 
     updateCard = () => {
         if (!this.state.search) {
@@ -126,10 +130,56 @@ class CardContainer extends Component {
             ]
         } else if (this.state.collectionClicked === true) {
             return [
-                <CollectionContainer />
-            ]
+                [
+                    <div className="card" >
+                        <div className="collection">
 
-        }  else {
+                            {this.state.responsedetail2.map((businesses, index) => (
+                                <CollectionCard key={index}
+                                    urlplaceholder={businesses.url}
+                                    name={businesses.name}
+                                    price={businesses.price}
+                                    distance={Math.round((businesses.distance * 0.000621371192) * 10) / 10}
+                                >
+                                </CollectionCard>
+                            ))}
+
+                        </div>
+                    </div>,
+
+                    <div className="card" >
+                        <div className="collection">
+                            {this.state.responsedetail3.map((businesses, index) => (
+                                <CollectionCard key={index}
+                                    urlplaceholder={businesses.url}
+                                    name={businesses.name}
+                                    price={businesses.price}
+                                    distance={Math.round((businesses.distance * 0.000621371192) * 10) / 10}
+                                >
+                                </CollectionCard>
+                            ))}
+                        </div>
+                    </div>,
+
+                    <div className="card" >
+                        <div className="collection">
+
+                            {this.state.responsedetail1.map((businesses, index) => (
+                                <CollectionCard key={index}
+                                    urlplaceholder={businesses.url}
+                                    name={businesses.name}
+                                    price={businesses.price}
+                                    distance={Math.round((businesses.distance * 0.000621371192) * 10) / 10}
+                                >
+                                </CollectionCard>
+                            ))}
+
+                        </div>
+                    </div>
+
+                ]
+
+            ]        } else {
             return [
                 <Card
                     name={this.state.response2.title}
@@ -147,7 +197,8 @@ class CardContainer extends Component {
                     priceEntry={this.state.response2.price}
                     url="restaurant-url"
                     urlEntry={this.state.response2.url}
-                ></Card> ,
+                    onClick={this.handleCollection}
+                ></Card>,
 
                 <Card
                     name={this.state.response3.title}
@@ -165,7 +216,9 @@ class CardContainer extends Component {
                     priceEntry={this.state.response3.price}
                     url="coffee-url"
                     urlEntry={this.state.response3.url}
-                ></Card> ,
+                    onClick={this.handleCollection}
+
+                ></Card>,
 
                 <Card
                     name={this.state.response1.title}
@@ -183,13 +236,18 @@ class CardContainer extends Component {
                     priceEntry={this.state.response1.price}
                     url="hotel-url"
                     urlEntry={this.state.response1.url}
-                ></Card> ,
+                    onClick={this.handleCollection}
+                ></Card>,
+
             ];
         }
     };
 
 
+
     render() {
+        console.log('state', this.state);
+        
         return (<div>
             {this.updateCard()}
 
