@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from "../assets/images/teeny_logo.png";
 import Modal from "../Modal/modal";
+import { Link } from "react-router-dom";
   // unsure how to join modal and header components together
 import "./header.css";
 
@@ -11,10 +12,13 @@ import "./header.css";
                     <div className="nav-wrapper">
                         <a href="#!" className="brand-logo"><img src={Logo} className="responsive-img"  alt="A tiny blue suitcase with a sock and heart boxers bursting out represents the logo of travelRush" style={{ maxWidth: '150px' }} /></a>
                         <a href="#!" className="brand-logo center">travelRush</a>
+              
                         <ul className="right hide-on-med-and-down">
+                      
                         <li><Modal /></li>
                             {/* <li><a href="#!">LOGIN</a></li> */}
                         </ul>
+                        
                     </div>
                 </nav>
             </div>
@@ -31,6 +35,7 @@ export default Header;
 // in nav (at header.js:9)
 // in div (at header.js:8)
 // in Header (at App.js:30)
+//<Route exact path="/MyAccount" component={MyAccount} />
 
 
 
