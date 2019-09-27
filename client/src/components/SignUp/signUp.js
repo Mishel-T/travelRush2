@@ -6,6 +6,7 @@ import Logo from "../assets/images/teeny_logo.png";
 // import { BrowserRouter } from "react-router-dom";
 import "./signUp.css";
 
+//Make this a stateful component because it is a form?
 
 function SignUp() {
   return (
