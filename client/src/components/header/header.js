@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from "../assets/images/teeny_logo.png";
-import Modal from "../Modal/modal";
+//import Modal from "../Modal/modal";
+import ModalContainer from "../Modal/modalContainer"
 import { Link } from "react-router-dom";
   // unsure how to join modal and header components together
 import "./header.css";
@@ -15,7 +16,7 @@ import "./header.css";
               
                         <ul className="right hide-on-med-and-down">
                       
-                        <li><Modal /></li>
+                        <li><ModalContainer /></li>
                             {/* <li><a href="#!">LOGIN</a></li> */}
                         </ul>
                         

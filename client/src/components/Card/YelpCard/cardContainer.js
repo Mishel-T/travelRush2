@@ -83,10 +83,7 @@ class CardContainer extends Component {
         this.setState({ collectionClicked: true })
     }
 
-    // updateCollection = () => {
             
-        
-    // }
 
     updateCard = () => {
         if (!this.state.search) {

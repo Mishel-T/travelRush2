@@ -19,7 +19,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function TransitionsModal() {
+export default function TransitionsModal(props) {
+  console.log(props);
+  
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -60,13 +62,13 @@ export default function TransitionsModal() {
                     <div className="input-group-append">
                       <span className="input-group-text"><i className="fas fa-user" /></span>
                     </div>
-                    <input type="text" name className="form-control input_user" id="emailInput" placeholder="Username" />
+                    <input type="text" className="form-control input_user" id="emailInput" placeholder="Username" />
                   </div>
                   <div className="input-group mb-2">
                     <div className="input-group-append">
                       <span className="input-group-text"><i className="fas fa-key" /></span>
                     </div>
-                    <input type="password" name className="form-control input_pass" id="passwordInput" placeholder="Password" />
+                    <input type="password" className="form-control input_pass" id="passwordInput" placeholder="Password" />
                   </div>
                   <div className="form-group">
                     <div className="custom-control custom-checkbox">
@@ -75,8 +77,9 @@ export default function TransitionsModal() {
                       <span className="checkmark" />
                     </div>
                   </div>
+              <button onClick={props.onSubmit} type="button" name="button" id="loginButton" className="btn login_btn">Login</button>
+
                 </form>
-                <button type="button" name="button" id="loginButton" className="btn login_btn">Login</button>
                 <div className="d-flex justify-content-center links">
                   Don't have an account? <a href="/signup" className="ml-2">Sign Up!</a>
                 </div>
