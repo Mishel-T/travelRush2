@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
+const passport = require("passport");
 const routes = require("./routes");
 
 const app = express();
@@ -18,8 +19,15 @@ if (process.env.NODE_ENV === "production") {
 
 //console.log(routes);
 
+//Passport middleware
+app.use(passport.initialize());
+
+//Passport Config
+require("./config/passport")(passport);
+
 // Add routes, both API and view
 app.use(routes);
+
 // app.get("/", (req, res) =>
 //   res.send(
 //     "Hello Modupe! This route in server works!!! Errors must be from controllers or routes."

@@ -1,5 +1,8 @@
 const router = require("express").Router();
 const usersController = require("../../controllers/usersController");
+const passport = require("passport");
+// const jwt = require("jsonwebtoken");
+// const keys = require("../config/keys");
 
 // @route  GET api/users
 // @desc   Tests users route
@@ -17,6 +20,17 @@ router.route("/register").post(usersController.createUser);
 //@desc   Login User / Return JWT token
 //@access Public
 router.route("/login").get(usersController.findUser);
+
+//@route  GET api/users/current
+//@desc   Return current user(access to a protected route for the user)
+//@access Private
+router
+  .route("/current")
+  .get(
+    passport.authenticate("jwt", { session: false }),
+    usersController.getUserInfo
+  );
+
 // router.get("/", (req, res) => {
 //   res.json({ msg: "user router works, but the controller doesn't!" });
 // });

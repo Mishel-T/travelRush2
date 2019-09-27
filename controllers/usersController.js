@@ -2,6 +2,10 @@ const db = require("../models");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../config/keys");
+const passport = require("passport");
+const validateRegisterInput = require("../validation/register");
+const validateloginInput = require("../validation/login");
+
 // Defining methods for the booksController
 module.exports = {
   testAll: function(req, res) {
@@ -15,30 +19,41 @@ module.exports = {
       .then(dbUser => res.json(dbUser))
       .catch(err => res.status(422).json(err));
   },
-
+  //This method handles the login request.
   findUser: function(req, res) {
+    console.log(req.body);
     const { email, password } = req.body;
-    if (!email) {
-      res.json({
-        success: false,
-        message: "Email cannot be blank. Please enter an email"
-      });
+    const { errors, isValid } = validateloginInput(req.body);
+    console.log("Errors are ");
+    console.log(errors);
+    console.log("isValid status is " + isValid);
+    // Check Validation on user inputs during registration
+    if (!isValid) {
+      console.log("Validating user inputs for login.....");
+      return res.status(400).json(errors);
     }
-    if (!password) {
-      res.json({
-        success: false,
-        message: "Password cannot be blank. Please enter a password"
-      });
-    }
+    // if (!email) {
+    //   res.json({
+    //     success: false,
+    //     message: "Email cannot be blank. Please enter an email"
+    //   });
+    // }
+    // if (!password) {
+    //   res.json({
+    //     success: false,
+    //     message: "Password cannot be blank. Please enter a password"
+    //   });
+    // }
     db.User.findOne({ email })
       .then(dbUser => {
         if (!dbUser) {
-          return res.status(404).json({ email: "User not found" });
+          errors.email = "User not found";
+          return res.status(404).json({ email: errors.email });
         }
         //Check Password.
         bcrypt.compare(password, dbUser.password).then(isMatch => {
           if (isMatch) {
-            //User Matched
+            //User Matched(Set the info(use payload) the user can get from the jwt token)
             const payload = {
               id: dbUser._id,
               name: dbUser.name,
@@ -54,7 +69,8 @@ module.exports = {
             );
             //res.json({ msg: "Success" });
           } else {
-            return res.status(400).json({ msg: "Password is incorrect" });
+            errors.password = "Password is incorrect";
+            return res.status(400).json({ msg: errors.password });
           }
         });
       })
@@ -81,33 +97,44 @@ module.exports = {
     return re.test(String(email).toLowerCase());
   },
 
+  //This method handles signing up/registering users.
   createUser: function(req, res) {
-    const { name, email, password, address } = req.body;
+    console.log(req.body);
+    const { errors, isValid } = validateRegisterInput(req.body);
+    console.log("Errors are ");
+    console.log(errors);
+    console.log("isValid status is " + isValid);
+    // Check Validation on user inputs during registration
+    if (!isValid) {
+      console.log("Validating user input for signup.....");
+      return res.status(400).json(errors);
+    }
+    // const { name, email, password, address } = req.body;
     //send custom message if any of the input variables are missing
-    if (!name) {
-      res.json({
-        success: false,
-        message: "Name cannot be blank. Please enter name"
-      });
-    }
-    if (!email) {
-      res.json({
-        success: false,
-        message: "Email cannot be blank. Please enter an email"
-      });
-    }
-    if (!address) {
-      res.json({
-        success: false,
-        message: "Address cannot be blank. Please enter an address"
-      });
-    }
-    if (!password) {
-      res.json({
-        success: false,
-        message: "Password cannot be blank. Please enter a password"
-      });
-    }
+    // if (!name) {
+    //   res.json({
+    //     success: false,
+    //     message: "Name cannot be blank. Please enter name"
+    //   });
+    // }
+    // if (!email) {
+    //   res.json({
+    //     success: false,
+    //     message: "Email cannot be blank. Please enter an email"
+    //   });
+    // }
+    // if (!address) {
+    //   res.json({
+    //     success: false,
+    //     message: "Address cannot be blank. Please enter an address"
+    //   });
+    // }
+    // if (!password) {
+    //   res.json({
+    //     success: false,
+    //     message: "Password cannot be blank. Please enter a password"
+    //   });
+    // }
     // if (!isValidEmail(email)) {
     //   res.json({
     //     success: false,
@@ -121,7 +148,8 @@ module.exports = {
         if (dbUser) {
           //email already exist in the database, so send appropriate message.
           //res.json({ success: false, message: "Account already exist." });
-          return res.status(400).json({ email: "Email already exists" });
+          errors.email = "Email already exists";
+          return res.status(400).json({ email: errors.email });
         }
 
         //save the new user
@@ -160,6 +188,7 @@ module.exports = {
         res.status(422).send("mongoose error: Error in findOne() block")
       );
   },
+
   updateUser: function(req, res) {
     db.User.findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbUser => res.json(dbUser))
@@ -170,6 +199,15 @@ module.exports = {
       // .then(dbModel => dbModel.remove())
       .then(dbUser => res.json(dbUser))
       .catch(err => res.status(422).json(err));
+  },
+  getUserInfo: function(req, res) {
+    res.json({
+      id: req.user._id,
+      name: req.user.name,
+      email: req.user.email
+    });
+    //res.json({ msg: "Success!" });
+    //console.log("Success!");
   }
 };
 
