@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import Home from ""
 // import LogIn from ""
-import SignIn from "./SignIn/signIn";
+import SignUp from "./SignUp/signUp";
 
 class PageContainer extends Component {
     state = {
@@ -17,8 +17,8 @@ class PageContainer extends Component {
           return <Home />;
         // } else if (this.state.currentPage === "Login") {
         //   return <Login />;
-        } else if (this.state.currentPage === "Sign In") {
-          return <SignIn />;
+        } else if (this.state.currentPage === "Sign Up") {
+          return <SignUp />;
         }
       };
 
