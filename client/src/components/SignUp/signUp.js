@@ -9,7 +9,7 @@ import "./signUp.css";
 
 function SignUp() {
   return (
-    <div class="container">
+    <div className="container">
       <img
         src={Logo}
         className="responsive-img"
@@ -86,10 +86,10 @@ function SignUp() {
               <i className="fas fa-key" />
             </span>
           </div>
-          <label for="textarea1">Address</label>
+          <label htmlFor="textarea1">Address</label>
           <textarea
             id="textarea1"
-            class="materialize-textarea"
+            className="materialize-textarea"
             placeholder="Enter your address"
           ></textarea>
         </div>
