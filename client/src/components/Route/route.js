@@ -1,10 +1,9 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Signup from "./components/SignUp/signUp";
 
 function Route() {
     return (
-      <Router>
         <div>
           <ul>
             <li>
@@ -24,7 +23,7 @@ function Route() {
           <Route path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
         </div>
-      </Router>
+
     );
   }
   
