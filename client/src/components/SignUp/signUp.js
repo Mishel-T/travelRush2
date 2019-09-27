@@ -27,13 +27,13 @@ function SignUp() {
               <i className="fas fa-user" />
             </span>
           </div>
-          <label htmlFor="name">Username: </label>
+          <label htmlFor="name">Name: </label>
           <input
             type="text"
             name
             className="form-control input_user"
-            id="emailInput"
-            placeholder="Username"
+            id="nameInput"
+            placeholder="Name"
           />
         </div>
         <div className="input-group mb-2">
