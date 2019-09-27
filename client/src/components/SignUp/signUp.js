@@ -3,13 +3,19 @@
 // if login modal is scrapped, we will likely have another state change for the login page too
 import React from "react";
 import Logo from "../assets/images/teeny_logo.png";
+// import { BrowserRouter } from "react-router-dom";
 import "./signUp.css";
 
 
 function SignUp() {
   return (
-    <div>
-      <img src={Logo} className="responsive-img" alt="Logo" style={{ maxWidth: '200px' }} />
+    <div class="container">
+      <img
+        src={Logo}
+        className="responsive-img"
+        alt="Logo"
+        style={{ maxWidth: "200px" }}
+      />
       <h2 id="transition-modal-title">Create User Account</h2>
       <p id="transition-modal-description">
         Please create account credentials below.
@@ -21,13 +27,13 @@ function SignUp() {
               <i className="fas fa-user" />
             </span>
           </div>
-          <label htmlFor="name">Username: </label>
+          <label htmlFor="name">Name: </label>
           <input
             type="text"
             name
             className="form-control input_user"
-            id="emailInput"
-            placeholder="Username"
+            id="nameInput"
+            placeholder="Name"
           />
         </div>
         <div className="input-group mb-2">
@@ -81,22 +87,22 @@ function SignUp() {
             </span>
           </div>
           <label for="textarea1">Address</label>
-          <textarea id="textarea1" class="materialize-textarea" placeholder="Enter your address"></textarea>
+          <textarea
+            id="textarea1"
+            class="materialize-textarea"
+            placeholder="Enter your address"
+          ></textarea>
         </div>
 
         <div className="form-group">
           <div className="custom-control custom-checkbox">
+            <label className="container">Remember me </label>
             <input
               type="checkbox"
               className="custom-control-input"
               id="customControlInline"
             />
-            <label
-              className="custom-control-label"
-              htmlFor="customControlInline"
-            >
-              Remember me
-            </label>
+            <span className="checkmark" />
           </div>
         </div>
       </form>
@@ -104,9 +110,9 @@ function SignUp() {
         type="button"
         name="button"
         id="loginButton"
-        className="btn login_btn"
+        className="btn submit_btn"
       >
-        Login
+        Submit
       </button>
       <div className="d-flex justify-content-center links">
         Already have an account?{" "}

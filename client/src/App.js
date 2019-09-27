@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+import { BrowserRouter } from "react-router-dom";
+// import Route from "./components/Route/route";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import SearchContainer from "./components/SearchContainer";
+import SignUp from "./components/SignUp/signUp";
 import WeatherCard from "./components/Card/WeatherCard/WeatherCard";
 // import SignUp from "./components/SignUp/signUp";
 // import DropDown from "./components/DropDown";
@@ -39,9 +42,11 @@ class App extends Component {
 
   render() {
     return [
+      <BrowserRouter />,
+      // <Route />,
       <div />,
-
       <Header />,
+      <SignUp />,
       <Footer />,
       <SearchContainer appcb={this.callbackFunction} />,
 
