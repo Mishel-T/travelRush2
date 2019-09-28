@@ -11,12 +11,12 @@ import "./signUp.css";
 function SignUp() {
   return (
     <div class="container">
-      <img
+      {/* <img
         src={Logo}
         className="responsive-img"
         alt="Logo"
         style={{ maxWidth: "200px" }}
-      />
+      /> */}
       <h2 id="transition-modal-title">Create User Account</h2>
       <p id="transition-modal-description">
         Please create account credentials below.
@@ -115,9 +115,9 @@ function SignUp() {
       >
         Submit
       </button>
-      <div className="d-flex justify-content-center links">
+      <div className="d-flex justify-content-center links" id="login">
         Already have an account?{" "}
-        <Link to="/login">
+        <Link to="/page">
         {/* <a href="/login" className="ml-2"> */}
           Login here!
         {/* </a> */}

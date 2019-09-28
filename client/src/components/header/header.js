@@ -10,8 +10,8 @@ import "./header.css";
             <div>
                 <nav>
                     <div className="nav-wrapper">
-                        <a href="#!" className="brand-logo"><img src={Logo} className="responsive-img"  alt="A tiny blue suitcase with a sock and heart boxers bursting out represents the logo of travelRush" style={{ maxWidth: '150px' }} /></a>
-                        <a href="#!" className="brand-logo center">travelRush</a>
+                        <Link to="/"><a href="#!" className="brand-logo"><img src={Logo} className="responsive-img"  alt="A tiny blue suitcase with a sock and heart boxers bursting out represents the logo of travelRush" style={{ maxWidth: '150px' }} /></a></Link>
+                        <Link to="/"> <a href="#!" className="brand-logo center">travelRush</a> </Link>
               
                         <ul className="right hide-on-med-and-down">
                       

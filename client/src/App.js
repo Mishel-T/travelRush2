@@ -22,25 +22,25 @@ import PageContainer from './components/PageContainer';
 
 class App extends Component {
 
-  //state = { coordLat: "", coordLong: "" };
-  // state = {
-  //   airportInfo: ""
-  // };
-  // // componentDidMount(searchContainInput) {
-  // //   this.setState({
-  // //     searchLocation: { searchContainInput }
-  // //   });
-  // // }
-
-
-  // callbackFunction = searchContainInput => {
-  //   console.log(searchContainInput.coordLoc.lat + "= Lat");
-  //   console.log(searchContainInput.coordLoc.long + "= Long");
-  //   //this.componentDidMount(searchContainInput);
+  state = { coordLat: "", coordLong: "" };
+  state = {
+    airportInfo: ""
+  };
+  // componentDidMount(searchContainInput) {
   //   this.setState({
-  //     searchLocation: searchContainInput
+  //     searchLocation: { searchContainInput }
   //   });
-  // };
+  // }
+
+
+  callbackFunction = searchContainInput => {
+    console.log(searchContainInput.coordLoc.lat + "= Lat");
+    console.log(searchContainInput.coordLoc.long + "= Long");
+    //this.componentDidMount(searchContainInput);
+    this.setState({
+      searchLocation: searchContainInput
+    });
+  };
 
   render() {
     return (
@@ -48,10 +48,11 @@ class App extends Component {
         <div>
       <Header/>
       <Route exact path="/" component={PageContainer}/>
-        {/* <Route path="/signup" component={SignUp} /> */}
-        {/* <Route exact path="/" component={Home} /> */}
-          {/* <Route path="/login" component={Login} /> */}
+        {/* <Route path="/signup" component={SignUp} /> 
+        <Route exact path="/" component={Home} />
+        <Route path="/login" component={Login} /> */}
           <Route exact path="/signup" component={Signup} />
+          <Footer/>
           </div>
       </Router>
     )

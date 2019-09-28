@@ -1,5 +1,10 @@
   /* When the checkbox is checked, add a blue background */
-  .container input:checked ~ .checkmark {
+  /* .container input:checked ~ .checkmark {
     background-color: #2196f3;
+  } */
+
+  #transition-modal-title,
+  #transition-modal-description {
+    text-align: center;
   }
   
