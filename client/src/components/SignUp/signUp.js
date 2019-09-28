@@ -96,15 +96,6 @@ function SignUp() {
           ></textarea>
         </div>
 
-        <div className="form-group">
-          <div className="custom-control custom-checkbox">
-            <label htmlFor="container">Remember me </label>
-            <input
-              type="checkbox"
-            />
-            <span className="checkmark" />
-          </div>
-        </div>
       </form>
       <button
         type="button"
