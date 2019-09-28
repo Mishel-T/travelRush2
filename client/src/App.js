@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 // import Route from "./components/Route/route";
 import Header from "./components/header/header";
+import Footer from "./components/footer/footer";
 import Signup from "./components/SignUp/signUp";
 import PageContainer from './pages/PageContainer';
 
@@ -51,6 +52,7 @@ class App extends Component {
         {/* <Route exact path="/" component={Home} /> */}
           {/* <Route path="/login" component={Login} /> */}
           <Route exact path="/signup" component={Signup} />
+      <Footer />
           </div>
       </Router>
     )
