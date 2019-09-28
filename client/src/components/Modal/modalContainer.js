@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Modal from "../Modal/modal";
 import { Redirect } from 'react-router-dom';
-import SignUp from '../SignUp/signUp'
 
+// class component created to handle click event of login form submit. Should redirect to My Account page by the /myaccount route
+// /myaccount route still to be set up
 class ModalContainer extends React.Component {
     state = {
         toMyAccount: false,
