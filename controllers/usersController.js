@@ -109,7 +109,7 @@ module.exports = {
       console.log("Validating user input for signup.....");
       return res.status(400).json(errors);
     }
-    // const { name, email, password, address } = req.body;
+    const { name, email, password, address } = req.body;
     //send custom message if any of the input variables are missing
     // if (!name) {
     //   res.json({
