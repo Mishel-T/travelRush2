@@ -3,6 +3,7 @@
 // if login modal is scrapped, we will likely have another state change for the login page too
 import React from "react";
 import Logo from "../assets/images/teeny_logo.png";
+import { Link } from "react-router-dom";
 // import { BrowserRouter } from "react-router-dom";
 import "./signUp.css";
 
@@ -117,9 +118,11 @@ function SignUp() {
       </button>
       <div className="d-flex justify-content-center links">
         Already have an account?{" "}
-        <a href="/login" className="ml-2">
+        <Link to="/login">
+        {/* <a href="/login" className="ml-2"> */}
           Login here!
-        </a>
+        {/* </a> */}
+        </Link>
       </div>
       <div className="d-flex justify-content-center links"></div>
     </div>

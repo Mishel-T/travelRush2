@@ -2,6 +2,10 @@ import React, { Component } from "react";
 // import Home from ""
 // import LogIn from ""
 import SignUp from "./SignUp/signUp";
+import SearchContainer from "./SearchContainer";
+import CardContainer from "./Card/YelpCard/cardContainer"
+import WeatherCardContainer from "./Card/WeatherCard/Weather";
+
 
 class PageContainer extends Component {
     state = {
@@ -14,7 +18,7 @@ class PageContainer extends Component {
 
     renderPage = () => {
         if (this.state.currentPage === "Home") {
-          return <Home />;
+          return <div>HOME</div>;
         // } else if (this.state.currentPage === "Login") {
         //   return <Login />;
         } else if (this.state.currentPage === "Sign Up") {
@@ -25,10 +29,13 @@ class PageContainer extends Component {
       render() {
         return (
           <div>
-            <NavTabs
+            {/* <NavTabs
               currentPage={this.state.currentPage}
               handlePageChange={this.handlePageChange}
-            />
+            /> */}
+            <SearchContainer appcb={this.callbackFunction} />
+      <WeatherCardContainer parentState={this.state.searchLocation} />
+      <CardContainer parentState={this.state.searchLocation} />
             {this.renderPage()}
           </div>
         );
