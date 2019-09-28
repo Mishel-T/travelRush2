@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 // import Home from ""
 // import LogIn from ""
-import SignUp from "./SignUp/signUp";
-import SearchContainer from "./SearchContainer";
-import CardContainer from "./Card/YelpCard/cardContainer"
-import WeatherCardContainer from "./Card/WeatherCard/Weather";
+import SignUp from "../components/SignUp/signUp";
+import SearchContainer from "../components/SearchContainer";
+import CardContainer from "../components/Card/YelpCard/cardContainer"
+import WeatherCardContainer from "../components/Card/WeatherCard/Weather";
 
 
 class PageContainer extends Component {
@@ -28,7 +28,7 @@ class PageContainer extends Component {
 
   renderPage = () => {
     if (this.state.currentPage === "Home") {
-      return <div>HOME</div>;
+      return <div></div>;
       // } else if (this.state.currentPage === "Login") {
       //   return <Login />;
     } else if (this.state.currentPage === "Sign Up") {
