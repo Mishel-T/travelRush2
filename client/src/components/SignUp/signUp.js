@@ -29,7 +29,7 @@ function SignUp() {
               <i className="fas fa-user" />
             </span>
           </div>
-          <label htmlFor="name">Name: </label>
+          <label htmlFor="name">Your name/nickname: </label>
           <input
             type="text"
             name
@@ -88,7 +88,7 @@ function SignUp() {
               <i className="fas fa-key" />
             </span>
           </div>
-          <label htmlFor="textarea1">Address</label>
+          <label htmlFor="textarea1">Address:</label>
           <textarea
             id="textarea1"
             className="materialize-textarea"
@@ -98,11 +98,9 @@ function SignUp() {
 
         <div className="form-group">
           <div className="custom-control custom-checkbox">
-            <label className="container">Remember me </label>
+            <label htmlFor="container">Remember me </label>
             <input
               type="checkbox"
-              className="custom-control-input"
-              id="customControlInline"
             />
             <span className="checkmark" />
           </div>
