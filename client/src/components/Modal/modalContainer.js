@@ -1,32 +1,31 @@
 import React, { Component } from "react";
 import Modal from "../Modal/modal";
 import { Redirect } from 'react-router-dom';
+import history from "../../utils/history";
+
 
 // class component created to handle click event of login form submit. Should redirect to My Account page by the /myaccount route
-// /myaccount route still to be set up
 class ModalContainer extends React.Component {
-    state = {
-        toMyAccount: false,
-    }
 
-    handleSubmit = event => {
-        console.log('called');
-        
+//event handler functionn on login, need to add in authentication verification (accept token) in handleLogin (need Dupe, holding for now)
+    handleLogin = event => {        
         event.preventDefault();
-        console.log("in login event handler")
-        this.setState({ toMyAccount: true })
+        //code to render My Account page using Redirect react router method. Scrapping for now and using history
+        // console.log("in login event handler")
+        // this.setState({ toMyAccount: true })
+        history.push("/myaccount");
     }
  
     render() {
-        if (this.state.toMyAccount === true) {
-            console.log("login event updated state");
-            
+        //code to render My Account page using Redirect react router method. Scrapping for now and using history
+        // if (this.state.toMyAccount === true) {
+        //     console.log("login event updated state");
             // return <Redirect to='/myaccount' />
-        }
+       // }
 
         return (
             <div>
-                <Modal onSubmit={this.handleSubmit} />
+                <Modal onSubmit={this.handleLogin} />
             </div>
         )
     }
