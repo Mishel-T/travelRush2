@@ -74,13 +74,6 @@ export default function TransitionsModal(props) {
                     </div>
                     <input type="password" className="form-control input_pass" id="passwordInput" placeholder="Password" />
                   </div>
-                  <div className="form-group">
-                    <div className="custom-control custom-checkbox">
-                      <label className="container">Remember me </label>
-                      <input type="checkbox" className="custom-control-input" id="customControlInline" />
-                      <span className="checkmark" />
-                    </div>
-                  </div>
               <button onClick={props.onSubmit} type="button" name="button" id="loginButton" className="btn login_btn">Login</button>
 
                 </form>
