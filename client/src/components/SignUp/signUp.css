@@ -15,11 +15,17 @@
     text-align: center;
   }
 
+  [type="checkbox"]+span:not(.lever) {
+    display: initial;
+    margin-left: 10px;
+  }
+
   img.responsive-img {
     margin-top: 10px;
   }
   
   label {
+    font-size: 1rem;
     color: white;
   }
 
