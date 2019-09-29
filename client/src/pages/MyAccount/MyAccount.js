@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import FavoritesCard ".../components/Card/FavoritesCard/FavoritesCardContainer"
+// import Favorites ".../components/Card/FavoritesCard/FavoritesCard"
 // import PastSearchesCard ".../components/Card/PastSearchesCard/PastSearhesCardContainer"
 // import FlightInfo ".../components/Card/FlightInfoCard/FlightInfoCardContainer"
 
