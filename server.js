@@ -33,9 +33,9 @@ app.use(routes);
 //     "Hello Modupe! This route in server works!!! Errors must be from controllers or routes."
 //   )
 // );
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 // Connect to the Mongo DB
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/travelrushers", {
