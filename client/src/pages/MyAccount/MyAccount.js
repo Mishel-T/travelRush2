@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 // import FavoritesCard ".../components/Card/FavoritesCard/FavoritesCardContainer"
 // import PastSearchesCard ".../components/Card/PastSearchesCard/PastSearhesCardContainer"
 // import FlightInfo ".../components/Card/FlightInfoCard/FlightInfoCardContainer"
@@ -9,7 +9,7 @@ class MyAccount extends Component {
     //user will be redirected to LOGIN
 
 render() {
-    return
+    return <div><p>Welcome to My Account</p></div>
     // <Favorites />,
     // <PastSearch />,
     // <FlightInfo />
