@@ -161,7 +161,6 @@ class Signup extends Component {
                 {errors.email}
               </span>
             )}
-
           </div>
           <div className="input-group mb-2">
             <div className="input-group-append">
@@ -264,15 +263,14 @@ class Signup extends Component {
 
         <div className="d-flex justify-content-center links">
           Already have an account?{" "}
-     
-        <Link to="/login">
-        {/* <a href="/login" className="ml-2"> */}
-          Login here!
-         {isValid.Success && <h5 className="black-text">{isValid.msg}</h5>}
-        {/* </a> */}
-        </Link>
-        <div className="d-flex justify-content-center links"></div>
-
+          <Link to="/login">
+            {/* <a href="/login" className="ml-2"> */}
+            Login here!
+            {isValid.Success && <h5 className="black-text">{isValid.msg}</h5>}
+            {/* </a> */}
+          </Link>
+          <div className="d-flex justify-content-center links"></div>
+        </div>
       </div>
     );
   }
