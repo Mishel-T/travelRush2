@@ -6,7 +6,7 @@ const routes = require("./routes");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-//let airportsObj;
+const db = require("./config/keys").MONGODB_URI;
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -38,16 +38,22 @@ app.get("*", (req, res) => {
 });
 // Connect to the Mongo DB
 //"mongodb://localhost/travelrushers"
+
 mongoose
-  .connect(
-    process.env.MONGODB_URI ||
-      "mongodb://dupe:project3trush@ds133094.mlab.com:33094/heroku_bkpl22jz",
-    {
-      useNewUrlParser: true
-    }
-  )
+  .connect(db)
   .then(() => console.log("Successfully connected to travelrushers database!"))
   .catch(err => console.log(err));
+
+// mongoose
+//   .connect(
+//     process.env.MONGODB_URI ||
+//       "mongodb://dupe:project3trush@ds133094.mlab.com:33094/heroku_bkpl22jz",
+//     {
+//       useNewUrlParser: true
+//     }
+//   )
+//   .then(() => console.log("Successfully connected to travelrushers database!"))
+//   .catch(err => console.log(err));
 
 // Start the API server
 app.listen(PORT, function() {
