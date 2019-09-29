@@ -5,6 +5,7 @@ import SignUp from "../components/SignUp/signUp";
 import SearchContainer from "../components/SearchContainer";
 import CardContainer from "../components/Card/YelpCard/cardContainer"
 import WeatherCardContainer from "../components/Card/WeatherCard/Weather";
+import MyAccount from "./MyAccount/MyAccount"
 
 
 class PageContainer extends Component {
@@ -33,6 +34,8 @@ class PageContainer extends Component {
       //   return <Login />;
     } else if (this.state.currentPage === "Sign Up") {
       return <SignUp />;
+    } else if (this.state.currentPage === "My Account") {
+      return <MyAccount />
     }
   };
 
