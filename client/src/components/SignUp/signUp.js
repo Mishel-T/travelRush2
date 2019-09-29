@@ -3,6 +3,7 @@
 // if login modal is scrapped, we will likely have another state change for the login page too
 import React, { Component } from "react";
 import Logo from "../assets/images/teeny_logo.png";
+import { Link } from "react-router-dom";
 // import { BrowserRouter } from "react-router-dom";
 import "./signUp.css";
 import { registerUser } from "../../utils/API";
@@ -138,6 +139,7 @@ class Signup extends Component {
               </span>
             )}
           </div>
+
           <div className="input-group mb-2">
             <div className="input-group-append">
               <span className="input-group-text">
@@ -159,6 +161,7 @@ class Signup extends Component {
                 {errors.email}
               </span>
             )}
+
           </div>
           <div className="input-group mb-2">
             <div className="input-group-append">
@@ -237,7 +240,6 @@ class Signup extends Component {
               </span>
             )}
           </div>
-
           <div className="form-group">
             <div className="custom-control custom-checkbox">
               <label className="container">Remember me </label>
@@ -262,12 +264,15 @@ class Signup extends Component {
 
         <div className="d-flex justify-content-center links">
           Already have an account?{" "}
-          <a href="/login" className="ml-2">
-            Login here!
-          </a>
-          {isValid.Success && <h5 className="black-text">{isValid.msg}</h5>}
-        </div>
+     
+        <Link to="/login">
+        {/* <a href="/login" className="ml-2"> */}
+          Login here!
+         {isValid.Success && <h5 className="black-text">{isValid.msg}</h5>}
+        {/* </a> */}
+        </Link>
         <div className="d-flex justify-content-center links"></div>
+
       </div>
     );
   }

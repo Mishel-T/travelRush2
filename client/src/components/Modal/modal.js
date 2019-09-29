@@ -1,11 +1,12 @@
 import React from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+// import { BrowserRouter as Router, Link } from "react-router-dom";
 import Logo from "../assets/images/teeny_logo.png";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import SignUp from "../SignUp/signUp";
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -36,34 +37,38 @@ export default function TransitionsModal(props) {
   };
 
   return (
-    <Router>
-      <div>
-        <button type="button" onClick={handleOpen}>
-          Login
-        </button>
-        <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          className={classes.modal}
-          open={open}
-          onClose={handleClose}
-          closeAfterTransition
-          //BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500
-          }}
-        >
-          <Fade in={open}>
-            <div className={classes.paper}>
-              <img src={Logo} className="responsive-img" alt="Logo" />
-              <h2 id="transition-modal-title">User Login</h2>
-              <p id="transition-modal-description">Please log in below.</p>
-              <form>
-                <div className="input-group mb-3">
-                  <div className="input-group-append">
-                    <span className="input-group-text">
-                      <i className="fas fa-user" />
-                    </span>
+
+    // <Router>
+    <div>
+      <button type="button" onClick={handleOpen}>
+        Login
+      </button>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        //BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500
+        }}
+      >
+        <Fade in={open}>
+          <div className={classes.paper}>
+          <img src={ Logo } className="responsive-img" alt="Logo" />
+            <h2 id="transition-modal-title">User Login</h2>
+            <p id="transition-modal-description">
+              Please log in below.
+            </p>
+            <form>
+                  <div className="input-group mb-3">
+                    <div className="input-group-append">
+                      <span className="input-group-text"><i className="fas fa-user" /></span>
+                    </div>
+                    <input type="text" className="form-control input_user" id="emailInput" placeholder="Username" />
+
                   </div>
                   <input
                     type="text"
@@ -78,47 +83,26 @@ export default function TransitionsModal(props) {
                       <i className="fas fa-key" />
                     </span>
                   </div>
-                  <input
-                    type="password"
-                    className="form-control input_pass"
-                    id="passwordInput"
-                    placeholder="Password"
-                  />
+
+              <button onClick={props.onSubmit} type="button" name="button" id="loginButton" className="btn login_btn">Login</button>
+
+                </form>
+                <div className="d-flex justify-content-center links">
+                  Don't have an account? <a href="/signup" className="ml-2">Sign Up!</a>
+
                 </div>
-                <div className="form-group">
-                  <div className="custom-control custom-checkbox">
-                    <label className="container">Remember me </label>
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id="customControlInline"
-                    />
-                    <span className="checkmark" />
-                  </div>
-                </div>
-                <button
-                  onClick={props.onSubmit}
-                  type="button"
-                  name="button"
-                  id="loginButton"
-                  className="btn login_btn"
-                >
-                  Login
-                </button>
-              </form>
-              <div className="d-flex justify-content-center links">
-                Don't have an account?{" "}
-                <a href="/signup" className="ml-2">
-                  Sign Up!
-                </a>
-              </div>
-              <div className="d-flex justify-content-center links">
-                {/* <a href="#">Forgot your password?</a> */}
-              </div>
-            </div>
-          </Fade>
-        </Modal>
-      </div>
-    </Router>
+                <div className="d-flex justify-content-center links">
+						{/* <a href="#">Forgot your password?</a> */}
+            
+					</div>
+          </div>
+
+
+
+        </Fade>
+      </Modal>
+    </div>
+    // </Router>
+
   );
 }
