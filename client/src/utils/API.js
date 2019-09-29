@@ -65,3 +65,24 @@ export const airportsList = () => {
 };
 
 //SERVER IS ON 3001 BUT REACT APP IS IN 3000????
+// Route to sign up users
+export const registerUser = formData => {
+  //console.log(formData);
+  return axios.post("/api/users/register", formData);
+
+  // .catch(err => {
+  //   console.log("API", err.response);
+  //   return err;
+  //   //res.status(422).json(err.response.data);
+  // });
+};
+
+// Route to log in users
+export const loginUser = () => {
+  return axios.get("/api/users/signup");
+};
+
+// Route for current user(access to a protected route for the user, using jwt token.)
+export const currentUser = () => {
+  return axios.get("/api/users/current");
+};

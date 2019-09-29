@@ -17,6 +17,7 @@ import history from "../src/utils/history";
 // import SearchForm from "./components/SearchForm";
 // import { InputFlight, InputDrive, InputDate } from "./components/Form";
 // import Form from "./components/Form";
+
 // import WeatherCardContainer from "./components/Card/WeatherCard/Weather";
 // import Card from "./components/Card/YelpCard/Card";
 // import CardContainer from "./components/Card/YelpCard/cardContainer"
@@ -24,7 +25,6 @@ import history from "../src/utils/history";
 // import "./App.css";
 
 class App extends Component {
-
   //state = { coordLat: "", coordLong: "" };
   // state = {
   //   airportInfo: ""
@@ -34,6 +34,7 @@ class App extends Component {
   // //     searchLocation: { searchContainInput }
   // //   });
   // // }
+
 
 
   // callbackFunction = searchContainInput => {

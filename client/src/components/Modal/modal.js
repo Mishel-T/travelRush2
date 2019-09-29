@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function TransitionsModal(props) {
   console.log(props);
-  
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -37,6 +37,7 @@ export default function TransitionsModal(props) {
   };
 
   return (
+
     // <Router>
     <div>
       <button type="button" onClick={handleOpen}>
@@ -67,13 +68,22 @@ export default function TransitionsModal(props) {
                       <span className="input-group-text"><i className="fas fa-user" /></span>
                     </div>
                     <input type="text" className="form-control input_user" id="emailInput" placeholder="Username" />
+
                   </div>
-                  <div className="input-group mb-2">
-                    <div className="input-group-append">
-                      <span className="input-group-text"><i className="fas fa-key" /></span>
-                    </div>
-                    <input type="password" className="form-control input_pass" id="passwordInput" placeholder="Password" />
+                  <input
+                    type="text"
+                    className="form-control input_user"
+                    id="emailInput"
+                    placeholder="Username"
+                  />
+                </div>
+                <div className="input-group mb-2">
+                  <div className="input-group-append">
+                    <span className="input-group-text">
+                      <i className="fas fa-key" />
+                    </span>
                   </div>
+
               <button onClick={props.onSubmit} type="button" name="button" id="loginButton" className="btn login_btn">Login</button>
 
                 </form>
@@ -93,5 +103,6 @@ export default function TransitionsModal(props) {
       </Modal>
     </div>
     // </Router>
+
   );
 }
