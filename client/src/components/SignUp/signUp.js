@@ -133,7 +133,7 @@ class Signup extends Component {
               id="nameInput"
               placeholder="Name"
             />
-            {errors.name && (
+            {errors.name && !isValid.Success && (
               <span className="helper-text red-text" data-error={errors.name}>
                 {errors.name}
               </span>
@@ -156,7 +156,7 @@ class Signup extends Component {
               id="emailInput"
               placeholder="Email address"
             />
-            {errors.email && (
+            {errors.email && !isValid.Success && (
               <span className="helper-text red-text" data-error={errors.email}>
                 {errors.email}
               </span>
@@ -178,7 +178,7 @@ class Signup extends Component {
               id="passwordInput"
               placeholder="Password"
             />
-            {errors.password && (
+            {errors.password && !isValid.Success && (
               <span
                 className="helper-text red-text"
                 data-error={errors.password}
@@ -204,7 +204,7 @@ class Signup extends Component {
               id="passwordInput"
               placeholder="Confirm password"
             />
-            {errors.password2 && (
+            {errors.password2 && !isValid.Success && (
               <span
                 className="helper-text red-text"
                 data-error={errors.password2}
@@ -230,7 +230,7 @@ class Signup extends Component {
               })}
               placeholder="Enter your address"
             ></textarea>
-            {errors.address && (
+            {errors.address && !isValid.Success && (
               <span
                 className="helper-text red-text"
                 data-error={errors.address}
