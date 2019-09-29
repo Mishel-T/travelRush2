@@ -6,6 +6,7 @@ import Logo from "../assets/images/teeny_logo.png";
 // import { BrowserRouter } from "react-router-dom";
 import "./signUp.css";
 import { registerUser } from "../../utils/API";
+import classnames from "classnames";
 
 //Make this a stateful component because it is a form?
 class Signup extends Component {
@@ -14,7 +15,9 @@ class Signup extends Component {
     email: "",
     password: "",
     password2: "",
-    address: ""
+    address: "",
+    isValid: {},
+    errors: {}
   };
 
   componentDidMount() {}
@@ -69,12 +72,36 @@ class Signup extends Component {
   addUser = userInput => {
     registerUser(userInput)
       .then(response => {
+        console.log("Successfully created account");
         console.log(response);
+        //If email already exist, set state errors object
+        if (response.data.email === "Email already exists") {
+          //set the state for the isValid property
+          this.setState({ errors: response.data }, () => {
+            console.log(this.state);
+          });
+        } else {
+          //set the state for the isValid property
+          this.setState({ isValid: response.data }, () => {
+            console.log(this.state.isValid.msg);
+          });
+        }
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        //console.log("Account not created because of error");
+        console.log(err);
+        console.log("this is an error", err.response.data);
+        //Set the state for the errors
+        this.setState({ errors: err.response.data }, () => {
+          console.log(this.state);
+        });
+      });
   };
 
   render() {
+    const { errors } = this.state;
+    const { isValid } = this.state;
+
     return (
       <div className="container">
         <img
@@ -99,10 +126,17 @@ class Signup extends Component {
               type="text"
               name="name"
               onChange={this.handleOnChange}
-              className="form-control input_user"
+              className={classnames("form-control input_user", {
+                validate: errors.name
+              })}
               id="nameInput"
               placeholder="Name"
             />
+            {errors.name && (
+              <span className="helper-text red-text" data-error={errors.name}>
+                {errors.name}
+              </span>
+            )}
           </div>
           <div className="input-group mb-2">
             <div className="input-group-append">
@@ -114,10 +148,17 @@ class Signup extends Component {
               type="text"
               name="email"
               onChange={this.handleOnChange}
-              className="form-control input_pass"
+              className={classnames("form-control input_user", {
+                validate: errors.email
+              })}
               id="emailInput"
               placeholder="Email address"
             />
+            {errors.email && (
+              <span className="helper-text red-text" data-error={errors.email}>
+                {errors.email}
+              </span>
+            )}
           </div>
           <div className="input-group mb-2">
             <div className="input-group-append">
@@ -129,10 +170,20 @@ class Signup extends Component {
               type="password"
               name="password"
               onChange={this.handleOnChange}
-              className="form-control input_pass"
+              className={classnames("form-control input_user", {
+                validate: errors.password
+              })}
               id="passwordInput"
               placeholder="Password"
             />
+            {errors.password && (
+              <span
+                className="helper-text red-text"
+                data-error={errors.password}
+              >
+                {errors.password}
+              </span>
+            )}
           </div>
 
           <div className="input-group mb-2">
@@ -145,10 +196,20 @@ class Signup extends Component {
               type="password"
               name="password2"
               onChange={this.handleOnChange}
-              className="form-control input_pass"
+              className={classnames("form-control input_user", {
+                validate: errors.password2
+              })}
               id="passwordInput"
               placeholder="Confirm password"
             />
+            {errors.password2 && (
+              <span
+                className="helper-text red-text"
+                data-error={errors.password2}
+              >
+                {errors.password2}
+              </span>
+            )}
           </div>
 
           <div className="input-group mb-2">
@@ -162,9 +223,19 @@ class Signup extends Component {
               id="textarea1"
               name="address"
               onChange={this.handleOnChange}
-              className="materialize-textarea"
+              className={classnames("materialize-textarea", {
+                validate: errors.address
+              })}
               placeholder="Enter your address"
             ></textarea>
+            {errors.address && (
+              <span
+                className="helper-text red-text"
+                data-error={errors.address}
+              >
+                {errors.address}
+              </span>
+            )}
           </div>
 
           <div className="form-group">
@@ -194,6 +265,7 @@ class Signup extends Component {
           <a href="/login" className="ml-2">
             Login here!
           </a>
+          {isValid.Success && <h5 className="black-text">{isValid.msg}</h5>}
         </div>
         <div className="d-flex justify-content-center links"></div>
       </div>

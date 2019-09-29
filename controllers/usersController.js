@@ -145,11 +145,12 @@ module.exports = {
     //check whether email is in the database.
     db.User.findOne({ email: email })
       .then(dbUser => {
+        console.log(dbUser);
         if (dbUser) {
           //email already exist in the database, so send appropriate message.
           //res.json({ success: false, message: "Account already exist." });
           errors.email = "Email already exists";
-          return res.status(400).json({ email: errors.email });
+          return res.json({ email: errors.email });
         }
 
         //save the new user
@@ -167,7 +168,12 @@ module.exports = {
             newUser.password = hash;
             newUser
               .save()
-              .then(user => res.json(user))
+              .then(user =>
+                res.json({
+                  Success: true,
+                  msg: "Account successfully created."
+                })
+              )
               .catch(err => console.log(err));
           });
         });
