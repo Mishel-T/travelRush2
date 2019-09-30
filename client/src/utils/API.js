@@ -78,8 +78,8 @@ export const registerUser = formData => {
 };
 
 // Route to log in users
-export const loginUser = () => {
-  return axios.get("/api/users/signup");
+export const loginUser = formData => {
+  return axios.get("/api/users/signup", formData);
 };
 
 // Route for current user(access to a protected route for the user, using jwt token.)
