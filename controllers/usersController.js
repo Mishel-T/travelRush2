@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const keys = require("../config/keys");
 const passport = require("passport");
 const validateRegisterInput = require("../validation/register");
-const validateloginInput = require("../validation/login");
+const validateLoginInput = require("../validation/login");
 
 // Defining methods for the booksController
 module.exports = {
@@ -14,36 +14,26 @@ module.exports = {
     // }
     res.json({ msg: "The user controller works." });
   },
-  findAll: function(req, res) {
-    db.User.find(req.query)
-      .then(dbUser => res.json(dbUser))
-      .catch(err => res.status(422).json(err));
-  },
+  // findAll: function(req, res) {
+  //   db.User.find(req.query)
+  //     .then(dbUser => res.json(dbUser))
+  //     .catch(err => res.status(422).json(err));
+  // },
   //This method handles the login request.
   findUser: function(req, res) {
+    console.log("Here is the body of the request......");
     console.log(req.body);
     const { email, password } = req.body;
-    const { errors, isValid } = validateloginInput(req.body);
+    const { errors, isValid } = validateLoginInput(req.body);
     console.log("Errors are ");
     console.log(errors);
     console.log("isValid status is " + isValid);
-    // Check Validation on user inputs during registration
+    // Perform initial validation on user inputs for login
     if (!isValid) {
       console.log("Validating user inputs for login.....");
       return res.status(400).json(errors);
     }
-    // if (!email) {
-    //   res.json({
-    //     success: false,
-    //     message: "Email cannot be blank. Please enter an email"
-    //   });
-    // }
-    // if (!password) {
-    //   res.json({
-    //     success: false,
-    //     message: "Password cannot be blank. Please enter a password"
-    //   });
-    // }
+
     db.User.findOne({ email })
       .then(dbUser => {
         if (!dbUser) {
@@ -77,25 +67,25 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
-  findByName: function(req, res) {
-    //Not sure if name would come from req.params*****************
-    db.User.findByOne({ name: req.params.name })
-      .then(dbUser => res.json(dbUser))
-      .catch(err => res.status(422).json(err));
-  },
+  // findByName: function(req, res) {
+  //   //Not sure if name would come from req.params*****************
+  //   db.User.findByOne({ name: req.params.name })
+  //     .then(dbUser => res.json(dbUser))
+  //     .catch(err => res.status(422).json(err));
+  // },
 
-  findById: function(req, res) {
-    db.User.findById(req.params.id)
-      .then(dbUser => res.json(dbUser))
-      .catch(err => res.status(422).json(err));
-  },
+  // findById: function(req, res) {
+  //   db.User.findById(req.params.id)
+  //     .then(dbUser => res.json(dbUser))
+  //     .catch(err => res.status(422).json(err));
+  // },
   //************Do validation in route before saving new user ******************/
   //Helper function is used to validate email.
-  isValidEmail: function(email) {
-    //validation code for email
-    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-  },
+  // isValidEmail: function(email) {
+  //   //validation code for email
+  //   let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  //   return re.test(String(email).toLowerCase());
+  // },
 
   //This method handles signing up/registering users.
   createUser: function(req, res) {
@@ -110,36 +100,6 @@ module.exports = {
       return res.status(400).json(errors);
     }
     const { name, email, password, address } = req.body;
-    //send custom message if any of the input variables are missing
-    // if (!name) {
-    //   res.json({
-    //     success: false,
-    //     message: "Name cannot be blank. Please enter name"
-    //   });
-    // }
-    // if (!email) {
-    //   res.json({
-    //     success: false,
-    //     message: "Email cannot be blank. Please enter an email"
-    //   });
-    // }
-    // if (!address) {
-    //   res.json({
-    //     success: false,
-    //     message: "Address cannot be blank. Please enter an address"
-    //   });
-    // }
-    // if (!password) {
-    //   res.json({
-    //     success: false,
-    //     message: "Password cannot be blank. Please enter a password"
-    //   });
-    // }
-    // if (!isValidEmail(email)) {
-    //   res.json({
-    //     success: false,
-    //     message: "Email is not valid. Please enter a valid email"
-    //   });
     console.log(req.body);
 
     //check whether email is in the database.
@@ -195,17 +155,17 @@ module.exports = {
       );
   },
 
-  updateUser: function(req, res) {
-    db.User.findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then(dbUser => res.json(dbUser))
-      .catch(err => res.status(422).json(err));
-  },
-  deleteUser: function(req, res) {
-    db.User.deleteOne({ _id: req.params.id })
-      // .then(dbModel => dbModel.remove())
-      .then(dbUser => res.json(dbUser))
-      .catch(err => res.status(422).json(err));
-  },
+  // updateUser: function(req, res) {
+  //   db.User.findOneAndUpdate({ _id: req.params.id }, req.body)
+  //     .then(dbUser => res.json(dbUser))
+  //     .catch(err => res.status(422).json(err));
+  // },
+  // deleteUser: function(req, res) {
+  //   db.User.deleteOne({ _id: req.params.id })
+  //     // .then(dbModel => dbModel.remove())
+  //     .then(dbUser => res.json(dbUser))
+  //     .catch(err => res.status(422).json(err));
+  // },
   getUserInfo: function(req, res) {
     res.json({
       id: req.user._id,

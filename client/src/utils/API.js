@@ -79,7 +79,10 @@ export const registerUser = formData => {
 
 // Route to log in users
 export const loginUser = formData => {
-  return axios.get("/api/users/signup", formData);
+  console.log("I am inside /API folder about to perform axios get request....");
+  console.log(formData);
+  //PROBLEM WITH THE REQUEST STARTS HERE!!!
+  return axios.post("/api/users/login", formData);
 };
 
 // Route for current user(access to a protected route for the user, using jwt token.)

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import { BrowserRouter as Router, Link } from "react-router-dom";
 import Logo from "../assets/images/teeny_logo.png";
 import { makeStyles } from "@material-ui/core/styles";
@@ -29,11 +29,11 @@ export default function TransitionsModal(props) {
 
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isValid, setIsvalid] = useState({});
   const [errors, setErrors] = useState({});
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState({});
 
   const handleOpen = () => {
     setOpen(true);
@@ -43,6 +43,13 @@ export default function TransitionsModal(props) {
     setOpen(false);
   };
 
+  useEffect(() => {
+    console.log("I am inside the `effect hook`...........");
+    console.log("email input is " + email);
+    console.log("password input is " + password);
+    logUser({ email: email, password: password });
+  }, []);
+
   const handleOnChange = event => {
     const {
       target: { name, value }
@@ -50,29 +57,35 @@ export default function TransitionsModal(props) {
     console.log("I am inside onchange event");
     console.log(name);
     console.log(value);
-    if (name === "name") {
-      setName(value);
-    }
-    else {
+    if (name === "email") {
+      setEmail(value);
+    } else {
       setPassword(value);
     }
   };
 
-  handleFormSubmit = event => {
+  const handleFormSubmit = event => {
     event.preventDefault();
-    logUser({name: name, password: password});
+    console.log("email input is " + email);
+    console.log("password input is " + password);
+    const credentials = { email: email, password: password };
+    console.log(credentials);
+    logUser(credentials);
   };
 
-  logUser = userInput => {
+  const logUser = userInput => {
+    console.log(userInput);
+    //PROBLEM WITH REQUEST BEGINS HERE AND DOWNWARDS....   { email: "tprice@gmail.com", password: "guestpauTr58" }
     loginUser(userInput)
       .then(response => {
         console.log("Successfully logged into account");
         console.log(response);
         if (response.data.success) {
           //set token if login is successful.
-          setToken(response.data.token, () => {
-            console.log(response.data);
-          });
+          setToken(response.data);
+          // setToken(response.data.token, () => {
+          //   console.log(response.data);
+          // });
         }
       })
       .catch(err => {
@@ -80,15 +93,13 @@ export default function TransitionsModal(props) {
         console.log(err);
         console.log("this is an error", err.response.data);
         //Set the state for the errors
-        setErrors({ errors: err.response.data }, () => {
-          console.log(errors);
-        });
+        setErrors({ errors: err.response.data });
+        // setErrors({ errors: err.response.data }, () => {
+        //   console.log(errors);
+        // });
       });
   };
 
-
-
-  const handleOnChange 
   return (
     // <Router>
     <div>
@@ -121,6 +132,7 @@ export default function TransitionsModal(props) {
                 </div>
                 <input
                   type="text"
+                  name="email"
                   onChange={handleOnChange}
                   className={classnames("form-control input_user", {
                     validate: errors.password
@@ -128,14 +140,14 @@ export default function TransitionsModal(props) {
                   id="emailInput"
                   placeholder="Username"
                 />
-                {errors.password && !isValid.Success && (
-              <span
-                className="helper-text red-text"
-                data-error={errors.password}
-              >
-                {errors.password}
-              </span>
-            )}
+                {errors.password && !token.success && (
+                  <span
+                    className="helper-text red-text"
+                    data-error={errors.password}
+                  >
+                    {errors.password}
+                  </span>
+                )}
               </div>
               <div>
                 <input
@@ -148,14 +160,14 @@ export default function TransitionsModal(props) {
                   id="passwordInput"
                   placeholder="Password"
                 />
-                {errors.password && !isValid.Success && (
-              <span
-                className="helper-text red-text"
-                data-error={errors.password}
-              >
-                {errors.password}
-              </span>
-            )}
+                {errors.password && !token.success && (
+                  <span
+                    className="helper-text red-text"
+                    data-error={errors.password}
+                  >
+                    {errors.password}
+                  </span>
+                )}
               </div>
               <div className="input-group mb-2">
                 <div className="input-group-append">
@@ -165,7 +177,8 @@ export default function TransitionsModal(props) {
                 </div>
               </div>
               <button
-                onClick={props.onSubmit}
+                /*onClick={props.onSubmit}*/
+                onClick={handleFormSubmit}
                 type="button"
                 name="button"
                 id="loginButton"
