@@ -6,7 +6,7 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import SignUp from "../SignUp/signUp";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function TransitionsModal(props) {
   console.log(props);
-
+  
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -56,58 +56,40 @@ export default function TransitionsModal(props) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <img src={Logo} className="responsive-img" alt="Logo" />
+          <img src={ Logo } className="responsive-img" alt="Logo" />
             <h2 id="transition-modal-title">User Login</h2>
-            <p id="transition-modal-description">Please log in below.</p>
+            <p id="transition-modal-description">
+              Please log in below.
+            </p>
             <form>
-              <div className="input-group mb-3">
-                <div className="input-group-append">
-                  <span className="input-group-text">
-                    <i className="fas fa-user" />
-                  </span>
+                  <div className="input-group mb-3">
+                    <div className="input-group-append">
+                      <span className="input-group-text"><i className="fas fa-user" /></span>
+                    </div>
+                    <input type="text" className="form-control input_user" id="emailInput" placeholder="Username" />
+                  </div>
+                  <div className="input-group mb-2">
+                    <div className="input-group-append">
+                      <span className="input-group-text"><i className="fas fa-key" /></span>
+                    </div>
+                    <input type="password" className="form-control input_pass" id="passwordInput" placeholder="Password" />
+                  </div>
+
+              <button onClick={props.onSubmit} type="button" name="button" id="loginButton" className="btn login_btn">Login</button>
+
+                </form>
+                <div className="d-flex justify-content-center links">
+                  Don't have an account? <a href="/signup" className="ml-2">Sign Up!</a>
+
                 </div>
-                <input
-                  type="text"
-                  className="form-control input_user"
-                  id="emailInput"
-                  placeholder="Username"
-                />
-              </div>
-              <div>
-                <input
-                  type="text"
-                  className="form-control input_user"
-                  id="emailInput"
-                  placeholder="Username"
-                />
-              </div>
-              <div className="input-group mb-2">
-                <div className="input-group-append">
-                  <span className="input-group-text">
-                    <i className="fas fa-key" />
-                  </span>
-                </div>
-              </div>
-              <button
-                onClick={props.onSubmit}
-                type="button"
-                name="button"
-                id="loginButton"
-                className="btn login_btn"
-              >
-                Login
-              </button>
-            </form>
-            <div className="d-flex justify-content-center links">
-              Don't have an account?{" "}
-              <a href="/signup" className="ml-2">
-                Sign Up!
-              </a>
-            </div>
-            <div className="d-flex justify-content-center links">
-              {/* <a href="#">Forgot your password?</a> */}
-            </div>
+                <div className="d-flex justify-content-center links">
+						{/* <a href="#">Forgot your password?</a> */}
+            
+					</div>
           </div>
+
+
+
         </Fade>
       </Modal>
     </div>
