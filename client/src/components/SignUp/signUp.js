@@ -73,7 +73,7 @@ class Signup extends Component {
   addUser = userInput => {
     registerUser(userInput)
       .then(response => {
-        console.log("Successfully created account");
+        console.log("Creating an account...");
         console.log(response);
         //If email already exist, set state errors object
         if (response.data.email === "Email already exists") {

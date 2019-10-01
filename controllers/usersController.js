@@ -31,14 +31,14 @@ module.exports = {
     // Perform initial validation on user inputs for login
     if (!isValid) {
       console.log("Validating user inputs for login.....");
-      return res.status(400).json(errors);
+      return res.status(400).json({ errors, isValid });
     }
 
     db.User.findOne({ email })
       .then(dbUser => {
         if (!dbUser) {
           errors.email = "User not found";
-          return res.status(404).json({ email: errors.email });
+          return res.json({ email: errors.email });
         }
         //Check Password.
         bcrypt.compare(password, dbUser.password).then(isMatch => {
@@ -60,7 +60,7 @@ module.exports = {
             //res.json({ msg: "Success" });
           } else {
             errors.password = "Password is incorrect";
-            return res.status(400).json({ msg: errors.password });
+            return res.json({ password: errors.password });
           }
         });
       })

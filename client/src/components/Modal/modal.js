@@ -31,9 +31,9 @@ export default function TransitionsModal(props) {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isValid, setIsvalid] = useState({});
+  const [isValid, setIsvalid] = useState("");
   const [errors, setErrors] = useState({});
-  const [token, setToken] = useState({});
+  const [userAuth, setUserauth] = useState({ success: false, token: "" });
 
   const handleOpen = () => {
     setOpen(true);
@@ -45,10 +45,14 @@ export default function TransitionsModal(props) {
 
   useEffect(() => {
     console.log("I am inside the `effect hook`...........");
-    console.log("email input is " + email);
-    console.log("password input is " + password);
-    logUser({ email: email, password: password });
-  }, []);
+    console.log("isValid state is " + isValid);
+  }, [isValid]);
+
+  useEffect(() => {
+    console.log("I am inside the `effect hook`...........");
+    console.log("errors state is..... ");
+    console.log(errors);
+  }, [errors]);
 
   const handleOnChange = event => {
     const {
@@ -82,21 +86,28 @@ export default function TransitionsModal(props) {
         console.log(response);
         if (response.data.success) {
           //set token if login is successful.
-          setToken(response.data);
-          // setToken(response.data.token, () => {
-          //   console.log(response.data);
-          // });
+          setUserauth(response.data);
+          //clear errors on successfull log in
+          setErrors({});
+        } else if (response.data.email === "User not found") {
+          //update error and isValid state variables when user wasn't found in the database
+          setErrors(response.data);
+          setIsvalid(false);
+        } else if (response.data.password === "Password is incorrect") {
+          //update error and isValid state variables when user entered wrong password.
+          setErrors(response.data);
+          setIsvalid(false);
         }
       })
       .catch(err => {
         //console.log("Account not created because of error");
         console.log(err);
-        console.log("this is an error", err.response.data);
+        console.log("this is an error", err.response);
         //Set the state for the errors
-        setErrors({ errors: err.response.data });
-        // setErrors({ errors: err.response.data }, () => {
-        //   console.log(errors);
-        // });
+        if (err.response.data.errors) {
+          setErrors(err.response.data.errors);
+        }
+        setIsvalid(err.response.data.isValid);
       });
   };
 
@@ -140,12 +151,12 @@ export default function TransitionsModal(props) {
                   id="emailInput"
                   placeholder="Username"
                 />
-                {errors.password && !token.success && (
+                {errors.email && (
                   <span
                     className="helper-text red-text"
-                    data-error={errors.password}
+                    data-error={errors.email}
                   >
-                    {errors.password}
+                    {errors.email}
                   </span>
                 )}
               </div>
@@ -160,7 +171,7 @@ export default function TransitionsModal(props) {
                   id="passwordInput"
                   placeholder="Password"
                 />
-                {errors.password && !token.success && (
+                {errors.password && (
                   <span
                     className="helper-text red-text"
                     data-error={errors.password}
