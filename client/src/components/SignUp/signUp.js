@@ -239,17 +239,7 @@ class Signup extends Component {
               </span>
             )}
           </div>
-          <div className="form-group">
-            <div className="custom-control custom-checkbox">
-              <label className="container">Remember me </label>
-              <input
-                type="checkbox"
-                className="custom-control-input"
-                id="customControlInline"
-              />
-              <span className="checkmark" />
-            </div>
-          </div>
+
           <button
             type="button"
             name="button"
