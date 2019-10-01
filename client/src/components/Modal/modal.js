@@ -8,7 +8,7 @@ import Fade from "@material-ui/core/Fade";
 import classnames from "classnames";
 import { loginUser } from "../../utils/API";
 import SignUp from "../SignUp/signUp";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
 //what is props doing here and where is it coming from????
 export default function TransitionsModal(props) {
   console.log(props);
-  
+
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
@@ -131,13 +131,10 @@ export default function TransitionsModal(props) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-          <img src={ Logo } className="responsive-img" alt="Logo" />
+            <img src={Logo} className="responsive-img" alt="Logo" />
             <h2 id="transition-modal-title">User Login</h2>
-            <p id="transition-modal-description">
-              Please log in below.
-            </p>
+            <p id="transition-modal-description">Please log in below.</p>
             <form>
-
               <div className="input-group mb-3">
                 <div className="input-group-append">
                   <span className="input-group-text">
@@ -164,9 +161,11 @@ export default function TransitionsModal(props) {
                 )}
               </div>
               <div className="input-group mb-2">
-                div className="input-group-append">
-                      <span className="input-group-text"><i className="fas fa-key" /></span>
-                    </div>
+                <div className="input-group-append">
+                  <span className="input-group-text">
+                    <i className="fas fa-key" />
+                  </span>
+                </div>
                 <input
                   type="password"
                   name="password"
@@ -186,22 +185,28 @@ export default function TransitionsModal(props) {
                   </span>
                 )}
               </div>
-              <button /*onClick={props.onSubmit}*/ onClick={handleFormSubmit} type="button" name="button" id="loginButton" className="btn login_btn">Login</button>
-             
+              <button
+                /*onClick={props.onSubmit}*/
+
+                onClick={handleFormSubmit}
+                type="button"
+                name="button"
+                id="loginButton"
+                className="btn login_btn"
+              >
+                Login
+              </button>
             </form>
-                <div className="d-flex justify-content-center links">
-                  Don't have an account? <a href="/signup" className="ml-2">Sign Up!</a>
-
-                </div>
-                <div className="d-flex justify-content-center links">
-						{/* <a href="#">Forgot your password?</a> */}
-            
-					</div>
-
+            <div className="d-flex justify-content-center links">
+              Don't have an account?{" "}
+              <a href="/signup" className="ml-2">
+                Sign Up!
+              </a>
+            </div>
+            <div className="d-flex justify-content-center links">
+              {/* <a href="#">Forgot your password?</a> */}
+            </div>
           </div>
-
-
-
         </Fade>
       </Modal>
     </div>
