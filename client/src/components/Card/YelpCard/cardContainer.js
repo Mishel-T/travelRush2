@@ -84,6 +84,10 @@ class CardContainer extends Component {
         this.setState({ collectionClicked: true })
     }
 
+    addToFaves = event => {
+        console.log("in add to faves click event")
+
+    }
             
 
     updateCard = () => {
@@ -138,6 +142,7 @@ class CardContainer extends Component {
                                     name={businesses.name}
                                     price={businesses.price}
                                     distance={Math.round((businesses.distance * 0.000621371192) * 10) / 10}
+                                    onClick={this.addToFaves}
                                 >
                                 </CollectionCard>
                             ))}
@@ -153,6 +158,8 @@ class CardContainer extends Component {
                                     name={businesses.name}
                                     price={businesses.price}
                                     distance={Math.round((businesses.distance * 0.000621371192) * 10) / 10}
+                                    onClick={this.addToFaves}
+
                                 >
                                 </CollectionCard>
                             ))}
@@ -168,6 +175,7 @@ class CardContainer extends Component {
                                     name={businesses.name}
                                     price={businesses.price}
                                     distance={Math.round((businesses.distance * 0.000621371192) * 10) / 10}
+                                    onClick={this.addToFaves}
                                 >
                                 </CollectionCard>
                             ))}
