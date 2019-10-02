@@ -1,10 +1,42 @@
-  /* When the checkbox is checked, add a blue background */
-  /* .container input:checked ~ .checkmark {
-    background-color: #2196f3;
-  } */
+  .container {
+    text-align: center;
+    margin-top: 10px;
+    border-radius: 25px;
+    background-color: rgba(22, 19, 19, 0.849);
+    color: white;
+  }
+
+  input, select, textarea{
+    color: #26a69a
+}
+
+textarea:focus, input:focus {
+    color: #26a69a
+}
 
   #transition-modal-title,
   #transition-modal-description {
     text-align: center;
   }
+
+ .form-control {
+    text-align: center;
+  }
+
+  [type="checkbox"]+span:not(.lever) {
+    display: initial;
+    margin-left: 10px;
+  }
+
+  img.responsive-img {
+    margin-top: 10px;
+  }
   
+  label {
+    font-size: 1rem;
+    color: white;
+  }
+
+  textarea {
+    text-align: center;
+  }

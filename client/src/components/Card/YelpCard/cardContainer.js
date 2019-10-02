@@ -74,6 +74,7 @@ class CardContainer extends Component {
             };
             console.log(restaurantsInfo);
             this.setState({ response2: restaurantsInfo, responsedetail2: response2.data.businesses });
+            console.log(this.state.responsedetail2)
         });
     };
 
@@ -83,10 +84,7 @@ class CardContainer extends Component {
         this.setState({ collectionClicked: true })
     }
 
-    // updateCollection = () => {
             
-        
-    // }
 
     updateCard = () => {
         if (!this.state.search) {

@@ -1,8 +1,8 @@
 import React from "react";
 import Logo from "../assets/images/teeny_logo.png";
-import Modal from "../Modal/modal";
+//import Modal from "../Modal/modal";
+import ModalContainer from "../Modal/modalContainer"
 import { Link } from "react-router-dom";
-  // unsure how to join modal and header components together
 import "./header.css";
 
  function Header () {
@@ -10,12 +10,12 @@ import "./header.css";
             <div>
                 <nav>
                     <div className="nav-wrapper">
-                        <Link to="/"><a href="#!" className="brand-logo"><img src={Logo} className="responsive-img"  alt="A tiny blue suitcase with a sock and heart boxers bursting out represents the logo of travelRush" style={{ maxWidth: '150px' }} /></a></Link>
-                        <Link to="/"> <a href="#!" className="brand-logo center">travelRush</a> </Link>
+                        <Link to="/" className="brand-logo"><img src={Logo} className="responsive-img"  alt="A tiny blue suitcase with a sock and heart boxers bursting out represents the logo of travelRush" style={{ maxWidth: '150px' }} /></Link>
+                        <Link to="/" className="brand-logo center">travelRush</Link>
               
                         <ul className="right hide-on-med-and-down">
                       
-                        <li><Modal /></li>
+                        <li><ModalContainer /></li>
                             {/* <li><a href="#!">LOGIN</a></li> */}
                         </ul>
                         
