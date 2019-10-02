@@ -42,9 +42,19 @@ class App extends Component {
   //   console.log(searchContainInput.coordLoc.long + "= Long");
   //   //this.componentDidMount(searchContainInput);
   //   this.setState({
-  //     searchLocation: searchContainInput
+  //     searchLocation: { searchContainInput }
   //   });
-  // };
+  // }
+
+
+  callbackFunction = searchContainInput => {
+    console.log(searchContainInput.coordLoc.lat + "= Lat");
+    console.log(searchContainInput.coordLoc.long + "= Long");
+    //this.componentDidMount(searchContainInput);
+    this.setState({
+      searchLocation: searchContainInput
+    });
+  };
 
   render() {
     return (
