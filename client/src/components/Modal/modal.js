@@ -114,9 +114,9 @@ export default function TransitionsModal(props) {
   return (
     // <Router>
     <div>
-      <button type="button" onClick={handleOpen}>
+      <a className="waves-effect waves-teal btn-flat" onClick={handleOpen}>
         Login
-      </button>
+      </a>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"

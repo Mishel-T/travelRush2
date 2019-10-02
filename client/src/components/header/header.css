@@ -2,6 +2,11 @@ nav {
     background-color: rgb(125, 141, 191);
   }
 
+.btn-flat {
+  font-size: 2rem;
+  color: white;
+}
+
 nav ul a {
     font-family: 'Anton', sans-serif;
     font-style: italic;
