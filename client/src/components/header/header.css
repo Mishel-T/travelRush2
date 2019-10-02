@@ -2,9 +2,8 @@ nav {
     background-color: rgb(125, 141, 191);
   }
 
-.btn-flat {
-  font-size: 1rem;
-
+nav ul a.btn-flat {
+  font-size: 2rem;
   color: white;
 }
 
