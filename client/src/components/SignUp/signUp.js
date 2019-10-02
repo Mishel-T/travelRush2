@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import "./signUp.css";
 import { registerUser } from "../../utils/API";
 import classnames from "classnames";
-import ModalContainer from "../Modal/modalContainer"
 
 //Make this a stateful component because it is a form?
 class Signup extends Component {
@@ -22,7 +21,7 @@ class Signup extends Component {
     errors: {}
   };
 
-  componentDidMount() { }
+  componentDidMount() {}
 
   //handles address input by extracting and updating its coordinates
   // handleOnBlur = event => {
@@ -254,16 +253,12 @@ class Signup extends Component {
 
         <div className="d-flex justify-content-center links">
           Already have an account?{" "}
-
-          <div className="">
-            <ModalContainer />
-          </div>
-          {/* <Link to="/login"> */}
-          {/* <a href="/login" className="ml-2"> */}
-          {/* Login here! */}
-          {/* {isValid.Success && <h5 className="black-text">{isValid.msg}</h5>} */}
-          {/* </a> */}
-          {/* </Link> */}
+          <Link to="/login">
+            {/* <a href="/login" className="ml-2"> */}
+            Login here!
+            {isValid.Success && <h5 className="black-text">{isValid.msg}</h5>}
+            {/* </a> */}
+          </Link>
           <div className="d-flex justify-content-center links"></div>
         </div>
       </div>
