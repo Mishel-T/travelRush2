@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+
 //import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Router, Route, Link } from 'react-router-dom';
-
 // import Route from "./components/Route/route";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
@@ -27,43 +27,22 @@ import history from "../src/utils/history";
 // import "./App.css";
 
 class App extends Component {
-  //state = { coordLat: "", coordLong: "" };
-  // state = {
-  //   airportInfo: ""
-  // };
-  // // componentDidMount(searchContainInput) {
-  // //   this.setState({
-  // //     searchLocation: { searchContainInput }
-  // //   });
-  // // }
-
-
-
-  // callbackFunction = searchContainInput => {
-  //   console.log(searchContainInput.coordLoc.lat + "= Lat");
-  //   console.log(searchContainInput.coordLoc.long + "= Long");
-  //   //this.componentDidMount(searchContainInput);
-  //   this.setState({
-  //     searchLocation: searchContainInput
-  //   });
-  // };
-
   render() {
     return (
-      <Router history={history}>
+      <BrowserRouter>
         <div>
           <Header />
           <Route exact path="/" component={PageContainer} />
           {/* <Route path="/signup" component={SignUp} /> */}
           {/* <Route exact path="/" component={Home} /> */}
-          {/* <Route path="/login" component={Login} /> */}
+          <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/myaccount" component={MyAccount} />
 
           <Footer />
         </div>
-      </Router>
-    )
+      </BrowserRouter>
+    );
   }
 }
 export default App;

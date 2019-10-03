@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
 // import { BrowserRouter as Router, Link } from "react-router-dom";
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  withRouter,
+  Redirect,
+  Link
+} from "react-router-dom";
 import Logo from "../assets/images/teeny_logo.png";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
@@ -7,6 +15,7 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import classnames from "classnames";
 import { loginUser } from "../../utils/API";
+import history from "../../utils/history";
 import SignUp from "../SignUp/signUp";
 import { Link } from "react-router-dom";
 import { Router, Route } from "react-router-dom";
@@ -27,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 //what is props doing here and where is it coming from????
-export default function TransitionsModal(props) {
+function TransitionsModal(props) {
   console.log(props);
 
   const classes = useStyles();
@@ -98,7 +107,6 @@ export default function TransitionsModal(props) {
           //clear errors on successfull log in
           setErrors({});
           history.push("/myaccount");
-
         } else if (response.data.email === "User not found") {
           //update error and isValid state variables when user wasn't found in the database
           setErrors(response.data);
@@ -123,6 +131,7 @@ export default function TransitionsModal(props) {
 
   return (
     // <Router>
+
     <div>
       <a className="waves-effect waves-teal btn-flat" onClick={handleOpen}>
         Login
@@ -196,14 +205,14 @@ export default function TransitionsModal(props) {
                 )}
               </div>
               <button
-                /*onClick={props.onSubmit}*/
-
-                onClick={handleFormSubmit}
+                /*onClick={props.onSubmit}*/ onClick={handleFormSubmit}
                 type="button"
                 name="button"
                 id="loginButton"
-                className="btn login_btn"
+                className="btn
+                login_btn"
               >
+                {" "}
                 Login
               </button>
             </form>
@@ -223,3 +232,35 @@ export default function TransitionsModal(props) {
     // </Router>
   );
 }
+
+export default withRouter(
+  TransitionsModal
+); /*onClick={handleFormSubmit}
+                    type="button"
+                    name="button"
+                    id="loginButton"
+                    className="btn login_btn"
+                  >
+                    {" "}
+                    Login
+                  </button>
+                </Link>
+              ) : (
+                <button
+                  /*onClick={props.onSubmit}*/ /*onClick={handleFormSubmit}
+                 type="button"
+                  name="button"
+                  id="loginButton"
+                  className="btn
+                login_btn"
+                >
+                  {" "}
+                  Login
+                </button>
+              )} */
+
+/*
+{userAuth.success ? (
+                <Link to="/myaccount">
+                  <button
+                    /*onClick={props.onSubmit}*/
