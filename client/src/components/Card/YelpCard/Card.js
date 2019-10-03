@@ -3,6 +3,7 @@ import React from "react";
 import "../Card.css";
 
 const Card = props => (
+<div className="col s12 m6 l3">
     <div className="card">
         <div className="card-image">
             <img id={props.img} src={props.imgsrc} alt=""></img>
@@ -18,5 +19,6 @@ const Card = props => (
             <a href={props.urlEntry} id={props.url} target="_blank">Learn More</a>
         </div>
     </div>
+  </div>
 );
 export default Card;

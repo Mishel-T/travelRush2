@@ -47,10 +47,12 @@ class PageContainer extends Component {
               handlePageChange={this.handlePageChange}
             /> */}
         <SearchContainer appcb={this.callbackFunction} />
+        <div className="row">
         <WeatherCardContainer parentState={this.state.searchLocation} />
         <CardContainer parentState={this.state.searchLocation} />
         {this.renderPage()}
-      </div>
+        </div>
+        </div>
     );
   }
 }

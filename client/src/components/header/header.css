@@ -6,6 +6,7 @@ nav {
 /* This changes the color 'Login' button in header */
 nav ul a.btn-flat {
   color: white;
+  font-size: 2rem;
 }
 
 
@@ -13,7 +14,6 @@ nav ul a {
     font-family: 'Anton', sans-serif;
     font-style: italic;
     margin-right: 45px;
-    font-size: 2.5rem;
     -webkit-text-stroke-color: black;
     -webkit-text-stroke-width: 1.50px; 
 }

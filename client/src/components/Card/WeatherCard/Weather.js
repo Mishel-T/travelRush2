@@ -47,6 +47,7 @@ class WeatherCardContainer extends Component {
     render () {
       
       if (this.state.response.length == 0) {return <div>
+        <div className="col s12 m6 l3">
         <div className="card" >
     <div className="card-image">
         <img id="weather-img" alt=""></img>
@@ -55,6 +56,7 @@ class WeatherCardContainer extends Component {
     </div>
     <div className="card-content" id="weather-results" >
         <p>Weather</p> </div>
+      </div>
       </div>
       </div>;
       }
