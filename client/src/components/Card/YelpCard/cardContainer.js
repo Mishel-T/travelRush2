@@ -2,6 +2,7 @@
 //container needs to be loaded on searchForm click event - need to pull latitude and longitude from searchForm
 import React, { Component } from "react";
 import Card from "./Card";
+import EmptyCard from "./emptyCard"
 //import CollectionContainer from "./collectionContainer"
 import CollectionCard from "./collectionCard"
 import { yelpSearch } from "../../../utils/API";
@@ -85,14 +86,13 @@ class CardContainer extends Component {
     }
 
     addToFaves = event => {
-        console.log("in add to faves click event")
 
     }
             
 
     updateCard = () => {
         if (!this.state.search) {
-            return [<Card
+            return [<EmptyCard
                 name="Restaurants"
                 img="restaurant-img"
                 cardTitle="restaurant-name"
@@ -103,8 +103,8 @@ class CardContainer extends Component {
                 rating="restaurant-rating"
                 price="restaurant-price"
                 url="restaurant-url"
-            ></Card>,
-            <Card
+            ></EmptyCard>,
+            <EmptyCard
 
                 name="Coffee"
                 img="coffee-img"
@@ -116,8 +116,8 @@ class CardContainer extends Component {
                 rating="coffee-rating"
                 price="coffee-price"
                 url="coffee-url"
-            ></Card>,
-            <Card
+            ></EmptyCard>,
+            <EmptyCard
                 name="Hotels"
                 img="hotel-img"
                 cardTitle="hotel-name"
@@ -128,7 +128,7 @@ class CardContainer extends Component {
                 rating="hotel-rating"
                 price="hotel-price"
                 url="hotel-url"
-            ></Card>
+            ></EmptyCard>
             ]
         } else if (this.state.collectionClicked === true) {
             return [
