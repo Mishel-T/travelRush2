@@ -17,6 +17,10 @@ import classnames from "classnames";
 import { loginUser } from "../../utils/API";
 import history from "../../utils/history";
 import SignUp from "../SignUp/signUp";
+import { Link } from "react-router-dom";
+import { Router, Route } from "react-router-dom";
+import history from "../../utils/history";
+
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -102,11 +106,7 @@ function TransitionsModal(props) {
           setUserauth(response.data);
           //clear errors on successfull log in
           setErrors({});
-          /*(1) Send token to a component(AuthService) that will manage the token
-           */
-          //localStorage.setItem("tokenKey", userAuth.token);
-          //console.log(props);
-          props.history.push("/myaccount");
+          history.push("/myaccount");
         } else if (response.data.email === "User not found") {
           //update error and isValid state variables when user wasn't found in the database
           setErrors(response.data);
@@ -133,9 +133,9 @@ function TransitionsModal(props) {
     // <Router>
 
     <div>
-      <button type="button" onClick={handleOpen}>
+      <a className="waves-effect waves-teal btn-flat" onClick={handleOpen}>
         Login
-      </button>
+      </a>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"

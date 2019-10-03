@@ -2,6 +2,7 @@
 //container needs to be loaded on searchForm click event - need to pull latitude and longitude from searchForm
 import React, { Component } from "react";
 import Card from "./Card";
+import EmptyCard from "./emptyCard"
 //import CollectionContainer from "./collectionContainer"
 import CollectionCard from "./collectionCard"
 import { yelpSearch } from "../../../utils/API";
@@ -84,11 +85,14 @@ class CardContainer extends Component {
         this.setState({ collectionClicked: true })
     }
 
+    addToFaves = event => {
+
+    }
             
 
     updateCard = () => {
         if (!this.state.search) {
-            return [<Card
+            return [<EmptyCard
                 name="Restaurants"
                 img="restaurant-img"
                 cardTitle="restaurant-name"
@@ -99,8 +103,8 @@ class CardContainer extends Component {
                 rating="restaurant-rating"
                 price="restaurant-price"
                 url="restaurant-url"
-            ></Card>,
-            <Card
+            ></EmptyCard>,
+            <EmptyCard
 
                 name="Coffee"
                 img="coffee-img"
@@ -112,8 +116,8 @@ class CardContainer extends Component {
                 rating="coffee-rating"
                 price="coffee-price"
                 url="coffee-url"
-            ></Card>,
-            <Card
+            ></EmptyCard>,
+            <EmptyCard
                 name="Hotels"
                 img="hotel-img"
                 cardTitle="hotel-name"
@@ -124,7 +128,7 @@ class CardContainer extends Component {
                 rating="hotel-rating"
                 price="hotel-price"
                 url="hotel-url"
-            ></Card>
+            ></EmptyCard>
             ]
         } else if (this.state.collectionClicked === true) {
             return [
@@ -138,6 +142,7 @@ class CardContainer extends Component {
                                     name={businesses.name}
                                     price={businesses.price}
                                     distance={Math.round((businesses.distance * 0.000621371192) * 10) / 10}
+                                    onClick={this.addToFaves}
                                 >
                                 </CollectionCard>
                             ))}
@@ -153,6 +158,8 @@ class CardContainer extends Component {
                                     name={businesses.name}
                                     price={businesses.price}
                                     distance={Math.round((businesses.distance * 0.000621371192) * 10) / 10}
+                                    onClick={this.addToFaves}
+
                                 >
                                 </CollectionCard>
                             ))}
@@ -168,6 +175,7 @@ class CardContainer extends Component {
                                     name={businesses.name}
                                     price={businesses.price}
                                     distance={Math.round((businesses.distance * 0.000621371192) * 10) / 10}
+                                    onClick={this.addToFaves}
                                 >
                                 </CollectionCard>
                             ))}

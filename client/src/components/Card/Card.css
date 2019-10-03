@@ -19,3 +19,7 @@
 .card-action {
     text-align: center;
 }
+
+#faves-btn {
+border:none;
+}

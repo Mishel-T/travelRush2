@@ -64,7 +64,7 @@ class DropDown extends React.Component {
             ""
           )}
 
-          <a className="dropdown-trigger btn" href="#" data-target="dropdown1">
+          <a className="dropdown-trigger btn" href="#" data-target="dropdown1" style={{marginTop: '1rem'}}>
             Airport/Address
           </a>
 
