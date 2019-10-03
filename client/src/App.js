@@ -52,9 +52,6 @@ class App extends Component {
         <div>
           <Header />
           <Route exact path="/" component={PageContainer} />
-          {/* <Route path="/signup" component={SignUp} /> */}
-          {/* <Route exact path="/" component={Home} /> */}
-          {/* <Route path="/login" component={Login} /> */}
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/myaccount" component={MyAccount} />
 

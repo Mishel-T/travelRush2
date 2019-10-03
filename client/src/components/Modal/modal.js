@@ -89,7 +89,7 @@ export default function TransitionsModal(props) {
                 </div>
               </div>
               <button
-                onClick={props.onSubmit}
+                onSubmit={props.onSubmit}
                 type="button"
                 name="button"
                 id="loginButton"
