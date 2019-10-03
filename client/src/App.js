@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+//import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Router, Route, Link } from 'react-router-dom';
+
 // import Route from "./components/Route/route";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import Signup from "./components/SignUp/signUp";
 import PageContainer from './pages/PageContainer';
-import MyAccount from './pages/PageContainer';
+import MyAccount from './pages/MyAccount/MyAccount';
 import history from "../src/utils/history";
 
 

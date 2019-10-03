@@ -34,7 +34,7 @@ class PageContainer extends Component {
       //   return <Login />;
     } else if (this.state.currentPage === "Sign Up") {
       return <SignUp />;
-    } else if (this.state.currentPage === "My Account") {
+    }  else if (this.state.currentPage === "My Account") {
       return <MyAccount />
     }
   };
