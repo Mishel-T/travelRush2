@@ -9,6 +9,9 @@ import classnames from "classnames";
 import { loginUser } from "../../utils/API";
 import SignUp from "../SignUp/signUp";
 import { Link } from "react-router-dom";
+import { Router, Route } from "react-router-dom";
+import history from "../../utils/history";
+
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -54,6 +57,11 @@ export default function TransitionsModal(props) {
     console.log(errors);
   }, [errors]);
 
+  useEffect(() => {
+    console.log("Set up local storage after successful log in`...........");
+    localStorage.setItem("tokenKey", userAuth.token);
+  }, [userAuth]);
+
   const handleOnChange = event => {
     const {
       target: { name, value }
@@ -89,6 +97,8 @@ export default function TransitionsModal(props) {
           setUserauth(response.data);
           //clear errors on successfull log in
           setErrors({});
+          history.push("/myaccount");
+
         } else if (response.data.email === "User not found") {
           //update error and isValid state variables when user wasn't found in the database
           setErrors(response.data);
