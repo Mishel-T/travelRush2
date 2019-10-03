@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
 // import { BrowserRouter as Router, Link } from "react-router-dom";
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  withRouter,
+  Redirect,
+  Link
+} from "react-router-dom";
 import Logo from "../assets/images/teeny_logo.png";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
@@ -7,8 +15,8 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import classnames from "classnames";
 import { loginUser } from "../../utils/API";
+import history from "../../utils/history";
 import SignUp from "../SignUp/signUp";
-import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -24,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 //what is props doing here and where is it coming from????
-export default function TransitionsModal(props) {
+function TransitionsModal(props) {
   console.log(props);
 
   const classes = useStyles();
@@ -53,6 +61,11 @@ export default function TransitionsModal(props) {
     console.log("errors state is..... ");
     console.log(errors);
   }, [errors]);
+
+  useEffect(() => {
+    console.log("Set up local storage after successful log in`...........");
+    localStorage.setItem("tokenKey", userAuth.token);
+  }, [userAuth]);
 
   const handleOnChange = event => {
     const {
@@ -89,6 +102,11 @@ export default function TransitionsModal(props) {
           setUserauth(response.data);
           //clear errors on successfull log in
           setErrors({});
+          /*(1) Send token to a component(AuthService) that will manage the token
+           */
+          //localStorage.setItem("tokenKey", userAuth.token);
+          //console.log(props);
+          props.history.push("/myaccount");
         } else if (response.data.email === "User not found") {
           //update error and isValid state variables when user wasn't found in the database
           setErrors(response.data);
@@ -113,6 +131,7 @@ export default function TransitionsModal(props) {
 
   return (
     // <Router>
+
     <div>
       <button type="button" onClick={handleOpen}>
         Login
@@ -186,14 +205,14 @@ export default function TransitionsModal(props) {
                 )}
               </div>
               <button
-                /*onClick={props.onSubmit}*/
-
-                onClick={handleFormSubmit}
+                /*onClick={props.onSubmit}*/ onClick={handleFormSubmit}
                 type="button"
                 name="button"
                 id="loginButton"
-                className="btn login_btn"
+                className="btn
+                login_btn"
               >
+                {" "}
                 Login
               </button>
             </form>
@@ -213,3 +232,35 @@ export default function TransitionsModal(props) {
     // </Router>
   );
 }
+
+export default withRouter(
+  TransitionsModal
+); /*onClick={handleFormSubmit}
+                    type="button"
+                    name="button"
+                    id="loginButton"
+                    className="btn login_btn"
+                  >
+                    {" "}
+                    Login
+                  </button>
+                </Link>
+              ) : (
+                <button
+                  /*onClick={props.onSubmit}*/ /*onClick={handleFormSubmit}
+                 type="button"
+                  name="button"
+                  id="loginButton"
+                  className="btn
+                login_btn"
+                >
+                  {" "}
+                  Login
+                </button>
+              )} */
+
+/*
+{userAuth.success ? (
+                <Link to="/myaccount">
+                  <button
+                    /*onClick={props.onSubmit}*/
