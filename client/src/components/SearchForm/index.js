@@ -154,7 +154,7 @@ class SearchForm extends Component {
   render() {
     return (
       <div>
-        <form className="col s12">
+        <form>
           <div className="row">
             {this.props.travelMode === "1" ? (
               <div className="col s6">
@@ -177,10 +177,10 @@ class SearchForm extends Component {
             ></InputDate>
           </div>
           <div className="row">
-            <div className="col offset-s6">
+            <div className="col s12" style={{textAlign: 'center'}}>
               <FormBtn onClick={this.handleOnClick}></FormBtn>
             </div>
-          </div>
+            </div>
         </form>
       </div>
     );

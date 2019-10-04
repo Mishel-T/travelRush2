@@ -293,8 +293,8 @@ export default function IntegrationAutosuggest(props) {
         inputProps={{
           classes,
           id: "react-autosuggest-simple",
-          label: "Country",
-          placeholder: "Search a country (start with a)",
+          label: "City",
+          placeholder: "Search a City/Airport (in the United States)",
           value: state.single,
           onChange: handleChange("single")
         }}

@@ -16,10 +16,10 @@ router.route("/").get(usersController.testAll);
 // @access Public
 router.route("/register").post(usersController.createUser);
 
-//@route  GET api/users/login
+//@route  POST api/users/login
 //@desc   Login User / Return JWT token
 //@access Public
-router.route("/login").get(usersController.findUser);
+router.route("/login").post(usersController.findUser);
 
 //@route  GET api/users/current
 //@desc   Return current user(access to a protected route for the user)

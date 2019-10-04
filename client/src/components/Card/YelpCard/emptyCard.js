@@ -1,8 +1,7 @@
-//Component to hold yelp cards for restaurant, coffee, and weather
 import React from "react";
 import "../Card.css";
 
-const Card = props => (
+const EmptyCard = props => (
 <div className="col s12 m6 l3">
     <div className="card">
         <div className="card-image">
@@ -12,13 +11,11 @@ const Card = props => (
         </div>
         <div className="card-content" id={props.contentID}>
             <p id={props.title}>{props.name}</p>
-            <p id={props.rating}> Rating: {props.ratingEntry}</p>
-            <p id={props.price}>Price: {props.priceEntry}</p>
+            <p id={props.rating}> {props.ratingEntry}</p>
+            <p id={props.price}>{props.priceEntry}</p>
         </div>
-        <div className="card-action">
-            <a href={props.urlEntry} id={props.url} target="_blank">Learn More</a>
-        </div>
+       
     </div>
   </div>
 );
-export default Card;
+export default EmptyCard;

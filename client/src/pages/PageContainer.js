@@ -3,11 +3,10 @@ import React, { Component } from "react";
 // import LogIn from ""
 import SignUp from "../components/SignUp/signUp";
 import SearchContainer from "../components/SearchContainer";
-import CardContainer from "../components/Card/YelpCard/cardContainer"
+import CardContainer from "../components/Card/YelpCard/cardContainer";
 import WeatherCardContainer from "../components/Card/WeatherCard/Weather";
-import FlightInfoCardContainer from "../components/Card/FlightInfoCard/FlightInfoCardContainer"
-import FlightInfoCard from "../components/Card/FlightInfoCard/FlightInfoCard";
 
+import MyAccount from "./MyAccount/MyAccount";
 
 class PageContainer extends Component {
   state = {
@@ -35,20 +34,28 @@ class PageContainer extends Component {
       //   return <Login />;
     } else if (this.state.currentPage === "Sign Up") {
       return <SignUp />;
+    }  else if (this.state.currentPage === "My Account") {
+      return <MyAccount />
     }
   };
 
   render() {
-    return   <div>
-    {/* <NavTabs
-          currentPage={this.state.currentPage}
-          handlePageChange={this.handlePageChange}
-        /> */}
-    <SearchContainer appcb={this.callbackFunction} />
-    <WeatherCardContainer parentState={this.state.searchLocation} />
-    <CardContainer parentState={this.state.searchLocation} />
-    {this.renderPage()}
-  </div>
+
+    return (
+      <div>
+        {/* <NavTabs
+              currentPage={this.state.currentPage}
+              handlePageChange={this.handlePageChange}
+            /> */}
+        <SearchContainer appcb={this.callbackFunction} />
+        <div className="row">
+        <WeatherCardContainer parentState={this.state.searchLocation} />
+        <CardContainer parentState={this.state.searchLocation} />
+        {this.renderPage()}
+        </div>
+        </div>
+    );
+
   }
 }
 
