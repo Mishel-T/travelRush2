@@ -17,6 +17,7 @@ class CardContainer extends Component {
         responsedetail2: [],
         responsedetail3: [],
         collectionClicked: false,
+        favesName: ""
     };
 
 
@@ -58,12 +59,10 @@ class CardContainer extends Component {
                 rating: response1.data.businesses[0].rating,
                 title: response1.data.businesses[0].categories[0].title
             };
-            //console.log(hotelsInfo)
             this.setState({ response1: hotelsInfo, responsedetail1: response1.data.businesses });
         });
 
         call2.then(response2 => {
-            console.log(response2.data);
 
             var restaurantsInfo = {
                 name: response2.data.businesses[0].name,
@@ -73,19 +72,18 @@ class CardContainer extends Component {
                 rating: response2.data.businesses[0].rating,
                 title: response2.data.businesses[0].categories[0].title
             };
-            console.log(restaurantsInfo);
             this.setState({ response2: restaurantsInfo, responsedetail2: response2.data.businesses });
-            console.log(this.state.responsedetail2)
         });
     };
 
     handleCollection = event => {
         event.preventDefault();
-        console.log("in collection event handler")
         this.setState({ collectionClicked: true })
     }
 
     addToFaves = event => {
+        event.preventDefault();
+       alert("Please login to save items to your Favorites")
 
     }
             
@@ -252,7 +250,6 @@ class CardContainer extends Component {
 
 
     render() {
-        console.log('state', this.state);
         
         return (<div>
             {this.updateCard()}
