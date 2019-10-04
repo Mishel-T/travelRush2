@@ -33,8 +33,8 @@ class PageContainer extends Component {
       //   return <Login />;
     } else if (this.state.currentPage === "Sign Up") {
       return <SignUp />;
-    }  else if (this.state.currentPage === "My Account") {
-      return <MyAccount />
+    } else if (this.state.currentPage === "My Account") {
+      return <MyAccount />;
     }
   };
 
@@ -45,13 +45,17 @@ class PageContainer extends Component {
               currentPage={this.state.currentPage}
               handlePageChange={this.handlePageChange}
             /> */}
+
         <SearchContainer appcb={this.callbackFunction} />
         <div className="row">
-        <WeatherCardContainer parentState={this.state.searchLocation} />
-        <CardContainer parentState={this.state.searchLocation} />
-        {this.renderPage()}
+          <WeatherCardContainer parentState={this.state.searchLocation} />
+          <CardContainer parentState={this.state.searchLocation} />
+          {this.renderPage()}
         </div>
-        </div>
+        {/*<div className="progress">
+          <div className="indeterminate"></div>
+          </div>*/}
+      </div>
     );
   }
 }

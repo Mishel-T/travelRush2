@@ -3,11 +3,12 @@
 // if login modal is scrapped, we will likely have another state change for the login page too
 import React, { Component } from "react";
 import Logo from "../assets/images/teeny_logo.png";
-import { Link } from "react-router-dom";
 // import { BrowserRouter } from "react-router-dom";
+import { Router, Route, Link } from "react-router-dom";
 import "./signUp.css";
 import { registerUser } from "../../utils/API";
 import classnames from "classnames";
+import TransitionsModal from "../Modal/modal";
 
 //Make this a stateful component because it is a form?
 class Signup extends Component {
@@ -85,6 +86,7 @@ class Signup extends Component {
           //set the state for the isValid property
           this.setState({ isValid: response.data }, () => {
             console.log(this.state.isValid.msg);
+            this.props.history.push("/myaccount");
           });
         }
       })
@@ -260,6 +262,7 @@ class Signup extends Component {
             {/* </a> */}
           </Link>
           <div className="d-flex justify-content-center links"></div>
+          <Route exact path="/login" component={TransitionsModal} />
         </div>
       </div>
     );

@@ -105,6 +105,8 @@ function TransitionsModal(props) {
           //clear errors on successfull log in
           setErrors({});
           history.push("/myaccount");
+          //handleOnChange();
+          handleClose();
         } else if (response.data.email === "User not found") {
           //update error and isValid state variables when user wasn't found in the database
           setErrors(response.data);
