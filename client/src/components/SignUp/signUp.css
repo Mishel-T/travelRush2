@@ -40,3 +40,7 @@ textarea:focus, input:focus {
   textarea {
     text-align: center;
   }
+
+  .waves-effect {
+    color: white;
+  }

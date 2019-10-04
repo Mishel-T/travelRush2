@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import "./signUp.css";
 import { registerUser } from "../../utils/API";
 import classnames from "classnames";
+import ModalContainer from "../Modal/modalContainer"
+import Modal from "../Modal/modal";
 
 //Make this a stateful component because it is a form?
 class Signup extends Component {
@@ -253,12 +255,14 @@ class Signup extends Component {
 
         <div className="d-flex justify-content-center links">
           Already have an account?{" "}
-          <Link to="/login">
-            {/* <a href="/login" className="ml-2"> */}
+          {/* <Link to="/login">
             Login here!
             {isValid.Success && <h5 className="black-text">{isValid.msg}</h5>}
-            {/* </a> */}
-          </Link>
+          </Link> */}
+          
+          
+          <ModalContainer />
+          
           <div className="d-flex justify-content-center links"></div>
         </div>
       </div>
