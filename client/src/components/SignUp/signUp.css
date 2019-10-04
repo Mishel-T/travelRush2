@@ -41,6 +41,6 @@ textarea:focus, input:focus {
     text-align: center;
   }
 
-  .waves-effect {
+  .waves-effect.waves-teal.btn-flat {
     color: white;
   }
