@@ -29,7 +29,6 @@ class CardContainer extends Component {
           this.setState({ request: false });
         }
 
-
         // console.log("Request is " + this.state.request);
         // if (this.state.request) {
         //   setTimeout(this.setState({ request: false }), 3000);
@@ -48,61 +47,77 @@ class CardContainer extends Component {
         Object.keys(this.state.response3).length === 0)
     );
   }
-    searchYelp = search => {
-        var call1 = yelpSearch("hotels", this.state.search.coordLoc.long, this.state.search.coordLoc.lat);
-        var call2 = yelpSearch("restaurants", this.state.search.coordLoc.long, this.state.search.coordLoc.lat);
-        var call3 = yelpSearch("coffee", this.state.search.coordLoc.long, this.state.search.coordLoc.lat);
+  searchYelp = search => {
+    var call1 = yelpSearch(
+      "hotels",
+      this.state.search.coordLoc.long,
+      this.state.search.coordLoc.lat
+    );
+    var call2 = yelpSearch(
+      "restaurants",
+      this.state.search.coordLoc.long,
+      this.state.search.coordLoc.lat
+    );
+    var call3 = yelpSearch(
+      "coffee",
+      this.state.search.coordLoc.long,
+      this.state.search.coordLoc.lat
+    );
 
-        call3.then(response3 => {
+    call3.then(response3 => {
+      var coffeeInfo = {
+        name: response3.data.businesses[0].name,
+        image: response3.data.businesses[0].image_url,
+        url: response3.data.businesses[0].url,
+        price: response3.data.businesses[0].price,
+        rating: response3.data.businesses[0].rating,
+        title: response3.data.businesses[0].categories[0].title
+      };
+      this.setState({
+        response3: coffeeInfo,
+        responsedetail3: response3.data.businesses
+      });
+    });
 
-            var coffeeInfo = {
-                name: response3.data.businesses[0].name,
-                image: response3.data.businesses[0].image_url,
-                url: response3.data.businesses[0].url,
-                price: response3.data.businesses[0].price,
-                rating: response3.data.businesses[0].rating,
-                title: response3.data.businesses[0].categories[0].title
-            };
-            this.setState({ response3: coffeeInfo, responsedetail3: response3.data.businesses });
-        });
+    call1.then(response1 => {
+      var hotelsInfo = {
+        name: response1.data.businesses[0].name,
+        image: response1.data.businesses[0].image_url,
+        url: response1.data.businesses[0].url,
+        price: response1.data.businesses[0].price,
+        rating: response1.data.businesses[0].rating,
+        title: response1.data.businesses[0].categories[0].title
+      };
+      this.setState({
+        response1: hotelsInfo,
+        responsedetail1: response1.data.businesses
+      });
+    });
 
-        call1.then(response1 => {
+    call2.then(response2 => {
+      var restaurantsInfo = {
+        name: response2.data.businesses[0].name,
+        image: response2.data.businesses[0].image_url,
+        url: response2.data.businesses[0].url,
+        price: response2.data.businesses[0].price,
+        rating: response2.data.businesses[0].rating,
+        title: response2.data.businesses[0].categories[0].title
+      };
+      this.setState({
+        response2: restaurantsInfo,
+        responsedetail2: response2.data.businesses
+      });
+    });
+  };
 
-            var hotelsInfo = {
-                name: response1.data.businesses[0].name,
-                image: response1.data.businesses[0].image_url,
-                url: response1.data.businesses[0].url,
-                price: response1.data.businesses[0].price,
-                rating: response1.data.businesses[0].rating,
-                title: response1.data.businesses[0].categories[0].title
-            };
-            this.setState({ response1: hotelsInfo, responsedetail1: response1.data.businesses });
-        });
+  handleCollection = event => {
+    event.preventDefault();
+    this.setState({ collectionClicked: true });
+  };
 
-        call2.then(response2 => {
-
-            var restaurantsInfo = {
-                name: response2.data.businesses[0].name,
-                image: response2.data.businesses[0].image_url,
-                url: response2.data.businesses[0].url,
-                price: response2.data.businesses[0].price,
-                rating: response2.data.businesses[0].rating,
-                title: response2.data.businesses[0].categories[0].title
-            };
-            this.setState({ response2: restaurantsInfo, responsedetail2: response2.data.businesses });
-        });
-    };
-
-    handleCollection = event => {
-        event.preventDefault();
-        this.setState({ collectionClicked: true })
-    }
-
-    addToFaves = event => {
-        event.preventDefault();
-       alert("Please login to save items to your Favorites")
-
-    }
+  addToFaves = event => {
+    event.preventDefault();
+    alert("Please login to save items to your Favorites");
   };
 
   render() {
