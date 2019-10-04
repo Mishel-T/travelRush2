@@ -39,11 +39,7 @@ class SearchContainer extends Component {
     return (
       <div>
         <DropDown searchContaincb={this.props.appcb}></DropDown>
-        <div className="progress">
-          <div className="indeterminate">
 
-          </div>
-          </div>
       </div>
     );
   }
