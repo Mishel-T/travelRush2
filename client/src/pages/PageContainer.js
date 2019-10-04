@@ -5,6 +5,7 @@ import SignUp from "../components/SignUp/signUp";
 import SearchContainer from "../components/SearchContainer";
 import CardContainer from "../components/Card/YelpCard/cardContainer";
 import WeatherCardContainer from "../components/Card/WeatherCard/Weather";
+
 import MyAccount from "./MyAccount/MyAccount";
 
 class PageContainer extends Component {
@@ -39,6 +40,7 @@ class PageContainer extends Component {
   };
 
   render() {
+
     return (
       <div>
         {/* <NavTabs
@@ -53,6 +55,7 @@ class PageContainer extends Component {
         </div>
         </div>
     );
+
   }
 }
 
