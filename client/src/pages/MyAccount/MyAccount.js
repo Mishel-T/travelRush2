@@ -1,4 +1,5 @@
 import React from "react";
+import FlightInfoCard from "../../components/Card/FlightInfoCard/FlightInfoCard";
 // import FavoritesCard ".../components/Card/FavoritesCard/FavoritesCardContainer"
 // import PastSearchesCard ".../components/Card/PastSearchesCard/PastSearhesCardContainer"
 // import FlightInfo ".../components/Card/FlightInfoCard/FlightInfoCardContainer"
@@ -9,7 +10,15 @@ class MyAccount extends Component {
     //user will be redirected to LOGIN
 
 render() {
-    return
+    return   <div>
+    {/* <NavTabs
+          currentPage={this.state.currentPage}
+          handlePageChange={this.handlePageChange}
+        /> */}
+    
+    <FlightInfoCard></FlightInfoCard>
+    {this.renderPage()}
+  </div>
     // <Favorites />,
     // <PastSearch />,
     // <FlightInfo />

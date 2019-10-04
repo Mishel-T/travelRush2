@@ -5,6 +5,8 @@ import SignUp from "../components/SignUp/signUp";
 import SearchContainer from "../components/SearchContainer";
 import CardContainer from "../components/Card/YelpCard/cardContainer"
 import WeatherCardContainer from "../components/Card/WeatherCard/Weather";
+import FlightInfoCardContainer from "../components/Card/FlightInfoCard/FlightInfoCardContainer"
+import FlightInfoCard from "../components/Card/FlightInfoCard/FlightInfoCard";
 
 
 class PageContainer extends Component {
@@ -37,18 +39,16 @@ class PageContainer extends Component {
   };
 
   render() {
-    return (
-      <div>
-        {/* <NavTabs
-              currentPage={this.state.currentPage}
-              handlePageChange={this.handlePageChange}
-            /> */}
-        <SearchContainer appcb={this.callbackFunction} />
-        <WeatherCardContainer parentState={this.state.searchLocation} />
-        <CardContainer parentState={this.state.searchLocation} />
-        {this.renderPage()}
-      </div>
-    );
+    return   <div>
+    {/* <NavTabs
+          currentPage={this.state.currentPage}
+          handlePageChange={this.handlePageChange}
+        /> */}
+    <SearchContainer appcb={this.callbackFunction} />
+    <WeatherCardContainer parentState={this.state.searchLocation} />
+    <CardContainer parentState={this.state.searchLocation} />
+    {this.renderPage()}
+  </div>
   }
 }
 
