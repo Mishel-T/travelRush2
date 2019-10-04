@@ -9,6 +9,7 @@ import Signup from "./components/SignUp/signUp";
 import PageContainer from "./pages/PageContainer";
 import MyAccount from "./pages/MyAccount/MyAccount";
 import history from "../src/utils/history";
+import { TransitionsModal as Login } from "./components/Modal/modal";
 
 // import Footer from "./components/footer/footer";
 // import SearchContainer from "./components/SearchContainer";
@@ -34,7 +35,7 @@ class App extends Component {
           <Route exact path="/" component={PageContainer} />
           {/* <Route path="/signup" component={SignUp} /> */}
           {/* <Route exact path="/" component={Home} /> */}
-          {/*<Route exact path="/login" component={Login} />*/}
+          {/* <Route exact path="/login" component={Login} /> */}
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/myaccount" component={MyAccount} />
 
