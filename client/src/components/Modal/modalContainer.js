@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Modal from "../Modal/modal";
-import { Redirect } from 'react-router-dom';
 // import history from "../../utils/history";
 
 
