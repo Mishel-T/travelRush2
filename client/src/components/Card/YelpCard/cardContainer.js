@@ -17,7 +17,6 @@ class CardContainer extends Component {
         responsedetail2: [],
         responsedetail3: [],
         collectionClicked: false,
-        favesName: ""
     };
 
 
