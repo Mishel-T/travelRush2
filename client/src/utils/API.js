@@ -1,6 +1,7 @@
 //adding API queries for app here
 import axios from "axios";
 
+
 //URL and API key for google API
 const googleURL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
 const googleKEY = "AIzaSyCqOAF-sXj7Q5MxZzQTBIDyjHYSfVD_WT0";
@@ -65,6 +66,7 @@ export const airportsList = () => {
 };
 
 //SERVER IS ON 3001 BUT REACT APP IS IN 3000????
+
 // Route to sign up users
 export const registerUser = formData => {
   //console.log(formData);
@@ -88,4 +90,16 @@ export const loginUser = formData => {
 // Route for current user(access to a protected route for the user, using jwt token.)
 export const currentUser = () => {
   return axios.get("/api/users/current");
+};
+
+const APIKey = "ebe432-13fff1";
+
+const queryURL = "https://aviation-edge.com/v2/public/flights?key=" + APIKey +"&flightIata=";
+
+
+
+export default {
+  search: function(query) {
+  return axios.get(queryURL + query);
+  }
 };

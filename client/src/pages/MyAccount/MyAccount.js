@@ -1,6 +1,9 @@
+
 import React, { Component } from "react";
 import FavoritesCard from "../../components/Card/FavoritesCard/FavoritesCard"
-// import FlightInfo ".../components/Card/FlightInfoCard/FlightInfoCardContainer"
+import FlightInfoCard from "../../components/Card/FlightInfoCard/FlightInfoCard";
+
+
 
 class MyAccount extends Component {
   //if stat is user is logged in, user will be able to view the page
@@ -44,10 +47,12 @@ class MyAccount extends Component {
             name="Holiday Inn West Covina"
             location="West Covina, CA" />
         </div>
-      </div>
-      // <FlightInfo />
-
+      </div>,
+  <div>
+     <FlightInfoCard></FlightInfoCard>
+  </div>
     ];
+
   }
 }
 
