@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 // import { BrowserRouter as Router, Link } from "react-router-dom";
-import {
+/*import {
   BrowserRouter,
   Switch,
   Route,
   withRouter,
   Redirect,
   Link
-} from "react-router-dom";
+} from "react-router-dom";*/
 import Logo from "../assets/images/teeny_logo.png";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
@@ -15,12 +15,10 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import classnames from "classnames";
 import { loginUser } from "../../utils/API";
-import history from "../../utils/history";
 import SignUp from "../SignUp/signUp";
 import { Link } from "react-router-dom";
 import { Router, Route } from "react-router-dom";
 import history from "../../utils/history";
-
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -233,9 +231,18 @@ function TransitionsModal(props) {
   );
 }
 
-export default withRouter(
-  TransitionsModal
-); /*onClick={handleFormSubmit}
+export default TransitionsModal; /*onClick={handleFormSubmit}
+                 type="button"
+                  name="button"
+                  id="loginButton"
+                  className="btn
+                login_btn"
+                >
+                  {" "}
+                  Login
+                </button>
+              )} */
+/*onClick={handleFormSubmit}
                     type="button"
                     name="button"
                     id="loginButton"
@@ -247,17 +254,7 @@ export default withRouter(
                 </Link>
               ) : (
                 <button
-                  /*onClick={props.onSubmit}*/ /*onClick={handleFormSubmit}
-                 type="button"
-                  name="button"
-                  id="loginButton"
-                  className="btn
-                login_btn"
-                >
-                  {" "}
-                  Login
-                </button>
-              )} */
+                  /*onClick={props.onSubmit}*/
 
 /*
 {userAuth.success ? (

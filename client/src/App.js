@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 
 //import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Router, Route, Link } from 'react-router-dom';
+import { Router, Route, Link } from "react-router-dom";
 // import Route from "./components/Route/route";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import Signup from "./components/SignUp/signUp";
-import PageContainer from './pages/PageContainer';
-import MyAccount from './pages/MyAccount/MyAccount';
+import PageContainer from "./pages/PageContainer";
+import MyAccount from "./pages/MyAccount/MyAccount";
 import history from "../src/utils/history";
-
 
 // import Footer from "./components/footer/footer";
 // import SearchContainer from "./components/SearchContainer";
@@ -29,19 +28,19 @@ import history from "../src/utils/history";
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <div>
           <Header />
           <Route exact path="/" component={PageContainer} />
           {/* <Route path="/signup" component={SignUp} /> */}
           {/* <Route exact path="/" component={Home} /> */}
-          <Route exact path="/login" component={Login} />
+          {/*<Route exact path="/login" component={Login} />*/}
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/myaccount" component={MyAccount} />
 
           <Footer />
         </div>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
