@@ -13,10 +13,13 @@ class MyAccount extends Component {
   render() {
     return [
       <div>
+        <div style={{ display: 'flex', justifyContent: 'center'}}>
       <h3>Favorites</h3>
+       </div>
       </div>,
       <div className="card" >
-        <h5>Restaurants</h5>
+        <div className="card-content">
+          <p><h5>Restaurants</h5></p></div>
         <div className="collection">
           <FavoritesCard
           name="The Salted Pig"
@@ -27,7 +30,8 @@ class MyAccount extends Component {
         </div>
       </div>,
       <div className="card" >
-        <h5>Coffee</h5>
+        <div className="card-content">
+          <p><h5>Coffee</h5></p></div>
         <div className="collection">
           <FavoritesCard
             name="Arcade Coffee Roasters"
@@ -38,7 +42,8 @@ class MyAccount extends Component {
         </div>
       </div>,
       <div className="card" >
-        <h5>Hotels</h5>
+        <div className="card-content">
+          <p><h5>Hotels</h5></p></div>
         <div className="collection">
           <FavoritesCard
             name="America's Best Value Inn Riverside"
