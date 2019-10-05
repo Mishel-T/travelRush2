@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
 }));
 //what is props doing here and where is it coming from????
 function TransitionsModal(props) {
-  console.log(props);
+  //console.log(props);
 
   const classes = useStyles();
   const [open, setOpen] = useState(false);
@@ -54,18 +54,18 @@ function TransitionsModal(props) {
   };
 
   useEffect(() => {
-    console.log("I am inside the `effect hook`...........");
-    console.log("isValid state is " + isValid);
+    //console.log("I am inside the `effect hook`...........");
+    //console.log("isValid state is " + isValid);
   }, [isValid]);
 
   useEffect(() => {
-    console.log("I am inside the `effect hook`...........");
-    console.log("errors state is..... ");
-    console.log(errors);
+    //console.log("I am inside the `effect hook`...........");
+    //console.log("errors state is..... ");
+    //console.log(errors);
   }, [errors]);
 
   useEffect(() => {
-    console.log("Set up local storage after successful log in`...........");
+    //console.log("Set up local storage after successful log in`...........");
     localStorage.setItem("tokenKey", userAuth.token);
   }, [userAuth]);
 
@@ -73,9 +73,9 @@ function TransitionsModal(props) {
     const {
       target: { name, value }
     } = event;
-    console.log("I am inside onchange event");
-    console.log(name);
-    console.log(value);
+    //console.log("I am inside onchange event");
+    //console.log(name);
+    //console.log(value);
     if (name === "email") {
       setEmail(value);
     } else {
@@ -85,10 +85,10 @@ function TransitionsModal(props) {
 
   const handleFormSubmit = event => {
     event.preventDefault();
-    console.log("email input is " + email);
-    console.log("password input is " + password);
+    //console.log("email input is " + email);
+    //console.log("password input is " + password);
     const credentials = { email: email, password: password };
-    console.log(credentials);
+    //console.log(credentials);
     logUser(credentials);
   };
 
@@ -97,8 +97,8 @@ function TransitionsModal(props) {
     //PROBLEM WITH REQUEST BEGINS HERE AND DOWNWARDS....   { email: "tprice@gmail.com", password: "guestpauTr58" }
     loginUser(userInput)
       .then(response => {
-        console.log("Successfully logged into account");
-        console.log(response);
+        //console.log("Successfully logged into account");
+        //console.log(response);
         if (response.data.success) {
           //set token if login is successful.
           setUserauth(response.data);
@@ -119,8 +119,8 @@ function TransitionsModal(props) {
       })
       .catch(err => {
         //console.log("Account not created because of error");
-        console.log(err);
-        console.log("this is an error", err.response);
+        //console.log(err);
+        //console.log("this is an error", err.response);
         //Set the state for the errors
         if (err.response.data.errors) {
           setErrors(err.response.data.errors);
