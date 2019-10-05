@@ -16,7 +16,9 @@ class CardContainer extends Component {
         responsedetail1: [],
         responsedetail2: [],
         responsedetail3: [],
-        collectionClicked: false,
+        restCollectionClicked: false,
+        coffeeCollectionClicked: false,
+        holetCollectionClicked: false
     };
 
 
@@ -28,7 +30,7 @@ class CardContainer extends Component {
 
             );
 
-        } 
+        }
     }
     searchYelp = search => {
         var call1 = yelpSearch("hotels", this.state.search.coordLoc.long, this.state.search.coordLoc.lat);
@@ -75,17 +77,25 @@ class CardContainer extends Component {
         });
     };
 
-    handleCollection = event => {
+    restHandleCollection = event => {
         event.preventDefault();
-        this.setState({ collectionClicked: true })
+        this.setState({ restCollectionClicked: true })
+    }
+    coffeeHandleCollection = event => {
+        event.preventDefault();
+        this.setState({ coffeeCollectionClicked: true })
+    }
+    restHandleCollection = event => {
+        event.preventDefault();
+        this.setState({ hotelCollectionClicked: true })
     }
 
     addToFaves = event => {
         event.preventDefault();
-       alert("Please login to save items to your Favorites")
+        alert("Please login to save items to your Favorites")
 
     }
-            
+
 
     updateCard = () => {
         if (!this.state.search) {
@@ -127,7 +137,7 @@ class CardContainer extends Component {
                 url="hotel-url"
             ></EmptyCard>
             ]
-        } else if (this.state.collectionClicked === true) {
+        } else if (this.state.restCollectionClicked === true) {
             return [
                 [
                     <div className="card" >
@@ -145,44 +155,53 @@ class CardContainer extends Component {
                             ))}
 
                         </div>
-                    </div>,
-
-                    <div className="card" >
-                        <div className="collection">
-                            {this.state.responsedetail3.map((businesses, index) => (
-                                <CollectionCard key={index}
-                                    urlplaceholder={businesses.url}
-                                    name={businesses.name}
-                                    price={businesses.price}
-                                    distance={Math.round((businesses.distance * 0.000621371192) * 10) / 10}
-                                    onClick={this.addToFaves}
-
-                                >
-                                </CollectionCard>
-                            ))}
-                        </div>
-                    </div>,
-
-                    <div className="card" >
-                        <div className="collection">
-
-                            {this.state.responsedetail1.map((businesses, index) => (
-                                <CollectionCard key={index}
-                                    urlplaceholder={businesses.url}
-                                    name={businesses.name}
-                                    price={businesses.price}
-                                    distance={Math.round((businesses.distance * 0.000621371192) * 10) / 10}
-                                    onClick={this.addToFaves}
-                                >
-                                </CollectionCard>
-                            ))}
-
-                        </div>
                     </div>
-
                 ]
+            ]
+        } else if (this.state.coffeeCollectionClicked === true) {
+            return [
 
-            ]        } else {
+
+
+                <div className="card" >
+                    <div className="collection">
+                        {this.state.responsedetail3.map((businesses, index) => (
+                            <CollectionCard key={index}
+                                urlplaceholder={businesses.url}
+                                name={businesses.name}
+                                price={businesses.price}
+                                distance={Math.round((businesses.distance * 0.000621371192) * 10) / 10}
+                                onClick={this.addToFaves}
+
+                            >
+                            </CollectionCard>
+                        ))}
+                    </div>
+                </div>
+
+
+
+            ]
+        } else if (this.state.hotelCollectionClicked === true) {
+            return [
+                <div className="card" >
+                    <div className="collection">
+
+                        {this.state.responsedetail1.map((businesses, index) => (
+                            <CollectionCard key={index}
+                                urlplaceholder={businesses.url}
+                                name={businesses.name}
+                                price={businesses.price}
+                                distance={Math.round((businesses.distance * 0.000621371192) * 10) / 10}
+                                onClick={this.addToFaves}
+                            >
+                            </CollectionCard>
+                        ))}
+
+                    </div>
+                </div>
+            ]
+        } else {
             return [
                 <Card
                     name={this.state.response2.title}
@@ -200,7 +219,7 @@ class CardContainer extends Component {
                     priceEntry={this.state.response2.price}
                     url="restaurant-url"
                     urlEntry={this.state.response2.url}
-                    onClick={this.handleCollection}
+                    onClick={this.restHandleCollection}
                 ></Card>,
 
                 <Card
@@ -219,7 +238,7 @@ class CardContainer extends Component {
                     priceEntry={this.state.response3.price}
                     url="coffee-url"
                     urlEntry={this.state.response3.url}
-                    onClick={this.handleCollection}
+                    onClick={this.coffeeHandleCollection}
 
                 ></Card>,
 
@@ -239,7 +258,7 @@ class CardContainer extends Component {
                     priceEntry={this.state.response1.price}
                     url="hotel-url"
                     urlEntry={this.state.response1.url}
-                    onClick={this.handleCollection}
+                    onClick={this.hotelHandleCollection}
                 ></Card>,
 
             ];
@@ -249,7 +268,7 @@ class CardContainer extends Component {
 
 
     render() {
-        
+
         return (<div>
             {this.updateCard()}
 
