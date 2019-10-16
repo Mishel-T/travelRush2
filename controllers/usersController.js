@@ -128,12 +128,20 @@ module.exports = {
             newUser.password = hash;
             newUser
               .save()
-              .then(user =>
+              .then(user => {
+                //create favorites model to hold user's favs.
+                const newFav = new db.Favorite();
+                newFav.owner = user._id;
+                //save favorite model with user's id.
+                newFav
+                  .save()
+                  .then(favorite => console.log(favorite))
+                  .catch(err => console.log(err));
                 res.json({
                   Success: true,
                   msg: "Account successfully created."
-                })
-              )
+                });
+              })
               .catch(err => console.log(err));
           });
         });
@@ -174,6 +182,41 @@ module.exports = {
     });
     //res.json({ msg: "Success!" });
     //console.log("Success!");
+  },
+
+  //save favorites for a specific user***MAY NOT NEED THIS!!!
+  // createFavorites: function(req, res) {
+  //   //req should include favorite item and userid
+  //   const { hotel, restaurant, coffee, owner } = req.body;
+  //   const newFav = new db.Favorite();
+  //   newFav.hotel.push(hotel);
+  //   newFav.restaurant.push(restaurant);
+  //   newFav.coffee.push(coffee);
+  //   newFav.owner.push(owner);
+  //   newFav
+  //     .save()
+  //     .then(favorites => {
+  //       console.log(favorites);
+  //     })
+  //     .catch(err => console.log(err));
+  // },
+
+  //update favorites for a specific user
+  updateFavorites: function(req, res) {
+    const { category, name, url, price, distance } = req.body;
+
+    //HOW DO I GET THE ID OF OWNER OF THE ACCOUNT???
+    const newUpdate = { searchField: req.body.field };
+    db.Favorite.findOneAndUpdate({ owner: req.body.id }, { $push: newUpdate })
+      .then(favorites => {
+        console.log(favorites);
+      })
+      .catch(err => console.log(err));
+  },
+
+  //delete favorites for a specific user
+  deleteFavorites: function(req, res) {
+    //
   }
 };
 

@@ -20,10 +20,12 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  favorites: { type: Schema.Types.ObjectId, ref: "Favorites" },
   date: {
     type: Date,
     default: Date.now
   },
+
   isDeleted: {
     type: Boolean,
     default: false

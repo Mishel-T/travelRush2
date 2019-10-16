@@ -1,7 +1,6 @@
 //adding API queries for app here
 import axios from "axios";
 
-
 //URL and API key for google API
 const googleURL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
 const googleKEY = "AIzaSyCqOAF-sXj7Q5MxZzQTBIDyjHYSfVD_WT0";
@@ -81,25 +80,53 @@ export const registerUser = formData => {
 
 // Route to log in users
 export const loginUser = formData => {
-  console.log("I am inside /API folder about to perform axios get request....");
+  console.log(
+    "I am inside /API folder about to perform axios post request...."
+  );
   console.log(formData);
   //PROBLEM WITH THE REQUEST STARTS HERE!!!
   return axios.post("/api/users/login", formData);
 };
 
-// Route for current user(access to a protected route for the user, using jwt token.)
-export const currentUser = () => {
-  return axios.get("/api/users/current");
+//Route to add favorite search result
+export const addFavorite = searchResults => {
+  console.log(
+    "I am inside /API folder about to perform axios post request...."
+  );
+  console.log(searchResults);
+  //PROBLEM WITH THE REQUEST STARTS HERE!!!
+  return axios.post("/api/users/addfavorite", searchResults);
+};
+
+//Route to get favorite results for a specific user
+export const getFavorites = () => {
+  console.log(
+    "I am inside /API folder to perform axios post request for favorites..."
+  );
+  return axios.get("/api/users/:id/getfavorite");
+};
+
+// // Route for current user(access to a protected route for the user, using jwt token.)
+// export const currentUser = (authToken) => {
+//   return axios.get("/api/users/current");
+// };
+export const currentUser = authToken => {
+  return axios({
+    method: "get",
+    url: "/api/users/current",
+    headers: {
+      Authorization: authToken
+    }
+  });
 };
 
 const APIKey = "ebe432-13fff1";
 
-const queryURL = "https://aviation-edge.com/v2/public/flights?key=" + APIKey +"&flightIata=";
-
-
+const queryURL =
+  "https://aviation-edge.com/v2/public/flights?key=" + APIKey + "&flightIata=";
 
 export default {
   search: function(query) {
-  return axios.get(queryURL + query);
+    return axios.get(queryURL + query);
   }
 };

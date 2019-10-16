@@ -94,7 +94,6 @@ function TransitionsModal(props) {
 
   const logUser = userInput => {
     console.log(userInput);
-    //PROBLEM WITH REQUEST BEGINS HERE AND DOWNWARDS....   { email: "tprice@gmail.com", password: "guestpauTr58" }
     loginUser(userInput)
       .then(response => {
         //console.log("Successfully logged into account");

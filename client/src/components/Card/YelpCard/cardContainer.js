@@ -5,7 +5,7 @@ import Card from "./Card";
 import EmptyCard from "./emptyCard";
 //import CollectionContainer from "./collectionContainer"
 import CollectionCard from "./collectionCard";
-import { yelpSearch } from "../../../utils/API";
+import { yelpSearch, addFavorite } from "../../../utils/API";
 
 class CardContainer extends Component {
   state = {
@@ -115,9 +115,37 @@ class CardContainer extends Component {
     this.setState({ collectionClicked: true });
   };
 
-  addToFaves = event => {
-    event.preventDefault();
-    alert("Please login to save items to your Favorites");
+  addToFaves = (favCategory, favName, favUrl, favPrice, favDist) => {
+    //event.preventDefault();
+
+    if (typeof Storage !== "undefined") {
+      //Add favorites for logged in user
+      if (localStorage.getItem("tokenKey")) {
+        addFavorite({
+          category: favCategory,
+          name: favName,
+          url: favUrl,
+          price: favPrice,
+          distance: favDist
+        });
+        //I AM HERE......FIGURE OUT HOW TO GET THE FAVORITE MODEL TO ACCEPT THIS `FUTURE` POST REQUEST.
+      } else {
+        //Alert user is not logged in
+        alert("Please login to save items to your Favorites");
+      }
+    } else {
+      // Sorry! No Web Storage support..
+      alert("Sorry your browser does not have Web Storage support..");
+    }
+
+    //alert("Please login to save items to your Favorites");
+    //if logged in then add new fave
+    //testing if I can extract the collection data clicked before making a request......
+    console.log(`${favCategory} is business selected.`);
+    console.log(`${favName} is business selected.`);
+    console.log(`${favUrl} is business selected.`);
+    console.log(`${favPrice} is business selected.`);
+    console.log(`${favDist} is business selected.`);
   };
 
   updateCard = () => {
@@ -174,7 +202,18 @@ class CardContainer extends Component {
                   distance={
                     Math.round(businesses.distance * 0.000621371192 * 10) / 10
                   }
-                  onClick={this.addToFaves}
+                  onClick={() => {
+                    let businessesDistance =
+                      Math.round(businesses.distance * 0.000621371192 * 10) /
+                      10;
+                    this.addToFaves(
+                      "restaurant",
+                      businesses.name,
+                      businesses.url,
+                      businesses.price,
+                      businessesDistance
+                    );
+                  }}
                 ></CollectionCard>
               ))}
             </div>
@@ -191,7 +230,18 @@ class CardContainer extends Component {
                   distance={
                     Math.round(businesses.distance * 0.000621371192 * 10) / 10
                   }
-                  onClick={this.addToFaves}
+                  onClick={() => {
+                    let businessesDistance =
+                      Math.round(businesses.distance * 0.000621371192 * 10) /
+                      10;
+                    this.addToFaves(
+                      "coffee",
+                      businesses.name,
+                      businesses.url,
+                      businesses.price,
+                      businessesDistance
+                    );
+                  }}
                 ></CollectionCard>
               ))}
             </div>
@@ -208,7 +258,18 @@ class CardContainer extends Component {
                   distance={
                     Math.round(businesses.distance * 0.000621371192 * 10) / 10
                   }
-                  onClick={this.addToFaves}
+                  onClick={() => {
+                    let businessesDistance =
+                      Math.round(businesses.distance * 0.000621371192 * 10) /
+                      10;
+                    this.addToFaves(
+                      "hotel",
+                      businesses.name,
+                      businesses.url,
+                      businesses.price,
+                      businessesDistance
+                    );
+                  }}
                 ></CollectionCard>
               ))}
             </div>
