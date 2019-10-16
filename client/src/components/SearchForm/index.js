@@ -4,6 +4,7 @@ import DropDown from "../DropDown";
 import { airportFinderSearch, googleSearch } from "../../utils/API.js";
 import InputAutoFlight from "../InputAutoFlight";
 import AutocompleteFlight from "../AutocompleteFlight";
+import "./searchform.css";
 
 //import ImageCard, { Button } from "./components/Button";
 //import NavBar, { DropDown } from "./components/DropDown";
