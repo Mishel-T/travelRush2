@@ -17,10 +17,22 @@ class CardContainer extends Component {
     responsedetail3: [],
     collectionClicked: false,
     request: false,
-    owner: ""
+    owner: "",
+    city: "",
+    statecode: ""
   };
 
   componentDidMount() {
+    // if (this.state.search) {
+    //   if (this.state.search.airport !== "") {
+    //     const arrayLoc = this.state.search.airport.split(",");
+    //     let currLocation = arrayLoc[0] + "," + arrayLoc[1];
+    //   } else {
+    //     const arrayLoc = this.state.search.address.split(",");
+    //     let currLocation =
+    //       arrayLoc[arrayLoc.length - 2] + "," + arrayLoc[arrayLoc.length - 1];
+    //   }
+    // }
     this.getCurrentUser();
   }
 
@@ -85,6 +97,8 @@ class CardContainer extends Component {
     });
 
     call1.then(response1 => {
+      // console.log(response1.data.businesses.location.city);
+      // console.log(response1.data.businesses.location.state);
       var hotelsInfo = {
         name: response1.data.businesses[0].name,
         image: response1.data.businesses[0].image_url,
@@ -95,7 +109,9 @@ class CardContainer extends Component {
       };
       this.setState({
         response1: hotelsInfo,
-        responsedetail1: response1.data.businesses
+        responsedetail1: response1.data.businesses,
+        city: response1.data.businesses[0].location.city,
+        statecode: response1.data.businesses[0].location.state
       });
     });
 
@@ -134,7 +150,14 @@ class CardContainer extends Component {
       });
   }
 
-  addToFaves = (favCategory, favName, favUrl, favPrice, favDist) => {
+  addToFaves = (
+    favCategory,
+    favName,
+    favUrl,
+    favPrice,
+    favDist,
+    favLocation
+  ) => {
     //event.preventDefault();
 
     if (typeof Storage !== "undefined") {
@@ -146,7 +169,8 @@ class CardContainer extends Component {
           name: favName,
           url: favUrl,
           price: favPrice,
-          distance: favDist
+          distance: favDist,
+          location: favLocation
         });
         //I AM HERE......FIGURE OUT HOW TO GET THE FAVORITE MODEL TO ACCEPT THIS `FUTURE` POST REQUEST.
       } else {
@@ -231,7 +255,8 @@ class CardContainer extends Component {
                       businesses.name,
                       businesses.url,
                       businesses.price,
-                      businessesDistance
+                      businessesDistance,
+                      this.state.city + ", " + this.state.statecode
                     );
                   }}
                 ></CollectionCard>
@@ -259,7 +284,8 @@ class CardContainer extends Component {
                       businesses.name,
                       businesses.url,
                       businesses.price,
-                      businessesDistance
+                      businessesDistance,
+                      this.state.city + ", " + this.state.statecode
                     );
                   }}
                 ></CollectionCard>
@@ -287,7 +313,8 @@ class CardContainer extends Component {
                       businesses.name,
                       businesses.url,
                       businesses.price,
-                      businessesDistance
+                      businessesDistance,
+                      this.state.city + ", " + this.state.statecode
                     );
                   }}
                 ></CollectionCard>

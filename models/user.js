@@ -20,7 +20,7 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  favorites: { type: Schema.Types.ObjectId, ref: "Favorites" },
+  favorite: { type: Schema.Types.ObjectId, ref: "Favorite" },
   date: {
     type: Date,
     default: Date.now

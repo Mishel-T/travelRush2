@@ -33,6 +33,9 @@ router
 
 //
 router.route("/:id/addfavorite").post(usersController.updateFavorites);
+
+//
+router.route("/:id/getfavorite").get(usersController.getFavorites);
 // router.get("/", (req, res) => {
 //   res.json({ msg: "user router works, but the controller doesn't!" });
 // });

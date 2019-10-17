@@ -102,11 +102,11 @@ export const addFavorite = searchResults => {
 };
 
 //Route to get favorite results for a specific user
-export const getFavorites = () => {
+export const getFavorites = owner => {
   console.log(
     "I am inside /API folder to perform axios post request for favorites..."
   );
-  return axios.get("/api/users/:id/getfavorite");
+  return axios.get("/api/users/" + owner + "/getfavorite");
 };
 
 // // Route for current user(access to a protected route for the user, using jwt token.)

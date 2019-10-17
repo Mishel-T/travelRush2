@@ -205,17 +205,41 @@ module.exports = {
   //update favorites for a specific user
   updateFavorites: function(req, res) {
     console.log("I am inside the function to update favorite....");
-    const { owner, category, name, url, price, distance } = req.body;
+    const { owner, category, name, url, price, distance, location } = req.body;
     console.log(req.body);
     // const searchField = category;
     // const newUpdate = { category: name, url, price, distance };
     db.Favorite.findOneAndUpdate(
       { owner: owner },
-      { $push: { [category]: name, url, price, distance } }
+      {
+        $push: {
+          [category]: {
+            name: name,
+            url: url,
+            price: price,
+            distance: distance,
+            location: location
+          }
+        }
+      },
+      { new: true }
     )
       .then(favorites => {
         //PUSH IS NOT HAPPENING WHY??!!!.................................................
         console.log(favorites);
+      })
+      .catch(err => console.log(err));
+  },
+
+  //populate user with corresponding favorites
+  getFavorites: function(req, res) {
+    console.log("I am inside the function to get user's favorites...");
+    //const { owner } = req.params;
+    console.log(req.params);
+    db.Favorite.findOne({ owner: req.params.id })
+      .then(dbFave => {
+        console.log(dbFave);
+        res.json(dbFave);
       })
       .catch(err => console.log(err));
   },
