@@ -16,13 +16,20 @@ class MyAccount extends Component {
 
   componentDidMount() {
     //Make request to get id of current user
-    const { id } = getCurrentUser();
-    this.setState({ owner: id }, () => console.log(this.state));
+    // const { id } = this.getCurrentUser();
+    // this.setState({ owner: id }, () => console.log(this.state));
+    this.getCurrentUser();
   }
 
   getCurrentUser() {
     const authToken = localStorage.getItem("tokenKey");
-    return currentUser(authToken);
+    console.log(authToken);
+    currentUser(authToken)
+      .then(user => {
+        //console.log(user)
+        this.setState({ owner: user.data.id }, () => console.log(this.state));
+      })
+      .catch(err => console.log(err));
   }
 
   render() {

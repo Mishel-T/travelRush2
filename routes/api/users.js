@@ -13,7 +13,7 @@ router.route("/").get(usersController.testAll);
 
 // @route  POST api/users/register
 // @desc   Register users route
-// @access Public
+// @access Public"
 router.route("/register").post(usersController.createUser);
 
 //@route  POST api/users/login
@@ -31,6 +31,8 @@ router
     usersController.getUserInfo
   );
 
+//
+router.route("/:id/addfavorite").post(usersController.updateFavorites);
 // router.get("/", (req, res) => {
 //   res.json({ msg: "user router works, but the controller doesn't!" });
 // });

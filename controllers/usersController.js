@@ -175,6 +175,7 @@ module.exports = {
   //     .catch(err => res.status(422).json(err));
   // },
   getUserInfo: function(req, res) {
+    console.log(req.user);
     res.json({
       id: req.user._id,
       name: req.user.name,
@@ -203,12 +204,17 @@ module.exports = {
 
   //update favorites for a specific user
   updateFavorites: function(req, res) {
-    const { category, name, url, price, distance } = req.body;
-
-    //HOW DO I GET THE ID OF OWNER OF THE ACCOUNT???
-    const newUpdate = { searchField: req.body.field };
-    db.Favorite.findOneAndUpdate({ owner: req.body.id }, { $push: newUpdate })
+    console.log("I am inside the function to update favorite....");
+    const { owner, category, name, url, price, distance } = req.body;
+    console.log(req.body);
+    // const searchField = category;
+    // const newUpdate = { category: name, url, price, distance };
+    db.Favorite.findOneAndUpdate(
+      { owner: owner },
+      { $push: { [category]: name, url, price, distance } }
+    )
       .then(favorites => {
+        //PUSH IS NOT HAPPENING WHY??!!!.................................................
         console.log(favorites);
       })
       .catch(err => console.log(err));

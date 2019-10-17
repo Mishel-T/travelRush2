@@ -5,7 +5,7 @@ import Card from "./Card";
 import EmptyCard from "./emptyCard";
 //import CollectionContainer from "./collectionContainer"
 import CollectionCard from "./collectionCard";
-import { yelpSearch, addFavorite } from "../../../utils/API";
+import { yelpSearch, addFavorite, currentUser } from "../../../utils/API";
 
 class CardContainer extends Component {
   state = {
@@ -16,8 +16,13 @@ class CardContainer extends Component {
     responsedetail2: [],
     responsedetail3: [],
     collectionClicked: false,
-    request: false
+    request: false,
+    owner: ""
   };
+
+  componentDidMount() {
+    this.getCurrentUser();
+  }
 
   componentDidUpdate() {
     if (this.props.parentState && !this.state.search) {
@@ -115,13 +120,28 @@ class CardContainer extends Component {
     this.setState({ collectionClicked: true });
   };
 
+  getCurrentUser() {
+    const authToken = localStorage.getItem("tokenKey");
+    console.log(authToken);
+    currentUser(authToken)
+      .then(user => {
+        //console.log(user)
+        this.setState({ owner: user.data.id }, () => console.log(this.state));
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ owner: "" }, () => console.log(this.state));
+      });
+  }
+
   addToFaves = (favCategory, favName, favUrl, favPrice, favDist) => {
     //event.preventDefault();
 
     if (typeof Storage !== "undefined") {
       //Add favorites for logged in user
-      if (localStorage.getItem("tokenKey")) {
+      if (localStorage.getItem("tokenKey") && this.state.owner !== "") {
         addFavorite({
+          owner: this.state.owner,
           category: favCategory,
           name: favName,
           url: favUrl,

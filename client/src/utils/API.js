@@ -93,9 +93,12 @@ export const addFavorite = searchResults => {
   console.log(
     "I am inside /API folder about to perform axios post request...."
   );
-  console.log(searchResults);
+  //console.log(searchResults.owner);
   //PROBLEM WITH THE REQUEST STARTS HERE!!!
-  return axios.post("/api/users/addfavorite", searchResults);
+  return axios.post(
+    "/api/users/" + searchResults.owner + "/addfavorite",
+    searchResults
+  );
 };
 
 //Route to get favorite results for a specific user
