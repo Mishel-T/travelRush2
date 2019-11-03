@@ -1,4 +1,5 @@
 module.exports = {
   Airport: require("./airport"),
-  User: require("./user")
+  User: require("./user"),
+  Favorite: require("./favorite")
 };

@@ -3,8 +3,10 @@ import Logo from "../assets/images/teeny_logo.png";
 //import Modal from "../Modal/modal";
 import ModalContainer from "../Modal/modalContainer";
 import NewSearchLink from "../NewSearch";
+import Logout from "../Logout";
 import { Link } from "react-router-dom";
 import "./header.css";
+import Account from "../Account";
 
 function Header() {
   return (
@@ -29,10 +31,23 @@ function Header() {
                 <NewSearchLink />
               </Link>
             </li>
+            <li>
+              <Link to="/myaccount">
+                <Account />
+              </Link>
+            </li>
 
             <li>
-              <ModalContainer />
+              <Link to="">
+                <ModalContainer />
+              </Link>
             </li>
+            <li>
+              <Link to="/">
+                <Logout />
+              </Link>
+            </li>
+
             {/* <li><a href="#!">LOGIN</a></li> */}
           </ul>
         </div>

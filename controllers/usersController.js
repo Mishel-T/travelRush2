@@ -128,12 +128,20 @@ module.exports = {
             newUser.password = hash;
             newUser
               .save()
-              .then(user =>
+              .then(user => {
+                //create favorites model to hold user's favs.
+                const newFav = new db.Favorite();
+                newFav.owner = user._id;
+                //save favorite model with user's id.
+                newFav
+                  .save()
+                  .then(favorite => console.log(favorite))
+                  .catch(err => console.log(err));
                 res.json({
                   Success: true,
                   msg: "Account successfully created."
-                })
-              )
+                });
+              })
               .catch(err => console.log(err));
           });
         });
@@ -167,6 +175,7 @@ module.exports = {
   //     .catch(err => res.status(422).json(err));
   // },
   getUserInfo: function(req, res) {
+    console.log(req.user);
     res.json({
       id: req.user._id,
       name: req.user.name,
@@ -174,6 +183,70 @@ module.exports = {
     });
     //res.json({ msg: "Success!" });
     //console.log("Success!");
+  },
+
+  //save favorites for a specific user***MAY NOT NEED THIS!!!
+  // createFavorites: function(req, res) {
+  //   //req should include favorite item and userid
+  //   const { hotel, restaurant, coffee, owner } = req.body;
+  //   const newFav = new db.Favorite();
+  //   newFav.hotel.push(hotel);
+  //   newFav.restaurant.push(restaurant);
+  //   newFav.coffee.push(coffee);
+  //   newFav.owner.push(owner);
+  //   newFav
+  //     .save()
+  //     .then(favorites => {
+  //       console.log(favorites);
+  //     })
+  //     .catch(err => console.log(err));
+  // },
+
+  //update favorites for a specific user
+  updateFavorites: function(req, res) {
+    console.log("I am inside the function to update favorite....");
+    const { owner, category, name, url, price, distance, location } = req.body;
+    console.log(req.body);
+    // const searchField = category;
+    // const newUpdate = { category: name, url, price, distance };
+    db.Favorite.findOneAndUpdate(
+      { owner: owner },
+      {
+        $push: {
+          [category]: {
+            name: name,
+            url: url,
+            price: price,
+            distance: distance,
+            location: location
+          }
+        }
+      },
+      { new: true }
+    )
+      .then(favorites => {
+        //PUSH IS NOT HAPPENING WHY??!!!.................................................
+        console.log(favorites);
+      })
+      .catch(err => console.log(err));
+  },
+
+  //populate user with corresponding favorites
+  getFavorites: function(req, res) {
+    console.log("I am inside the function to get user's favorites...");
+    //const { owner } = req.params;
+    console.log(req.params);
+    db.Favorite.findOne({ owner: req.params.id })
+      .then(dbFave => {
+        console.log(dbFave);
+        res.json(dbFave);
+      })
+      .catch(err => console.log(err));
+  },
+
+  //delete favorites for a specific user
+  deleteFavorites: function(req, res) {
+    //
   }
 };
 

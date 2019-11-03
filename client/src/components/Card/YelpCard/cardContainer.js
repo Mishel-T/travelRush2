@@ -5,7 +5,7 @@ import Card from "./Card";
 import EmptyCard from "./emptyCard";
 //import CollectionContainer from "./collectionContainer"
 import CollectionCard from "./collectionCard";
-import { yelpSearch } from "../../../utils/API";
+import { yelpSearch, addFavorite, currentUser } from "../../../utils/API";
 
 class CardContainer extends Component {
   state = {
@@ -16,8 +16,25 @@ class CardContainer extends Component {
     responsedetail2: [],
     responsedetail3: [],
     collectionClicked: false,
-    request: false
+    request: false,
+    owner: "",
+    city: "",
+    statecode: ""
   };
+
+  componentDidMount() {
+    // if (this.state.search) {
+    //   if (this.state.search.airport !== "") {
+    //     const arrayLoc = this.state.search.airport.split(",");
+    //     let currLocation = arrayLoc[0] + "," + arrayLoc[1];
+    //   } else {
+    //     const arrayLoc = this.state.search.address.split(",");
+    //     let currLocation =
+    //       arrayLoc[arrayLoc.length - 2] + "," + arrayLoc[arrayLoc.length - 1];
+    //   }
+    // }
+    this.getCurrentUser();
+  }
 
   componentDidUpdate() {
     if (this.props.parentState && !this.state.search) {
@@ -80,6 +97,8 @@ class CardContainer extends Component {
     });
 
     call1.then(response1 => {
+      // console.log(response1.data.businesses.location.city);
+      // console.log(response1.data.businesses.location.state);
       var hotelsInfo = {
         name: response1.data.businesses[0].name,
         image: response1.data.businesses[0].image_url,
@@ -90,7 +109,9 @@ class CardContainer extends Component {
       };
       this.setState({
         response1: hotelsInfo,
-        responsedetail1: response1.data.businesses
+        responsedetail1: response1.data.businesses,
+        city: response1.data.businesses[0].location.city,
+        statecode: response1.data.businesses[0].location.state
       });
     });
 
@@ -115,9 +136,60 @@ class CardContainer extends Component {
     this.setState({ collectionClicked: true });
   };
 
-  addToFaves = event => {
-    event.preventDefault();
-    alert("Please login to save items to your Favorites");
+  getCurrentUser() {
+    const authToken = localStorage.getItem("tokenKey");
+    console.log(authToken);
+    currentUser(authToken)
+      .then(user => {
+        //console.log(user)
+        this.setState({ owner: user.data.id }, () => console.log(this.state));
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ owner: "" }, () => console.log(this.state));
+      });
+  }
+
+  addToFaves = (
+    favCategory,
+    favName,
+    favUrl,
+    favPrice,
+    favDist,
+    favLocation
+  ) => {
+    //event.preventDefault();
+
+    if (typeof Storage !== "undefined") {
+      //Add favorites for logged in user
+      if (localStorage.getItem("tokenKey") && this.state.owner !== "") {
+        addFavorite({
+          owner: this.state.owner,
+          category: favCategory,
+          name: favName,
+          url: favUrl,
+          price: favPrice,
+          distance: favDist,
+          location: favLocation
+        });
+        //I AM HERE......FIGURE OUT HOW TO GET THE FAVORITE MODEL TO ACCEPT THIS `FUTURE` POST REQUEST.
+      } else {
+        //Alert user is not logged in
+        alert("Please login to save items to your Favorites");
+      }
+    } else {
+      // Sorry! No Web Storage support..
+      alert("Sorry your browser does not have Web Storage support..");
+    }
+
+    //alert("Please login to save items to your Favorites");
+    //if logged in then add new fave
+    //testing if I can extract the collection data clicked before making a request......
+    console.log(`${favCategory} is business selected.`);
+    console.log(`${favName} is business selected.`);
+    console.log(`${favUrl} is business selected.`);
+    console.log(`${favPrice} is business selected.`);
+    console.log(`${favDist} is business selected.`);
   };
 
   updateCard = () => {
@@ -174,7 +246,19 @@ class CardContainer extends Component {
                   distance={
                     Math.round(businesses.distance * 0.000621371192 * 10) / 10
                   }
-                  onClick={this.addToFaves}
+                  onClick={() => {
+                    let businessesDistance =
+                      Math.round(businesses.distance * 0.000621371192 * 10) /
+                      10;
+                    this.addToFaves(
+                      "restaurant",
+                      businesses.name,
+                      businesses.url,
+                      businesses.price,
+                      businessesDistance,
+                      this.state.city + ", " + this.state.statecode
+                    );
+                  }}
                 ></CollectionCard>
               ))}
             </div>
@@ -191,7 +275,19 @@ class CardContainer extends Component {
                   distance={
                     Math.round(businesses.distance * 0.000621371192 * 10) / 10
                   }
-                  onClick={this.addToFaves}
+                  onClick={() => {
+                    let businessesDistance =
+                      Math.round(businesses.distance * 0.000621371192 * 10) /
+                      10;
+                    this.addToFaves(
+                      "coffee",
+                      businesses.name,
+                      businesses.url,
+                      businesses.price,
+                      businessesDistance,
+                      this.state.city + ", " + this.state.statecode
+                    );
+                  }}
                 ></CollectionCard>
               ))}
             </div>
@@ -208,7 +304,19 @@ class CardContainer extends Component {
                   distance={
                     Math.round(businesses.distance * 0.000621371192 * 10) / 10
                   }
-                  onClick={this.addToFaves}
+                  onClick={() => {
+                    let businessesDistance =
+                      Math.round(businesses.distance * 0.000621371192 * 10) /
+                      10;
+                    this.addToFaves(
+                      "hotel",
+                      businesses.name,
+                      businesses.url,
+                      businesses.price,
+                      businessesDistance,
+                      this.state.city + ", " + this.state.statecode
+                    );
+                  }}
                 ></CollectionCard>
               ))}
             </div>

@@ -1,36 +1,40 @@
 /* Adds a custom color for the header background */
 nav {
-    background-color: rgb(125, 141, 191);
-  }
+  background-color: rgb(125, 141, 191);
+}
 
 /* This changes the color 'Login' button in header */
 nav ul a.btn-flat {
   color: white;
-  font-size: 2rem;
+  /*font-size: 2rem;*/
+  font-size: 1.5rem;
 }
 
-
 nav ul a {
-    font-family: 'Anton', sans-serif;
-    font-style: italic;
-    margin-right: 45px;
-    -webkit-text-stroke-color: black;
-    -webkit-text-stroke-width: 1.50px; 
+  font-family: "Anton", sans-serif;
+  font-style: italic;
+  /*margin-right: 45px;*/
+  margin-right: 0px;
+  padding: 0px;
+
+  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-width: 1.5px;
 }
 
 /* These apply all the styles to make our logo 'pop' */
 nav .brand-logo {
-    font-family: 'Anton', sans-serif;
-    font-style: italic;
-    font-size: 3rem;
-    -webkit-text-stroke-color: black;
-    -webkit-text-stroke-width: 2.00px; 
+  font-family: "Anton", sans-serif;
+  font-style: italic;
+  font-size: 3rem;
+  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-width: 2px;
 }
 
 /* Ensures proper placement and size of the travelRush logo!*/
-img.responsive-img, video.responsive-video {
-    justify-content: left;
-    max-width: 40%;
-    margin-left: 10px;
-    padding-left: 20px;
+img.responsive-img,
+video.responsive-video {
+  justify-content: left;
+  max-width: 40%;
+  margin-left: 10px;
+  padding-left: 20px;
 }

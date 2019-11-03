@@ -8,9 +8,8 @@ import { Router, Route, Link } from "react-router-dom";
 import "./signUp.css";
 import { registerUser } from "../../utils/API";
 import classnames from "classnames";
-import ModalContainer from "../Modal/modalContainer"
+import ModalContainer from "../Modal/modalContainer";
 import Modal from "../Modal/modal";
-
 
 //Make this a stateful component because it is a form?
 class Signup extends Component {
@@ -43,9 +42,9 @@ class Signup extends Component {
     const {
       target: { name, value }
     } = event;
-    console.log("I am inside onchange event");
-    console.log(name);
-    console.log(value);
+    //console.log("I am inside onchange event");
+    //console.log(name);
+    //console.log(value);
     this.setState({ [name]: value });
   };
 
@@ -76,29 +75,29 @@ class Signup extends Component {
   addUser = userInput => {
     registerUser(userInput)
       .then(response => {
-        console.log("Creating an account...");
-        console.log(response);
+        //console.log("Creating an account...");
+        //console.log(response);
         //If email already exist, set state errors object
         if (response.data.email === "Email already exists") {
           //set the state for the isValid property
           this.setState({ errors: response.data }, () => {
-            console.log(this.state);
+            //console.log(this.state);
           });
         } else {
           //set the state for the isValid property
           this.setState({ isValid: response.data }, () => {
-            console.log(this.state.isValid.msg);
+            //console.log(this.state.isValid.msg);
             this.props.history.push("/myaccount");
           });
         }
       })
       .catch(err => {
         //console.log("Account not created because of error");
-        console.log(err);
-        console.log("this is an error", err.response.data);
+        //console.log(err);
+        //console.log("this is an error", err.response.data);
         //Set the state for the errors
         this.setState({ errors: err.response.data }, () => {
-          console.log(this.state);
+          //console.log(this.state);
         });
       });
   };
@@ -261,10 +260,7 @@ class Signup extends Component {
             Login here!
             {isValid.Success && <h5 className="black-text">{isValid.msg}</h5>}
           </Link> */}
-          
-          
           <ModalContainer />
-          
           <div className="d-flex justify-content-center links"></div>
           {/*<Route exact path="/login" component={TransitionsModal} />*/}
         </div>
