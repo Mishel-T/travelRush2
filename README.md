@@ -22,7 +22,6 @@ This app allows users to enter the destination address or airport and departure 
 4. Review the initial results and click on the circle icons in each result card to view additional result details.
 
 5. In order to access your account to track items like favorites and past searches, click the Login button. If you don't have an account click 'Sign Up' and register for an account on travelRush.
-![Page example]()
 
 This app is designed to assist rushed travelers with unplanned last-minute trips, by providing a quick one stop search for airports, destination weather forecast, and nearby hotels and restaurants. A future goal is to add features to the app, such as allowing users to choose departure dates within the next 16 days, including autocomplete capabilities so that users can choose an airport or city and state name as their destination, and displaying real-time discounted flight options.
 
